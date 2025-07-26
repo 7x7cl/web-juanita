@@ -3,7 +3,7 @@
 	"name": "web",
 	"compatibility_date": "2025-06-07",
 	"assets": {
-		"directory": "./build/client",
+		"directory": "./build",
 		"not_found_handling": "none"
 	}
 }
