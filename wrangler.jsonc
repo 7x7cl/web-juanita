@@ -1,9 +1,6 @@
 {
 	"$schema": "https://unpkg.com/wrangler@latest/config-schema.json",
 	"name": "web",
-	"build": {
-		"command": "pnpm run build"
-	},
 	"compatibility_date": "2025-06-07",
 	"assets": {
 		"directory": "./build/client",
