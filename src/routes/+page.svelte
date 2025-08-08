@@ -54,7 +54,7 @@
 			</div>
 			<div class="p-4">
 				<h3 class="font-semibold group-hover:underline">Cuadros crewel</h3>
-				<p class="text-sm text-gray-600">Galería de obras disponibles</p>
+				<p class="text-sm text-gray-600">Galería de obras</p>
 			</div>
 		</a>
 		<!-- <a href="/otras-artesanias" class="group overflow-hidden rounded-2xl border bg-white shadow-sm">
