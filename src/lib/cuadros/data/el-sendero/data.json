@@ -1,0 +1,9 @@
+{
+    "titulo": "El sendero",
+    "portada": "portada",
+    "id": "el-sendero",
+    "vendido": true,
+    "end": {
+        "year": 2017
+    }
+}

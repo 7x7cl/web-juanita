@@ -1,0 +1,9 @@
+{
+    "titulo": "Descanso",
+    "portada": "portada",
+    "id": "descanso",
+    "vendido": true,
+    "end": {
+        "year": 2019
+    }
+}

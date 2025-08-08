@@ -1,0 +1,10 @@
+{
+    "titulo": "La casona de campo",
+    "portada": "portada",
+    "id": "la-casona-de-campo",
+    "vendido": true,
+    "start": {
+        "month": 10,
+        "year": 2022
+    }
+}

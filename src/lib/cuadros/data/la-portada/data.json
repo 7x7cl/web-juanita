@@ -1,0 +1,9 @@
+{
+    "titulo": "La portada de Antofagasta",
+    "portada": "portada",
+    "id": "la-portada",
+    "vendido": true,
+    "end": {
+        "year": 2018
+    }
+}

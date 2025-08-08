@@ -1,0 +1,14 @@
+{
+    "titulo": "Primavera",
+    "portada": "portada",
+    "id": "primavera",
+    "vendido": true,
+    "start": {
+        "month": 6,
+        "year": 2022
+    },
+    "end": {
+        "month": 8,
+        "year": 2022
+    }
+}

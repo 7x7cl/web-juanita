@@ -1,0 +1,11 @@
+{
+    "titulo": "Pileta",
+    "portada": "portada",
+    "id": "pileta",
+    "vendido": true,
+    "start": {
+        "day": 18,
+        "month": 3,
+        "year": 2023
+    }
+}

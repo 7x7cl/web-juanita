@@ -1,0 +1,16 @@
+{
+    "titulo": "La cascada",
+    "portada": "portada",
+    "id": "la-cascada",
+    "vendido": true,
+    "end": {
+        "day": 10,
+        "month": 6,
+        "year": 2022
+    },
+    "fechaventa": {
+        "day": 1,
+        "month": 6,
+        "year": 2023
+    }
+}

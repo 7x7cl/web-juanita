@@ -1,0 +1,9 @@
+{
+    "titulo": "Camino nostalgico",
+    "portada": "portada",
+    "id": "camino-nostalgico",
+    "vendido": true,
+    "end": {
+        "year": 2019
+    }
+}
