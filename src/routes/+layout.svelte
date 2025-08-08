@@ -11,12 +11,14 @@
 		{ href: '/otras-artesanias', label: 'Otras artesanías' },
 		 */ { href: '/contacto', label: 'Contacto' }
 	];
+
+	let mobileOpen = $state(false);
 </script>
 
 <header
 	class="sticky top-0 z-30 border-b border-gray-200/60 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60"
 >
-	<div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+	<div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 relative">
 		<a href="/" class="flex items-center gap-2">
 			<!-- 			<img src="/favicon.svg" alt="Logo" class="h-6 w-6" />
  -->
@@ -39,8 +41,59 @@
 				</a>
 			{/each}
 		</nav>
+
+		<!-- Mobile menu button -->
+		<button
+			class="md:hidden rounded-full p-2 text-gray-700 transition hover:bg-gray-100"
+			aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+			aria-expanded={mobileOpen}
+			onclick={() => (mobileOpen = !mobileOpen)}
+		>
+			{#if !mobileOpen}
+				<!-- Hamburger icon -->
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6">
+					<path fill-rule="evenodd" d="M3.75 5.25a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75Zm0 6a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75Zm0 6a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+				</svg>
+			{:else}
+				<!-- Close icon -->
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6">
+					<path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+				</svg>
+			{/if}
+		</button>
+
+		<!-- Mobile popover menu -->
+		{#if mobileOpen}
+			<div class="absolute right-4 top-full z-40 mt-2 w-56 rounded-2xl border border-gray-200 bg-white p-2 shadow-xl md:hidden">
+				{#each links as l}
+					<a
+						href={l.href}
+						class="block rounded-xl px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 {page.url.pathname === l.href ? 'bg-gray-900 text-white hover:bg-gray-900' : ''}"
+						aria-current={page.url.pathname === l.href ? 'page' : undefined}
+						onclick={() => (mobileOpen = false)}
+					>
+						{l.label}
+					</a>
+				{/each}
+			</div>
+		{/if}
 	</div>
 </header>
+
+<!-- Close on Escape -->
+<svelte:window onkeydown={(e) => { if (e.key === 'Escape') mobileOpen = false; }} />
+
+<!-- Screen overlay when mobile menu is open -->
+{#if mobileOpen}
+	<div
+		class="fixed inset-0 z-20 bg-black/20 md:hidden"
+		role="button"
+		tabindex="0"
+		aria-label="Cerrar menú"
+		onclick={() => (mobileOpen = false)}
+		onkeydown={(e) => { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') mobileOpen = false; }}
+	></div>
+{/if}
 
 {@render children()}
 
