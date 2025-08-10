@@ -1,0 +1,9 @@
+{
+    "titulo": "La matriz",
+    "portada": "portada",
+    "id": "la-matriz",
+    "vendido": true,
+    "start": {
+        "year": 2021
+    }
+}
