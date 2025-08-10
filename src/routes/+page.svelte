@@ -1,5 +1,5 @@
 <script lang="ts">
-	import perfil from '$lib/fotos/perfil.png';
+	import perfil from '$lib/fotos/perfil.jpg';
 	import cuadroPortada from '$lib/fotos/cuadroPortada.jpg';
 </script>
 
