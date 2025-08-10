@@ -1,5 +1,15 @@
 <svelte:head>
 	<title>Contacto - Las Artesanías de Juanita</title>
+	<meta
+		name="description"
+		content="Escríbenos por correo o WhatsApp para consultas y encargos de cuadros crewel hechos a mano."
+	/>
+	<meta property="og:title" content="Contacto - Las Artesanías de Juanita" />
+	<meta
+		property="og:description"
+		content="Escríbenos por correo o WhatsApp para consultas y encargos."
+	/>
+	<meta property="og:type" content="website" />
 </svelte:head>
 
 <section class="mx-auto max-w-3xl px-4 py-16">

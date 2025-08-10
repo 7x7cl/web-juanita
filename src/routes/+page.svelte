@@ -1,10 +1,26 @@
 <script lang="ts">
 	import perfil from '$lib/fotos/perfil.jpg';
 	import cuadroPortada from '$lib/fotos/cuadroPortada.jpg';
+	const BASE_URL = typeof window !== 'undefined' ? window.location.origin : '';
+	const TITLE = 'Las Artesanías de Juanita';
+	const DESCRIPTION =
+		'Artesanías bordadas en lana con técnica crewel, hechas a mano en Chile por Juanita. Descubre colores, texturas y tradición en cada puntada.';
 </script>
 
 <svelte:head>
-	<title>Las Artesanías de Juanita</title>
+	<title>{TITLE}</title>
+	<meta name="description" content={DESCRIPTION} />
+	<meta property="og:title" content={TITLE} />
+	<meta property="og:description" content={DESCRIPTION} />
+	<meta property="og:type" content="website" />
+	{#if BASE_URL}
+		<meta property="og:url" content={`${BASE_URL}/`} />
+	{/if}
+	<meta property="og:image" content="/favicon.svg" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={TITLE} />
+	<meta name="twitter:description" content={DESCRIPTION} />
+	<meta name="twitter:image" content="/favicon.svg" />
 </svelte:head>
 
 <section
@@ -33,6 +49,7 @@
 			<img
 				src={perfil}
 				alt="Foto de Juanita"
+				loading="lazy"
 				class="aspect-square w-full rounded-3xl object-cover shadow-xl"
 			/>
 		</div>
@@ -49,6 +66,7 @@
 				<img
 					src={cuadroPortada}
 					alt="Cuadro destacado"
+					loading="lazy"
 					class="h-full w-full rounded-t-2xl object-cover transition duration-300 group-hover:scale-105"
 				/>
 			</div>

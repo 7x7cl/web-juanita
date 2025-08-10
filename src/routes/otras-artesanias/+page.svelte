@@ -1,3 +1,13 @@
+<svelte:head>
+	<title>Otras artesanías - Las Artesanías de Juanita</title>
+	<meta
+		name="description"
+		content="Además de cuadros crewel, descubre otras artesanías hechas a mano por Juanita."
+	/>
+	<meta property="og:title" content="Otras artesanías - Las Artesanías de Juanita" />
+	<meta property="og:description" content="Descubre otras artesanías hechas a mano por Juanita." />
+	<meta property="og:type" content="website" />
+</svelte:head>
 <section class="mx-auto max-w-6xl px-4 py-12">
 	<h1 class="mb-6 text-3xl font-bold">Otras artesanías</h1>
 	<p class="mb-8 max-w-2xl text-gray-700">

@@ -1,3 +1,13 @@
+<svelte:head>
+	<title>Sobre Juanita - Las Artesanías de Juanita</title>
+	<meta
+		name="description"
+		content="Conoce a Juanita, artesana del bordado crewel. Historia, inspiración y técnica."
+	/>
+	<meta property="og:title" content="Sobre Juanita - Las Artesanías de Juanita" />
+	<meta property="og:description" content="Conoce a Juanita, artesana del bordado crewel." />
+	<meta property="og:type" content="profile" />
+</svelte:head>
 <section class="mx-auto max-w-6xl px-4 py-12">
 	<h1 class="mb-6 text-3xl font-bold">Sobre Juanita</h1>
 	<div class="grid gap-8 md:grid-cols-2 md:items-start">

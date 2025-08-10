@@ -14,7 +14,58 @@
 	];
 
 	let mobileOpen = $state(false);
+
+	// Base URL para canonical y og:url; en SSR puede no estar disponible
+	const BASE_URL = typeof window !== 'undefined' ? window.location.origin : '';
+	const DEFAULT_TITLE = 'Las Artesanías de Juanita';
+	const DEFAULT_DESCRIPTION =
+		'Artesanías bordadas en lana, técnica crewel. Piezas únicas hechas a mano por Juanita en Chile.';
 </script>
+
+<svelte:head>
+	<!-- Canonical -->
+	{#if BASE_URL}
+		<link rel="canonical" href={`${BASE_URL}${page.url.pathname}`} />
+	{/if}
+
+	<!-- Metadatos base -->
+	<title>{DEFAULT_TITLE}</title>
+	<meta name="description" content={DEFAULT_DESCRIPTION} />
+	<meta name="robots" content="index,follow" />
+	<meta name="author" content="Las Artesanías de Juanita" />
+
+	<!-- Open Graph -->
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="Las Artesanías de Juanita" />
+	{#if BASE_URL}
+		<meta property="og:url" content={`${BASE_URL}${page.url.pathname}`} />
+	{/if}
+	<meta property="og:title" content={DEFAULT_TITLE} />
+	<meta property="og:description" content={DEFAULT_DESCRIPTION} />
+	<meta property="og:image" content="/favicon.svg" />
+
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={DEFAULT_TITLE} />
+	<meta name="twitter:description" content={DEFAULT_DESCRIPTION} />
+	<meta name="twitter:image" content="/favicon.svg" />
+
+	<!-- JSON-LD Organization -->
+	<script type="application/ld+json">
+		{JSON.stringify({
+			'@context': 'https://schema.org',
+			'@type': 'Organization',
+			name: 'Las Artesanías de Juanita',
+			url: BASE_URL || undefined,
+			logo: '/favicon.svg',
+			sameAs: [
+				'https://www.instagram.com/lasartesaniasdejuanita/',
+				'https://www.facebook.com/lasartesaniasdejuanita',
+				'https://wa.me/56999384690'
+			]
+		})}
+	</script>
+</svelte:head>
 
 <header
 	class="sticky top-0 z-30 border-b border-gray-200/60 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60"

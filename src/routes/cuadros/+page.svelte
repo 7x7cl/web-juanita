@@ -3,10 +3,17 @@
 
 	let { data } = $props();
 	let { cuadros } = $derived(data);
+	const TITLE = 'Cuadros crewel - Las Artesanías de Juanita';
+	const DESCRIPTION =
+		'Galería de cuadros bordados en lana (técnica crewel). Piezas únicas hechas a mano por Juanita.';
 </script>
 
 <svelte:head>
-	<title>Cuadros crewel - Las Artesanías de Juanita</title>
+	<title>{TITLE}</title>
+	<meta name="description" content={DESCRIPTION} />
+	<meta property="og:title" content={TITLE} />
+	<meta property="og:description" content={DESCRIPTION} />
+	<meta property="og:type" content="website" />
 </svelte:head>
 
 <section class="mx-auto max-w-6xl px-4 py-12">
