@@ -1,0 +1,9 @@
+{
+    "titulo": "Granja",
+    "portada": "portada",
+    "id": "granja",
+    "vendido": true,
+    "start": {
+        "year": 2023
+    }
+}

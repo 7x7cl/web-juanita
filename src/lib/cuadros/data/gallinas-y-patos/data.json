@@ -1,0 +1,10 @@
+{
+    "titulo": "Gallinas y patos",
+    "portada": "portada",
+    "id": "gallinas-y-patos",
+    "vendido": true,
+    "start": {
+        "month": 9,
+        "year": 2024
+    }
+}

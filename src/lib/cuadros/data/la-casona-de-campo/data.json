@@ -6,5 +6,9 @@
     "start": {
         "month": 10,
         "year": 2022
+    },
+    "fechaventa": {
+        "month": 4,
+        "year": 2023
     }
 }
