@@ -1,0 +1,14 @@
+{
+    "titulo": "Recuerdos del Sur",
+    "portada": "portada",
+    "id": "recuerdos-del-sur",
+    "vendido": true,
+    "start": {
+        "month": 6,
+        "year": 2021
+    },
+    "end": {
+        "month": 10,
+        "year": 2021
+    }
+}

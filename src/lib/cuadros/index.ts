@@ -14,6 +14,7 @@ type CuadrosData = {
 }
 
 export const CUADROS: string[] = [
+    "troles-de-valparaiso",
     "gallinas-y-patos",
     "olmue",
     "puente",
@@ -23,13 +24,16 @@ export const CUADROS: string[] = [
     "la-casona-de-campo",
     "primavera",
     "la-cascada",
+    "capilla-la-dormida",
     "un-hogar-de-ensueno",
+    "recuerdos-del-sur",
     "la-matriz",
-    "mama-gallina-y-sus-pollitos",
     "cerezo-en-flor",
+    "mama-gallina-y-sus-pollitos",
     "camino-nostalgico",
     "descanso",
     "calas",
+    "chiloe-y-sus-maravillas",
     "la-portada",
     "montanas-nevadas",
     "el-sendero",

@@ -4,6 +4,7 @@
     "id": "cerezo-en-flor",
     "vendido": true,
     "end": {
+        "month": 2,
         "year": 2020
     }
 }

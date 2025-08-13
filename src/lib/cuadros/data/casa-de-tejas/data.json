@@ -1,0 +1,9 @@
+{
+    "titulo": "Casa de Tejas",
+    "portada": "portada",
+    "id": "casa-de-tejas",
+    "vendido": true,
+    "start": {
+        "year": 2017
+    }
+}

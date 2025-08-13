@@ -6,5 +6,3 @@ export const images: Record<string, {
         enhanced: true
     }
 });
-
-console.log(images);

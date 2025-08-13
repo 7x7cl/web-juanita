@@ -1,0 +1,10 @@
+{
+    "titulo": "Capilla La Dormida",
+    "portada": "portada",
+    "id": "capilla-la-dormida",
+    "vendido": true,
+    "start": {
+        "month": 6,
+        "year": 2022
+    }
+}

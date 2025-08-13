@@ -8,7 +8,9 @@
 	const DESCRIPTION = $derived(
 		`${cuadro.titulo} — obra bordada en lana con técnica crewel. ${cuadro.vendido ? 'Estado: Vendido.' : 'Estado: Disponible.'}`
 	);
-	const OG_IMAGE = $derived(images[`./data/${cuadro.id}/${cuadro.portada}.jpg`]?.default ?? '');
+	const OG_IMAGE = $derived(
+		images[`./data/${cuadro.id}/${cuadro.portada}.jpg`]?.default?.img?.src ?? ''
+	);
 </script>
 
 <svelte:head>
