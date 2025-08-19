@@ -1,4 +1,5 @@
 {
+    "$schema": "../../schema.json",
     "titulo": "La casona de campo",
     "portada": "portada",
     "id": "la-casona-de-campo",
@@ -10,5 +11,9 @@
     "fechaventa": {
         "month": 4,
         "year": 2023
+    },
+    "measures": {
+        "width": 46,
+        "height": 60
     }
 }

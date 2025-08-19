@@ -1,4 +1,5 @@
 {
+    "$schema": "../../schema.json",
     "titulo": "Puente",
     "portada": "portada",
     "id": "puente",
@@ -10,5 +11,9 @@
     "fechaventa": {
         "month": 9,
         "year": 2024
+    },
+    "measures": {
+        "width": 46,
+        "height": 60
     }
 }

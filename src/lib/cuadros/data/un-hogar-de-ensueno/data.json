@@ -1,9 +1,14 @@
 {
+    "$schema": "../../schema.json",
     "titulo": "Un hogar de ensueño",
     "portada": "portada",
     "id": "un-hogar-de-ensueno",
     "vendido": true,
     "end": {
         "year": 2022
+    },
+    "measures": {
+        "width": 46,
+        "height": 60
     }
 }

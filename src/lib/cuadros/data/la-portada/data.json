@@ -1,9 +1,14 @@
 {
+    "$schema": "../../schema.json",
     "titulo": "La portada de Antofagasta",
     "portada": "portada",
     "id": "la-portada",
     "vendido": true,
     "end": {
         "year": 2018
+    },
+    "measures": {
+        "width": 46,
+        "height": 60
     }
 }

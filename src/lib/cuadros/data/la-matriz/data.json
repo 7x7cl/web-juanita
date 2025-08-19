@@ -1,9 +1,14 @@
 {
+    "$schema": "../../schema.json",
     "titulo": "La matriz",
     "portada": "portada",
     "id": "la-matriz",
     "vendido": true,
     "start": {
         "year": 2020
+    },
+    "measures": {
+        "width": 46,
+        "height": 60
     }
 }

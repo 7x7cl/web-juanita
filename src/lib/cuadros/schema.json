@@ -1,0 +1,109 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Crewel Schema",
+    "description": "Schema for crewel ",
+    "type": "object",
+    "required": [
+        "titulo",
+        "portada",
+        "id",
+        "vendido",
+        "start",
+        "measures",
+        "end"
+    ],
+    "properties": {
+        "titulo": {
+            "type": "string",
+            "description": "Title of the crewel"
+        },
+        "portada": {
+            "type": "string",
+            "description": "Cover image identifier or path"
+        },
+        "id": {
+            "type": "string",
+            "description": "Unique identifier for the crewel (kebab-case format)",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "vendido": {
+            "type": "boolean",
+            "description": "Indicates if the crewel has been sold"
+        },
+        "start": {
+            "type": "object",
+            "required": [
+                "day",
+                "month",
+                "year"
+            ],
+            "properties": {
+                "day": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 31,
+                    "description": "Day of creation/start"
+                },
+                "month": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 12,
+                    "description": "Month of creation/start"
+                },
+                "year": {
+                    "type": "integer",
+                    "minimum": 1900,
+                    "maximum": 2100,
+                    "description": "Year of creation/start"
+                }
+            }
+        },
+        "measures": {
+            "type": "object",
+            "required": [
+                "width",
+                "height"
+            ],
+            "properties": {
+                "width": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "Width of the crewel in centimeters"
+                },
+                "height": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "Height of the crewel in centimeters"
+                }
+            }
+        },
+        "end": {
+            "type": "object",
+            "required": [
+                "day",
+                "month",
+                "year"
+            ],
+            "properties": {
+                "day": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 31,
+                    "description": "Day of completion"
+                },
+                "month": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 12,
+                    "description": "Month of completion"
+                },
+                "year": {
+                    "type": "integer",
+                    "minimum": 1900,
+                    "maximum": 2100,
+                    "description": "Year of completion"
+                }
+            }
+        }
+    }
+}

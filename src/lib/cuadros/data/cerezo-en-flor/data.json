@@ -1,4 +1,5 @@
 {
+    "$schema": "../../schema.json",
     "titulo": "Cerezo en flor",
     "portada": "portada",
     "id": "cerezo-en-flor",
@@ -6,5 +7,9 @@
     "end": {
         "month": 2,
         "year": 2020
+    },
+    "measures": {
+        "width": 46,
+        "height": 60
     }
 }

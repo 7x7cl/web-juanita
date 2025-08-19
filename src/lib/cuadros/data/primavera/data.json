@@ -1,4 +1,5 @@
 {
+    "$schema": "../../schema.json",
     "titulo": "Primavera",
     "portada": "portada",
     "id": "primavera",
@@ -10,5 +11,9 @@
     "end": {
         "month": 8,
         "year": 2022
+    },
+    "measures": {
+        "width": 46,
+        "height": 60
     }
 }

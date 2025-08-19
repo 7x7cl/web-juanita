@@ -1,4 +1,5 @@
 {
+    "$schema": "../../schema.json",
     "titulo": "Mamá gallina y sus pollitos",
     "portada": "portada",
     "id": "mama-gallina-y-sus-pollitos",
@@ -10,5 +11,9 @@
     "end": {
         "month": 5,
         "year": 2020
+    },
+    "measures": {
+        "width": 46,
+        "height": 60
     }
 }

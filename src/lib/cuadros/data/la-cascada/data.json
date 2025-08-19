@@ -1,4 +1,5 @@
 {
+    "$schema": "../../schema.json",
     "titulo": "La cascada",
     "portada": "portada",
     "id": "la-cascada",
@@ -12,5 +13,9 @@
         "day": 1,
         "month": 6,
         "year": 2023
+    },
+    "measures": {
+        "width": 46,
+        "height": 60
     }
 }

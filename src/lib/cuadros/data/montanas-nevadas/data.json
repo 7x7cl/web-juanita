@@ -1,9 +1,14 @@
 {
+    "$schema": "../../schema.json",
     "titulo": "Montañas nevadas",
     "portada": "portada",
     "id": "montanas-nevadas",
     "vendido": true,
     "start": {
         "year": 2018
+    },
+    "measures": {
+        "width": 46,
+        "height": 60
     }
 }
