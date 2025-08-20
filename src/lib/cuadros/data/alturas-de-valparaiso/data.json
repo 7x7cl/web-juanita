@@ -1,0 +1,24 @@
+{
+    "$schema": "../../schema.json",
+    "titulo": "Alturas de Valparaíso",
+    "portada": "portada",
+    "id": "alturas-de-valparaiso",
+    "vendido": true,
+    "start": {
+        "month": 1,
+        "year": 2025
+    },
+    "end": {
+        "month": 3,
+        "year": 2025
+    },
+    "fechaventa": {
+        "day": 22,
+        "month": 3,
+        "year": 2025
+    },
+    "measures": {
+        "width": 46,
+        "height": 60
+    }
+}

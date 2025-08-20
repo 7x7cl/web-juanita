@@ -1,0 +1,14 @@
+{
+    "$schema": "../../schema.json",
+    "titulo": "Capilla Nino Dios de las Palmas (Olmué)",
+    "portada": "portada",
+    "id": "capilla-nino-dios-de-las-palmas-olmue",
+    "vendido": true,
+    "end": {
+        "year": 2018
+    },
+    "measures": {
+        "width": 46,
+        "height": 60
+    }
+}

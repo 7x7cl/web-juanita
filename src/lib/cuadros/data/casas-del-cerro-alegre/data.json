@@ -1,0 +1,15 @@
+{
+    "$schema": "../../schema.json",
+    "titulo": "Casas del Cerro Alegre",
+    "portada": "portada",
+    "id": "casas-del-cerro-alegre",
+    "vendido": true,
+    "end": {
+        "month": 7,
+        "year": 2021
+    },
+    "measures": {
+        "width": 46,
+        "height": 60
+    }
+}
