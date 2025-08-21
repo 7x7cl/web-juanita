@@ -3,7 +3,7 @@
     "titulo": "Mirador Cerro Baron",
     "portada": "portada",
     "id": "mirador-cerro-baron",
-    "vendido": true,
+    "vendido": false,
     "start": {
         "day": 30,
         "month": 3,
