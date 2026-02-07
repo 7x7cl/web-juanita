@@ -7,6 +7,14 @@ const BASE_URL = import.meta.env.PUBLIC_BASE_URL ?? '';
 
 export const Route = createFileRoute('/cuadros/$id')({
 	component: CuadroDetalle,
+	staticData: {
+		prerender: {
+			enabled: true,
+			params: async () => {
+				return CUADROS.map((id) => ({ id }));
+			}
+		}
+	},
 	loader: async ({ params }) => {
 		const cuadro = await getCuadroById(params.id);
 		if (!cuadro) {
