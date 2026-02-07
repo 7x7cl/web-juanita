@@ -43,6 +43,7 @@ function Cuadros() {
 							key={cuadro.id}
 							to='/cuadros/$id'
 							params={{ id: cuadro.id }}
+							preload="viewport"
 							className="animate-fade-in-delay-2 block overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:shadow-md"
 						>
 							<article>

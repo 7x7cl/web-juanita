@@ -122,6 +122,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 								<Link
 									key={link.href}
 									to={link.href}
+									preload="viewport"
 									className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ${isActive ? 'bg-gray-800 text-white shadow-sm' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}`}
 									aria-current={isActive ? 'page' : undefined}
 								>
@@ -152,6 +153,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 									<Link
 										key={link.href}
 										to={link.href}
+										preload="viewport"
 										className={`block rounded-xl px-3 py-2 text-sm font-medium transition-colors duration-200 ${isActive ? 'bg-gray-800 text-white' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}`}
 										aria-current={isActive ? 'page' : undefined}
 										onClick={() => setMobileOpen(false)}
