@@ -1,38 +1,27 @@
-# sv
+# Las Artesanías de Juanita
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Sitio web de artesanías bordadas en lana con técnica crewel, ahora en TanStack Start.
 
-## Creating a project
+## Desarrollo
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Instala dependencias y levanta el servidor local:
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+pnpm install
+pnpm run dev
 ```
 
-## Building
-
-To create a production version of your app:
+## Build de producción
 
 ```bash
-npm run build
+pnpm run build
+pnpm run preview
 ```
 
-You can preview the production build with `npm run preview`.
+## Estilos
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+El proyecto usa Tailwind CSS. Los estilos globales están en `src/styles.css`.
+
+## Rutas
+
+TanStack Router usa rutas basadas en archivos dentro de `src/routes`. Para agregar una nueva página, crea un archivo `.tsx` en ese directorio.
