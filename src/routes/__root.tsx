@@ -110,7 +110,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 		<>
 			<header className="sticky top-0 z-30 border-b border-gray-100 bg-white/85 backdrop-blur-lg supports-[backdrop-filter]:bg-white/70">
 				<div className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-					<Link to="/" className="flex items-center gap-2">
+					<Link to="/" viewTransition className="flex items-center gap-2">
 						<span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-lg font-bold text-transparent">
 							Las Artesanías de Juanita
 						</span>
@@ -122,6 +122,8 @@ function Layout({ children }: { children: React.ReactNode }) {
 								<Link
 									key={link.href}
 									to={link.href}
+									viewTransition
+									preload="viewport"
 									className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ${isActive ? 'bg-gray-800 text-white shadow-sm' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}`}
 									aria-current={isActive ? 'page' : undefined}
 								>
@@ -152,6 +154,8 @@ function Layout({ children }: { children: React.ReactNode }) {
 									<Link
 										key={link.href}
 										to={link.href}
+										viewTransition
+										preload="viewport"
 										className={`block rounded-xl px-3 py-2 text-sm font-medium transition-colors duration-200 ${isActive ? 'bg-gray-800 text-white' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}`}
 										aria-current={isActive ? 'page' : undefined}
 										onClick={() => setMobileOpen(false)}

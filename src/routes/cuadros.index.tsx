@@ -7,7 +7,7 @@ const TITLE = 'Cuadros Bordados Crewel - Las Artesanías de Juanita';
 const DESCRIPTION =
 	'Galería de cuadros bordados en lana con técnica crewel. Piezas únicas de bordado crewel hechas a mano por Juanita en Chile.';
 
-export const Route = createFileRoute('/cuadros')({
+export const Route = createFileRoute('/cuadros/')({
 	component: Cuadros,
 	loader: async () => ({ cuadros: await getCuadrosData() }),
 	head: () => ({
@@ -25,7 +25,7 @@ function Cuadros() {
 	const { cuadros } = Route.useLoaderData();
 
 	return (
-		<section className="mx-auto max-w-6xl px-4 py-12">
+		<section className="mx-auto my-12 max-w-6xl rounded-3xl bg-white/70 px-4 py-12 shadow-lg backdrop-blur">
 			<h1 className="animate-fade-in mb-6 text-3xl font-bold text-gray-800">
 				Cuadros de bordado crewel en lana
 			</h1>
@@ -41,8 +41,10 @@ function Cuadros() {
 					return (
 						<Link
 							key={cuadro.id}
-							to="/cuadros/$id"
+							to='/cuadros/$id'
+							viewTransition
 							params={{ id: cuadro.id }}
+							preload="viewport"
 							className="animate-fade-in-delay-2 block overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:shadow-md"
 						>
 							<article>
@@ -55,7 +57,7 @@ function Cuadros() {
 										/>
 									) : null}
 								</div>
-								<div className="p-4">
+								<div className='p-4'>
 									<h3 className="font-semibold text-gray-800">{cuadro.titulo}</h3>
 									{cuadro.start ? (
 										<p className="text-sm text-gray-500">
@@ -77,9 +79,9 @@ function Cuadros() {
 								</div>
 							</article>
 						</Link>
-					);
+					)
 				})}
 			</div>
 		</section>
-	);
+	)
 }
