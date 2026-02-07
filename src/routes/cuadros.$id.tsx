@@ -25,10 +25,10 @@ export const Route = createFileRoute('/cuadros/$id')({
 	head: ({ loaderData }) => {
 		const cuadro = loaderData?.cuadro;
 		if (!cuadro) {
-			return { title: 'Cuadro - Las Artesanías de Juanita' };
+			return { title: 'Cuadro bordado crewel - Las Artesanías de Juanita' };
 		}
-		const title = `${cuadro.titulo} - Cuadros crewel - Las Artesanías de Juanita`;
-		const description = `${cuadro.titulo} — obra bordada en lana con técnica crewel. ${cuadro.vendido ? 'Estado: Vendido.' : 'Estado: Disponible.'}`;
+		const title = `${cuadro.titulo} — Cuadro bordado crewel - Las Artesanías de Juanita`;
+		const description = `${cuadro.titulo} — cuadro bordado a mano en lana con técnica crewel por Juanita. ${cuadro.vendido ? 'Estado: Vendido.' : 'Estado: Disponible.'}`;
 		const imageKey = `./data/${cuadro.id}/${cuadro.portada}.jpg`;
 		const ogImage = images[imageKey] ?? '';
 		const ogImageUrl = ogImage && BASE_URL ? `${BASE_URL}${ogImage}` : ogImage;
@@ -57,53 +57,53 @@ function CuadroDetalle() {
 	const nextId = currentIndex < CUADROS.length - 1 ? CUADROS[currentIndex + 1] : null;
 
 	return (
-		<main className="flex flex-col items-center justify-center bg-gradient-to-b from-white to-gray-100 p-6">
-			<h1 className="mb-6 text-4xl font-bold text-gray-800 drop-shadow-lg">{cuadro.titulo}</h1>
+		<main className="flex flex-col items-center justify-center bg-gradient-to-b from-white to-gray-50 p-6">
+			<h1 className="animate-fade-in mb-6 text-4xl font-bold text-gray-800">{cuadro.titulo}</h1>
 			{imageSrc ? (
 				<img
 					src={imageSrc}
-					alt={cuadro.titulo}
+					alt={`${cuadro.titulo} — cuadro bordado crewel por Juanita`}
 					loading="lazy"
-					className="mb-6 max-w-xs rounded-lg border-4 border-white shadow-xl transition-transform duration-300 hover:scale-105"
+					className="animate-fade-in-delay-1 mb-6 max-w-xs rounded-2xl border-2 border-white shadow-lg transition-transform duration-300 hover:scale-105"
 					style={{ maxWidth: 400 }}
 				/>
 			) : null}
-			<div className="flex flex-col items-center rounded-lg bg-white/80 px-6 py-4 shadow-md">
+			<div className="animate-fade-in-delay-2 flex flex-col items-center rounded-2xl border border-gray-100 bg-white/90 px-6 py-4 shadow-sm">
 				<p className="mb-2 text-lg font-medium text-gray-700">
 					Medidas: {cuadro.measures.width}cm x {cuadro.measures.height}cm
 				</p>
 				{cuadro.start?.year ? (
-					<p className="mb-4 text-sm text-gray-600">
+					<p className="mb-4 text-sm text-gray-500">
 						Fecha de creación: {cuadro.start.day ? `${cuadro.start.day}/` : ''}
 						{cuadro.start.month ? `${cuadro.start.month}/` : ''}
 						{cuadro.start.year}
 					</p>
 				) : null}
 				{cuadro.end?.year ? (
-					<p className="mb-4 text-sm text-gray-600">
+					<p className="mb-4 text-sm text-gray-500">
 						Fecha de finalización: {cuadro.end.day ? `${cuadro.end.day}/` : ''}
 						{cuadro.end.month ? `${cuadro.end.month}/` : ''}
 						{cuadro.end.year}
 					</p>
 				) : null}
 				<p
-					className={`mt-2 rounded-full px-4 py-2 text-base font-semibold ${cuadro.vendido ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}
+					className={`mt-2 rounded-full px-4 py-2 text-base font-semibold ${cuadro.vendido ? 'bg-red-50 text-red-600' : 'bg-green-50 text-green-600'}`}
 				>
 					{cuadro.vendido ? 'Vendido' : 'Disponible'}
 				</p>
 			</div>
 
-			<div className="mt-8 flex w-full justify-between">
+			<div className="mt-8 flex w-full max-w-md justify-between">
 				{prevId ? (
 					<Link
 						to="/cuadros/$id"
 						params={{ id: prevId }}
-						className="rounded-lg bg-blue-500 px-6 py-3 text-white shadow-lg transition-colors duration-300 hover:bg-blue-600"
+						className="rounded-full bg-gray-800 px-6 py-3 text-white shadow-sm transition-all duration-200 hover:bg-gray-900 hover:shadow-md"
 					>
 						Anterior
 					</Link>
 				) : (
-					<span className="pointer-events-none rounded-lg bg-blue-500 px-6 py-3 text-white opacity-50">
+					<span className="pointer-events-none rounded-full bg-gray-300 px-6 py-3 text-white">
 						Anterior
 					</span>
 				)}
@@ -111,12 +111,12 @@ function CuadroDetalle() {
 					<Link
 						to="/cuadros/$id"
 						params={{ id: nextId }}
-						className="rounded-lg bg-blue-500 px-6 py-3 text-white shadow-lg transition-colors duration-300 hover:bg-blue-600"
+						className="rounded-full bg-gray-800 px-6 py-3 text-white shadow-sm transition-all duration-200 hover:bg-gray-900 hover:shadow-md"
 					>
 						Siguiente
 					</Link>
 				) : (
-					<span className="pointer-events-none rounded-lg bg-blue-500 px-6 py-3 text-white opacity-50">
+					<span className="pointer-events-none rounded-full bg-gray-300 px-6 py-3 text-white">
 						Siguiente
 					</span>
 				)}
