@@ -11,9 +11,9 @@ import { Menu, X } from 'lucide-react';
 import appCss from '../styles.css?url';
 
 const BASE_URL = import.meta.env.PUBLIC_BASE_URL ?? '';
-const DEFAULT_TITLE = 'Las Artesanías de Juanita';
+const DEFAULT_TITLE = 'Las Artesanías de Juanita — Bordados Crewel Hechos a Mano';
 const DEFAULT_DESCRIPTION =
-	'Artesanías bordadas en lana, técnica crewel. Piezas únicas hechas a mano por Juanita en Chile.';
+	'Bordados crewel hechos a mano en Chile por Juanita. Cuadros únicos bordados en lana con técnica crewel: colores, texturas y tradición artesanal en cada puntada.';
 
 const links = [
 	{ href: '/', label: 'Inicio' },
@@ -31,10 +31,15 @@ export const Route = createRootRoute({
 				{ charSet: 'utf-8' },
 				{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
 				{ name: 'description', content: DEFAULT_DESCRIPTION },
+				{
+					name: 'keywords',
+					content:
+						'bordado crewel, crewel embroidery, artesanía chilena, cuadros bordados en lana, bordado a mano, Juanita, arte textil, bordados crewel Chile'
+				},
 				{ name: 'robots', content: 'index,follow' },
-				{ name: 'author', content: DEFAULT_TITLE },
+				{ name: 'author', content: 'Las Artesanías de Juanita' },
 				{ property: 'og:type', content: 'website' },
-				{ property: 'og:site_name', content: DEFAULT_TITLE },
+				{ property: 'og:site_name', content: 'Las Artesanías de Juanita' },
 				...(canonical ? [{ property: 'og:url', content: canonical }] : []),
 				{ property: 'og:title', content: DEFAULT_TITLE },
 				{ property: 'og:description', content: DEFAULT_DESCRIPTION },
@@ -59,8 +64,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			JSON.stringify({
 				'@context': 'https://schema.org',
 				'@type': 'Organization',
-				name: DEFAULT_TITLE,
-				url: BASE_URL || undefined,
+				name: 'Las Artesanías de Juanita',
+				description:
+					'Artesana especializada en bordado crewel. Cuadros únicos bordados a mano en lana con técnica crewel en Chile.',
+				...(BASE_URL ? { url: BASE_URL } : {}),
 				logo: '/favicon.svg',
 				sameAs: [
 					'https://www.instagram.com/lasartesaniasdejuanita/',
@@ -101,11 +108,11 @@ function Layout({ children }: { children: React.ReactNode }) {
 
 	return (
 		<>
-			<header className="sticky top-0 z-30 border-b border-gray-200/60 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+			<header className="sticky top-0 z-30 border-b border-gray-100 bg-white/85 backdrop-blur-lg supports-[backdrop-filter]:bg-white/70">
 				<div className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
 					<Link to="/" className="flex items-center gap-2">
-						<span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-lg font-bold text-transparent">
-							{DEFAULT_TITLE}
+						<span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-lg font-bold text-transparent">
+							Las Artesanías de Juanita
 						</span>
 					</Link>
 					<nav className="hidden gap-2 md:flex">
@@ -115,7 +122,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 								<Link
 									key={link.href}
 									to={link.href}
-									className={`rounded-full px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 ${isActive ? 'bg-gray-900 text-white hover:bg-gray-900' : ''}`}
+									className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ${isActive ? 'bg-gray-800 text-white shadow-sm' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}`}
 									aria-current={isActive ? 'page' : undefined}
 								>
 									{link.label}
@@ -125,7 +132,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 					</nav>
 
 					<button
-						className="rounded-full p-2 text-gray-700 transition hover:bg-gray-100 md:hidden"
+						className="rounded-full p-2 text-gray-600 transition-colors duration-200 hover:bg-gray-50 md:hidden"
 						aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
 						aria-expanded={mobileOpen}
 						onClick={() => setMobileOpen((prev) => !prev)}
@@ -138,14 +145,14 @@ function Layout({ children }: { children: React.ReactNode }) {
 					</button>
 
 					{mobileOpen && (
-						<div className="absolute top-full right-4 z-40 mt-2 w-56 rounded-2xl border border-gray-200 bg-white p-2 shadow-xl md:hidden">
+						<div className="animate-fade-in absolute top-full right-4 z-40 mt-2 w-56 rounded-2xl border border-gray-100 bg-white p-2 shadow-lg md:hidden">
 							{links.map((link) => {
 								const isActive = pathname === link.href;
 								return (
 									<Link
 										key={link.href}
 										to={link.href}
-										className={`block rounded-xl px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 ${isActive ? 'bg-gray-900 text-white hover:bg-gray-900' : ''}`}
+										className={`block rounded-xl px-3 py-2 text-sm font-medium transition-colors duration-200 ${isActive ? 'bg-gray-800 text-white' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}`}
 										aria-current={isActive ? 'page' : undefined}
 										onClick={() => setMobileOpen(false)}
 									>
@@ -175,8 +182,8 @@ function Layout({ children }: { children: React.ReactNode }) {
 
 			{children}
 
-			<footer className="border-t border-gray-200/60 bg-white/60">
-				<div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 py-8 text-center text-sm text-gray-600">
+			<footer className="border-t border-gray-100 bg-gray-50/60">
+				<div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 py-8 text-center text-sm text-gray-500">
 					<div className="mb-2 flex justify-center gap-6">
 						<a
 							href="mailto:lasartesaniasdejuanita@gmail.com"
@@ -187,7 +194,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 							<img
 								src="/logos/gmail.svg"
 								alt="Gmail"
-								className="h-5 w-5 transition hover:scale-110"
+								className="h-5 w-5 opacity-70 transition-all duration-200 hover:scale-110 hover:opacity-100"
 							/>
 						</a>
 						<a
@@ -199,7 +206,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 							<img
 								src="/logos/whatsapp.svg"
 								alt="WhatsApp"
-								className="h-5 w-5 transition hover:scale-110"
+								className="h-5 w-5 opacity-70 transition-all duration-200 hover:scale-110 hover:opacity-100"
 							/>
 						</a>
 						<a
@@ -211,7 +218,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 							<img
 								src="/logos/instagram.svg"
 								alt="Instagram"
-								className="h-5 w-5 transition hover:scale-110"
+								className="h-5 w-5 opacity-70 transition-all duration-200 hover:scale-110 hover:opacity-100"
 							/>
 						</a>
 						<a
@@ -223,7 +230,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 							<img
 								src="/logos/facebook.svg"
 								alt="Facebook"
-								className="h-5 w-5 transition hover:scale-110"
+								className="h-5 w-5 opacity-70 transition-all duration-200 hover:scale-110 hover:opacity-100"
 							/>
 						</a>
 					</div>
