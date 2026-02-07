@@ -25,7 +25,7 @@ function Cuadros() {
 	const { cuadros } = Route.useLoaderData();
 
 	return (
-		<section className="mx-auto max-w-6xl px-4 py-12">
+		<section className="mx-auto my-12 max-w-6xl rounded-3xl bg-white/70 px-4 py-12 shadow-lg backdrop-blur">
 			<h1 className="animate-fade-in mb-6 text-3xl font-bold text-gray-800">
 				Cuadros de bordado crewel en lana
 			</h1>

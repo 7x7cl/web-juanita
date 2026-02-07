@@ -22,7 +22,7 @@ export const Route = createFileRoute('/contacto')({
 
 function Contacto() {
 	return (
-		<section className="mx-auto max-w-3xl px-4 py-16">
+		<section className="mx-auto my-12 max-w-3xl rounded-3xl bg-white/70 px-4 py-16 shadow-lg backdrop-blur">
 			<h1 className="animate-fade-in mb-8 text-center text-4xl font-extrabold text-gray-800">
 				Contacto
 			</h1>

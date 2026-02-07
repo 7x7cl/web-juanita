@@ -48,12 +48,30 @@
 }
 
 body {
-	@apply m-0;
+	@apply m-0 text-gray-900;
 	font-family:
 		-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
 		'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	background-color: #fff7f3;
+	background-image:
+		radial-gradient(
+			circle at 1px 1px,
+			rgba(236, 72, 153, 0.12) 0,
+			rgba(236, 72, 153, 0.12) 1px,
+			transparent 1px
+		),
+		linear-gradient(
+			135deg,
+			rgba(255, 237, 213, 0.8) 0%,
+			rgba(253, 242, 248, 0.85) 45%,
+			rgba(237, 233, 254, 0.75) 100%
+		);
+	background-size:
+		28px 28px,
+		cover;
+	background-attachment: fixed;
 }
 
 code {
