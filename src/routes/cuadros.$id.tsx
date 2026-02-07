@@ -97,6 +97,7 @@ function CuadroDetalle() {
 				{prevId ? (
 					<Link
 						to="/cuadros/$id"
+						viewTransition
 						params={{ id: prevId }}
 						className="rounded-full bg-gray-800 px-6 py-3 text-white shadow-sm transition-all duration-200 hover:bg-gray-900 hover:shadow-md"
 					>
@@ -110,6 +111,7 @@ function CuadroDetalle() {
 				{nextId ? (
 					<Link
 						to="/cuadros/$id"
+						viewTransition
 						params={{ id: nextId }}
 						className="rounded-full bg-gray-800 px-6 py-3 text-white shadow-sm transition-all duration-200 hover:bg-gray-900 hover:shadow-md"
 					>

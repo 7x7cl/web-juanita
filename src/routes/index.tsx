@@ -66,6 +66,7 @@ function Home() {
 						<div className="flex flex-wrap gap-3">
 							<Link
 								to="/cuadros"
+								viewTransition
 								className="rounded-full bg-gray-800 px-6 py-3 text-white shadow-sm transition-all duration-200 hover:bg-gray-900 hover:shadow-md"
 							>
 								Ver cuadros crewel
@@ -90,6 +91,7 @@ function Home() {
 				<div className="grid gap-6 md:grid-cols-3">
 					<Link
 						to="/cuadros"
+						viewTransition
 						className="animate-fade-in-delay-1 group overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:shadow-md"
 					>
 						<div className="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-purple-100/60 to-pink-100/60">
