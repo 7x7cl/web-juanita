@@ -5,8 +5,12 @@ node_modules
 .vercel
 .netlify
 .wrangler
-/.svelte-kit
 /build
+/dist
+/dist-ssr
+/.tanstack
+/.vinxi
+/.nitro
 
 # OS
 .DS_Store
