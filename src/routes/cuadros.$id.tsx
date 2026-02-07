@@ -18,7 +18,7 @@ export const Route = createFileRoute('/cuadros/$id')({
 	loader: async ({ params }) => {
 		const cuadro = await getCuadroById(params.id);
 		if (!cuadro) {
-			throw new Response('Not Found', { status: 404 });
+			throw Response.json({ message: 'Cuadro no encontrado', params }, { status: 404 });
 		}
 		return { cuadro };
 	},

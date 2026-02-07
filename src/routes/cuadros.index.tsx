@@ -7,7 +7,7 @@ const TITLE = 'Cuadros Bordados Crewel - Las Artesanías de Juanita';
 const DESCRIPTION =
 	'Galería de cuadros bordados en lana con técnica crewel. Piezas únicas de bordado crewel hechas a mano por Juanita en Chile.';
 
-export const Route = createFileRoute('/cuadros')({
+export const Route = createFileRoute('/cuadros/')({
 	component: Cuadros,
 	loader: async () => ({ cuadros: await getCuadrosData() }),
 	head: () => ({
@@ -41,7 +41,7 @@ function Cuadros() {
 					return (
 						<Link
 							key={cuadro.id}
-							to="/cuadros/$id"
+							to='/cuadros/$id'
 							params={{ id: cuadro.id }}
 							className="animate-fade-in-delay-2 block overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:shadow-md"
 						>
@@ -55,7 +55,7 @@ function Cuadros() {
 										/>
 									) : null}
 								</div>
-								<div className="p-4">
+								<div className='p-4'>
 									<h3 className="font-semibold text-gray-800">{cuadro.titulo}</h3>
 									{cuadro.start ? (
 										<p className="text-sm text-gray-500">
@@ -77,9 +77,9 @@ function Cuadros() {
 								</div>
 							</article>
 						</Link>
-					);
+					)
 				})}
 			</div>
 		</section>
-	);
+	)
 }

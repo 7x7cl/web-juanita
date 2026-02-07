@@ -9,16 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as CuadrosRouteImport } from './routes/cuadros'
 import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CuadrosIndexRouteImport } from './routes/cuadros.index'
 import { Route as CuadrosIdRouteImport } from './routes/cuadros.$id'
 
-const CuadrosRoute = CuadrosRouteImport.update({
-  id: '/cuadros',
-  path: '/cuadros',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ContactoRoute = ContactoRouteImport.update({
   id: '/contacto',
   path: '/contacto',
@@ -29,54 +24,53 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CuadrosIndexRoute = CuadrosIndexRouteImport.update({
+  id: '/cuadros/',
+  path: '/cuadros/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CuadrosIdRoute = CuadrosIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => CuadrosRoute,
+  id: '/cuadros/$id',
+  path: '/cuadros/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contacto': typeof ContactoRoute
-  '/cuadros': typeof CuadrosRouteWithChildren
   '/cuadros/$id': typeof CuadrosIdRoute
+  '/cuadros/': typeof CuadrosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contacto': typeof ContactoRoute
-  '/cuadros': typeof CuadrosRouteWithChildren
   '/cuadros/$id': typeof CuadrosIdRoute
+  '/cuadros': typeof CuadrosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contacto': typeof ContactoRoute
-  '/cuadros': typeof CuadrosRouteWithChildren
   '/cuadros/$id': typeof CuadrosIdRoute
+  '/cuadros/': typeof CuadrosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contacto' | '/cuadros' | '/cuadros/$id'
+  fullPaths: '/' | '/contacto' | '/cuadros/$id' | '/cuadros/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contacto' | '/cuadros' | '/cuadros/$id'
-  id: '__root__' | '/' | '/contacto' | '/cuadros' | '/cuadros/$id'
+  to: '/' | '/contacto' | '/cuadros/$id' | '/cuadros'
+  id: '__root__' | '/' | '/contacto' | '/cuadros/$id' | '/cuadros/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactoRoute: typeof ContactoRoute
-  CuadrosRoute: typeof CuadrosRouteWithChildren
+  CuadrosIdRoute: typeof CuadrosIdRoute
+  CuadrosIndexRoute: typeof CuadrosIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/cuadros': {
-      id: '/cuadros'
-      path: '/cuadros'
-      fullPath: '/cuadros'
-      preLoaderRoute: typeof CuadrosRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/contacto': {
       id: '/contacto'
       path: '/contacto'
@@ -91,31 +85,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cuadros/': {
+      id: '/cuadros/'
+      path: '/cuadros'
+      fullPath: '/cuadros/'
+      preLoaderRoute: typeof CuadrosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cuadros/$id': {
       id: '/cuadros/$id'
-      path: '/$id'
+      path: '/cuadros/$id'
       fullPath: '/cuadros/$id'
       preLoaderRoute: typeof CuadrosIdRouteImport
-      parentRoute: typeof CuadrosRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
 
-interface CuadrosRouteChildren {
-  CuadrosIdRoute: typeof CuadrosIdRoute
-}
-
-const CuadrosRouteChildren: CuadrosRouteChildren = {
-  CuadrosIdRoute: CuadrosIdRoute,
-}
-
-const CuadrosRouteWithChildren =
-  CuadrosRoute._addFileChildren(CuadrosRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactoRoute: ContactoRoute,
-  CuadrosRoute: CuadrosRouteWithChildren,
+  CuadrosIdRoute: CuadrosIdRoute,
+  CuadrosIndexRoute: CuadrosIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
