@@ -41,7 +41,7 @@ function Cuadros() {
 					return (
 						<Link
 							key={cuadro.id}
-							to='/cuadros/$id'
+							to="/cuadros/$id"
 							viewTransition
 							params={{ id: cuadro.id }}
 							preload="viewport"
@@ -57,7 +57,7 @@ function Cuadros() {
 										/>
 									) : null}
 								</div>
-								<div className='p-4'>
+								<div className="p-4">
 									<h3 className="font-semibold text-gray-800">{cuadro.titulo}</h3>
 									{cuadro.start ? (
 										<p className="text-sm text-gray-500">
@@ -79,9 +79,9 @@ function Cuadros() {
 								</div>
 							</article>
 						</Link>
-					)
+					);
 				})}
 			</div>
 		</section>
-	)
+	);
 }

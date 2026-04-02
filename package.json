@@ -7,8 +7,8 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"format": "prettier --write .",
-		"lint": "prettier --check . && eslint ."
+		"format": "oxfmt",
+		"lint": "oxfmt --check && oxlint"
 	},
 	"dependencies": {
 		"@tailwindcss/typography": "0.5.19",
@@ -24,19 +24,14 @@
 		"vite-tsconfig-paths": "6.1.1"
 	},
 	"devDependencies": {
-		"@eslint/compat": "1.4.1",
-		"@eslint/js": "9.39.4",
 		"@types/node": "22.19.15",
 		"@types/react": "19.2.14",
 		"@types/react-dom": "19.2.3",
 		"@vitejs/plugin-react": "6.0.1",
-		"eslint": "9.33.0",
-		"eslint-config-prettier": "10.1.8",
-		"globals": "17.4.0",
-		"prettier": "3.8.1",
+		"oxfmt": "0.43.0",
+		"oxlint": "1.58.0",
 		"prettier-plugin-tailwindcss": "0.7.2",
 		"typescript": "6.0.2",
-		"typescript-eslint": "8.58.0",
 		"vite": "8.0.3"
 	},
 	"pnpm": {

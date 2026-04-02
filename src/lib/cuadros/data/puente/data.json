@@ -1,19 +1,19 @@
 {
-    "$schema": "../../schema.json",
-    "titulo": "Puente",
-    "portada": "portada",
-    "id": "puente",
-    "vendido": true,
-    "end": {
-        "month": 2,
-        "year": 2024
-    },
-    "fechaventa": {
-        "month": 9,
-        "year": 2024
-    },
-    "measures": {
-        "width": 46,
-        "height": 60
-    }
+	"$schema": "../../schema.json",
+	"titulo": "Puente",
+	"portada": "portada",
+	"id": "puente",
+	"vendido": true,
+	"end": {
+		"month": 2,
+		"year": 2024
+	},
+	"fechaventa": {
+		"month": 9,
+		"year": 2024
+	},
+	"measures": {
+		"width": 46,
+		"height": 60
+	}
 }

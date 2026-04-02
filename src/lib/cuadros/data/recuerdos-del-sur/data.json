@@ -1,19 +1,19 @@
 {
-    "$schema": "../../schema.json",
-    "titulo": "Recuerdos del Sur",
-    "portada": "portada",
-    "id": "recuerdos-del-sur",
-    "vendido": true,
-    "start": {
-        "month": 6,
-        "year": 2021
-    },
-    "end": {
-        "month": 10,
-        "year": 2021
-    },
-    "measures": {
-        "width": 46,
-        "height": 60
-    }
+	"$schema": "../../schema.json",
+	"titulo": "Recuerdos del Sur",
+	"portada": "portada",
+	"id": "recuerdos-del-sur",
+	"vendido": true,
+	"start": {
+		"month": 6,
+		"year": 2021
+	},
+	"end": {
+		"month": 10,
+		"year": 2021
+	},
+	"measures": {
+		"width": 46,
+		"height": 60
+	}
 }

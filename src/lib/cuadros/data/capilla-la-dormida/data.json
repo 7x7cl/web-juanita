@@ -1,14 +1,14 @@
 {
-    "titulo": "Capilla La Dormida",
-    "portada": "portada",
-    "id": "capilla-la-dormida",
-    "vendido": true,
-    "start": {
-        "month": 6,
-        "year": 2022
-    },
-    "measures": {
-        "width": 25,
-        "height": 25
-    }
+	"titulo": "Capilla La Dormida",
+	"portada": "portada",
+	"id": "capilla-la-dormida",
+	"vendido": true,
+	"start": {
+		"month": 6,
+		"year": 2022
+	},
+	"measures": {
+		"width": 25,
+		"height": 25
+	}
 }

@@ -5,14 +5,9 @@
 			"label": "pnpm-build",
 			"type": "shell",
 			"command": "pnpm",
-			"args": [
-				"run",
-				"build"
-			],
+			"args": ["run", "build"],
 			"isBackground": false,
-			"problemMatcher": [
-				"$tsc"
-			],
+			"problemMatcher": ["$tsc"],
 			"group": "build"
 		}
 	]

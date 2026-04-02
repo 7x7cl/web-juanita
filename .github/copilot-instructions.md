@@ -25,7 +25,7 @@
 - Navegación principal definida en el array `links` de `src/routes/__root.tsx`.
 - Estado de venta de cuadros: campo `vendido` en los datos JSON.
 - Contacto y redes sociales: centralizados en `/contacto` y en el footer del layout.
-- Linting: ESLint + Prettier, configuración en `eslint.config.js`.
+- Linting: Oxlint + Oxfmt.
 
 ## Integraciones y Dependencias
 
