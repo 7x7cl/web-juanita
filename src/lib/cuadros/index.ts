@@ -21,6 +21,8 @@ export type CuadroData = {
 };
 
 export const CUADROS = [
+	"valparaiso-y-su-magia",
+	'capilla-nino-dios-de-las-palmas-olmue-2026',
 	'mirador-cerro-baron',
 	'alturas-de-valparaiso',
 	'gallinas-y-patos',

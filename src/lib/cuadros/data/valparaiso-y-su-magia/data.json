@@ -1,0 +1,21 @@
+{
+    "$schema": "../../schema.json",
+    "titulo": "Valparaíso y su magia",
+    "portada": "portada",
+    "id": "valparaiso-y-su-magia",
+    "vendido": true,
+    "end": {
+        "day": 30,
+        "month": 3,
+        "year": 2026
+    },
+    "start": {
+        "day": 3,
+        "month": 1,
+        "year": 2026
+    },
+    "measures": {
+        "width": 46,
+        "height": 60
+    }
+}
