@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 
 import { CUADROS, getCuadroById } from '@/lib/cuadros';
-import { images } from '@/lib/cuadros/imagesCuadros';
+import { getCuadroImageSources } from '@/lib/cuadros/imagesCuadros';
 
 const BASE_URL = import.meta.env.PUBLIC_BASE_URL ?? '';
 
@@ -29,8 +29,7 @@ export const Route = createFileRoute('/cuadros/$id')({
 		}
 		const title = `${cuadro.titulo} — Cuadro bordado crewel - Las Artesanías de Juanita`;
 		const description = `${cuadro.titulo} — cuadro bordado a mano en lana con técnica crewel por Juanita. ${cuadro.vendido ? 'Estado: Vendido.' : 'Estado: Disponible.'}`;
-		const imageKey = `./data/${cuadro.id}/${cuadro.portada}.jpg`;
-		const ogImage = images[imageKey] ?? '';
+			const ogImage = getCuadroImageSources(cuadro.id, cuadro.portada).ogImage ?? '';
 		const ogImageUrl = ogImage && BASE_URL ? `${BASE_URL}${ogImage}` : ogImage;
 		const ogUrl = BASE_URL ? `${BASE_URL}/cuadros/${cuadro.id}` : undefined;
 
@@ -50,23 +49,24 @@ export const Route = createFileRoute('/cuadros/$id')({
 
 function CuadroDetalle() {
 	const { cuadro } = Route.useLoaderData();
-	const imageKey = `./data/${cuadro.id}/${cuadro.portada}.jpg`;
-	const imageSrc = images[imageKey];
+	const imageSources = getCuadroImageSources(cuadro.id, cuadro.portada);
 	const currentIndex = CUADROS.findIndex((id) => id === cuadro.id);
 	const prevId = currentIndex > 0 ? CUADROS[currentIndex - 1] : null;
 	const nextId = currentIndex < CUADROS.length - 1 ? CUADROS[currentIndex + 1] : null;
 
 	return (
-		<main className="flex flex-col items-center justify-center bg-gradient-to-b from-white to-gray-50 p-6">
+		<main className="bg-linear-to-b flex flex-col items-center justify-center from-white to-gray-50 p-6">
 			<h1 className="animate-fade-in mb-6 text-4xl font-bold text-gray-800">{cuadro.titulo}</h1>
-			{imageSrc ? (
-				<img
-					src={imageSrc}
-					alt={`${cuadro.titulo} — cuadro bordado crewel por Juanita`}
-					loading="lazy"
-					className="animate-fade-in-delay-1 mb-6 max-w-xs rounded-2xl border-2 border-white shadow-lg transition-transform duration-300 hover:scale-105"
-					style={{ maxWidth: 400 }}
-				/>
+			{imageSources.detailFallback ? (
+				<picture className="animate-fade-in-delay-1 mb-6 block max-w-xs" style={{ maxWidth: 400 }}>
+					{imageSources.detailWebp ? <source srcSet={imageSources.detailWebp} type="image/webp" /> : null}
+					<img
+						src={imageSources.detailFallback}
+						alt={`${cuadro.titulo} — cuadro bordado crewel por Juanita`}
+						decoding="async"
+						className="w-full rounded-2xl border-2 border-white shadow-lg transition-transform duration-300 hover:scale-105"
+					/>
+				</picture>
 			) : null}
 			<div className="animate-fade-in-delay-2 flex flex-col items-center rounded-2xl border border-gray-100 bg-white/90 px-6 py-4 shadow-sm">
 				<p className="mb-2 text-lg font-medium text-gray-700">
