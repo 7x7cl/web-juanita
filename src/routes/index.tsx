@@ -53,13 +53,13 @@ function Home() {
 	return (
 		<>
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: personSchema }} />
-			<section className="relative overflow-hidden bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
+			<section className="relative overflow-hidden bg-gradient-to-br from-[#e8ddd0] via-[#f0e6d3] to-[#dce5c5]">
 				<div className="mx-auto grid max-w-6xl gap-10 px-4 py-20 md:grid-cols-2 md:items-center">
 					<div className="animate-fade-in">
-						<h1 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-800 md:text-6xl">
+						<h1 className="mb-4 text-4xl font-extrabold tracking-tight text-[#3d2e1e] md:text-6xl">
 							Bordados crewel hechos a mano
 						</h1>
-						<p className="mb-8 text-lg leading-relaxed text-gray-600">
+						<p className="mb-8 text-lg leading-relaxed text-[#5c4a32]">
 							Cuadros únicos bordados en lana con técnica crewel por Juanita. Colores, texturas y
 							tradición artesanal en cada puntada.
 						</p>
@@ -67,7 +67,7 @@ function Home() {
 							<Link
 								to="/cuadros"
 								viewTransition
-								className="rounded-full bg-gray-800 px-6 py-3 text-white shadow-sm transition-all duration-200 hover:bg-gray-900 hover:shadow-md"
+								className="rounded-full bg-[#786C3B] px-6 py-3 text-[#F5F5DC] shadow-sm transition-all duration-200 hover:bg-[#8B9467] hover:shadow-md"
 							>
 								Ver cuadros crewel
 							</Link>
@@ -85,16 +85,16 @@ function Home() {
 			</section>
 
 			<section className="mx-auto max-w-6xl px-4 py-16">
-				<h2 className="animate-fade-in mb-6 text-2xl font-bold text-gray-800">
+				<h2 className="animate-fade-in mb-6 text-2xl font-bold text-[#3d2e1e]">
 					Cuadros crewel destacados
 				</h2>
 				<div className="grid gap-6 md:grid-cols-3">
 					<Link
 						to="/cuadros"
 						viewTransition
-						className="animate-fade-in-delay-1 group overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:shadow-md"
+						className="animate-fade-in-delay-1 group overflow-hidden rounded-2xl border border-[#d4c4a8] bg-[#faf3e7] shadow-sm transition-all duration-300 hover:shadow-md"
 					>
-						<div className="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-purple-100/60 to-pink-100/60">
+						<div className="flex aspect-[4/3] items-center justify-center bg-linear-to-br from-[#e2d9c8] to-[#d8dfc6]">
 							<img
 								src={cuadroPortada}
 								alt="Cuadro bordado crewel destacado"
@@ -103,28 +103,28 @@ function Home() {
 							/>
 						</div>
 						<div className="p-4">
-							<h3 className="font-semibold text-gray-800 group-hover:underline">Cuadros crewel</h3>
-							<p className="text-sm text-gray-500">Galería de obras bordadas en lana</p>
+							<h3 className="font-semibold text-[#3d2e1e] group-hover:underline">Cuadros crewel</h3>
+							<p className="text-sm text-[#8c7a60]">Galería de obras bordadas en lana</p>
 						</div>
 					</Link>
 				</div>
 			</section>
 
-			<section className="bg-gray-50/60">
+			<section className="bg-[#f0e6d3]">
 				<div className="mx-auto max-w-6xl px-4 py-16">
 					<div className="grid gap-8 md:grid-cols-2 md:items-center">
 						<div className="animate-fade-in">
-							<h2 className="mb-3 text-2xl font-bold text-gray-800">
+							<h2 className="mb-3 text-2xl font-bold text-[#3d2e1e]">
 								Bordado crewel hecho con el corazón
 							</h2>
-							<p className="text-gray-600">
+							<p className="text-[#5c4a32]">
 								Como artesana del bordado crewel, esta técnica es una terapia que me relaja y me
 								permite plasmar la belleza de la naturaleza, transformando cada pieza en una obra
 								única bordada en lana.
 							</p>
 						</div>
-						<div className="animate-fade-in-delay-1 rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-							<p className="text-gray-600 italic">
+						<div className="animate-fade-in-delay-1 rounded-2xl border border-[#d4c4a8] bg-[#faf3e7] p-6 shadow-sm">
+							<p className="text-[#5c4a32] italic">
 								"Busco transmitir en cada cuadro crewel todos los buenos sentimientos y pensamientos
 								positivos que llevo dentro" — Juanita
 							</p>

@@ -98,11 +98,11 @@ function Cuadros() {
 	}, []);
 
 	return (
-		<section className="mx-auto my-12 max-w-6xl rounded-3xl bg-white/70 px-4 py-12 shadow-lg backdrop-blur">
-			<h1 className="animate-fade-in mb-6 text-3xl font-bold text-gray-800">
+		<section className="mx-auto my-12 max-w-6xl rounded-3xl bg-[#faf3e7]/80 px-4 py-12 shadow-lg backdrop-blur">
+			<h1 className="animate-fade-in mb-6 text-3xl font-bold text-[#3d2e1e]">
 				Cuadros de bordado crewel en lana
 			</h1>
-			<p className="animate-fade-in-delay-1 mb-8 max-w-2xl text-gray-600">
+			<p className="animate-fade-in-delay-1 mb-8 max-w-2xl text-[#5c4a32]">
 				Explora una selección de cuadros únicos bordados a mano con técnica crewel. Si te interesa
 				alguna obra, contáctanos para disponibilidad y encargos.
 			</p>
@@ -158,10 +158,10 @@ function CuadroCard({ cuadro }: { cuadro: CuadroData }) {
 			viewTransition
 			params={{ id: cuadro.id }}
 			preload="viewport"
-			className="animate-fade-in-delay-2 block overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:shadow-md"
+			className="animate-fade-in-delay-2 block overflow-hidden rounded-2xl border border-[#d4c4a8] bg-[#faf3e7] shadow-sm transition-all duration-300 hover:shadow-md"
 		>
 			<article>
-				<div className="aspect-5/4 bg-linear-to-br from-fuchsia-50 to-rose-50">
+				<div className="aspect-5/4 bg-linear-to-br from-[#e2d9c8] to-[#d8dfc6]">
 					{imageSources.galleryFallback ? (
 						<picture>
 							{imageSources.galleryWebp ? (
@@ -182,22 +182,22 @@ function CuadroCard({ cuadro }: { cuadro: CuadroData }) {
 					) : null}
 				</div>
 				<div className="p-4">
-					<h3 className="font-semibold text-gray-800">{cuadro.titulo}</h3>
+					<h3 className="font-semibold text-[#3d2e1e]">{cuadro.titulo}</h3>
 					{cuadro.start ? (
-						<p className="text-sm text-gray-500">
+						<p className="text-sm text-[#8c7a60]">
 							Empezado: {cuadro.start.month ? `${cuadro.start.month}/` : ''}
 							{cuadro.start.year}
 						</p>
 					) : null}
 					{cuadro.end ? (
-						<p className="text-sm text-gray-500">
+						<p className="text-sm text-[#8c7a60]">
 							Terminado: {cuadro.end.month ? `${cuadro.end.month}/` : ''}
 							{cuadro.end.year}
 						</p>
 					) : null}
 					<div className="mt-3 flex items-center justify-between text-sm">
-						<span className={cuadro.vendido ? 'text-emerald-600' : 'text-gray-400'}>
-							{cuadro.vendido ? 'Vendido' : 'Disponible'}
+						<span className={cuadro.vendido ? "text-[#6b8e5e]" : "text-[#b0a08a]"}>
+							{cuadro.vendido ? "Vendido" : "Disponible"}
 						</span>
 					</div>
 				</div>
