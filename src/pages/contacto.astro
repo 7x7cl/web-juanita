@@ -40,82 +40,65 @@ const channels = [
 ---
 
 <Layout title={TITLE} description={DESCRIPTION}>
-	<section
-		class="relative overflow-hidden bg-gradient-to-br from-[#e8ddd0] via-[#f0e6d3] to-[#dce5c5]"
-	>
-		<div
-			class="pointer-events-none absolute inset-0 opacity-40"
-			style="background-image: radial-gradient(circle at 1px 1px, rgb(92 74 50 / 0.12) 1px, transparent 0); background-size: 22px 22px;"
-			aria-hidden="true"
-		>
+	<section class="mx-auto max-w-xl px-4 py-16 md:px-6 md:py-24">
+		<header class="animate-rise mb-12 text-center">
+			<p class="mb-3 font-serif text-2xl font-semibold text-forest md:text-3xl">{SITE_NAME}</p>
+			<h1 class="mb-4 font-serif text-4xl font-semibold tracking-tight text-ink md:text-5xl">
+				Contacto
+			</h1>
+			<p class="mx-auto max-w-md text-base leading-relaxed text-ink-soft md:text-lg">
+				Escríbeme por redes o correo para consultas sobre bordados crewel hechos a mano.
+			</p>
+		</header>
+
+		<div class="animate-rise-delay-1 mb-12 text-center">
+			<p class="mb-2 text-xs font-semibold tracking-[0.18em] text-muted uppercase">
+				Guardar contacto
+			</p>
+			<p class="mb-5 text-sm text-ink-soft">
+				Descarga la ficha de {CONTACT.name} para guardarla en tu teléfono o agenda.
+			</p>
+			<a
+				href={CONTACT.vcardPath}
+				download="juana-leiva.vcf"
+				class="group inline-flex items-center justify-center gap-2 bg-forest px-7 py-3.5 text-linen transition-colors duration-200 hover:bg-moss"
+			>
+				<Download
+					class="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5"
+					aria-hidden="true"
+				/>
+				<span class="font-medium">Guardar contacto de {CONTACT.name}</span>
+			</a>
 		</div>
 
-		<div class="relative mx-auto max-w-xl px-4 py-16 md:py-24">
-			<header class="animate-fade-in mb-12 text-center">
-				<p
-					class="mb-3 bg-gradient-to-r from-[#6b4226] to-[#8b5a2b] bg-clip-text text-sm font-semibold tracking-wide text-transparent uppercase"
-				>
-					{SITE_NAME}
-				</p>
-				<h1 class="mb-4 text-4xl font-extrabold tracking-tight text-[#3d2e1e] md:text-5xl">
-					Contacto
-				</h1>
-				<p class="mx-auto max-w-md text-base leading-relaxed text-[#5c4a32] md:text-lg">
-					Escríbeme por redes o correo para consultas sobre bordados crewel hechos a mano.
-				</p>
-			</header>
-
-			<div class="animate-fade-in-delay-1 mb-10 text-center">
-				<p class="mb-2 text-xs font-semibold tracking-[0.18em] text-[#8c7a60] uppercase">
-					Guardar contacto
-				</p>
-				<p class="mb-5 text-sm text-[#5c4a32]">
-					Descarga la ficha de {CONTACT.name} para guardarla en tu teléfono o agenda.
-				</p>
-				<a
-					href={CONTACT.vcardPath}
-					download="juana-leiva.vcf"
-					class="group inline-flex items-center justify-center gap-2 rounded-full bg-[#5c4a32] px-7 py-3.5 text-[#faf3e7] shadow-sm transition-all duration-200 hover:bg-[#3d2e1e] hover:shadow-md"
-				>
-					<Download
-						class="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5"
-						aria-hidden="true"
-					/>
-					<span class="font-medium">Guardar contacto de {CONTACT.name}</span>
-				</a>
-			</div>
-
-			<ul class="animate-fade-in-delay-2 space-y-3" aria-label="Canales de contacto">
-				{
-					channels.map(({ href, label, value, src, external }) => (
-						<li>
-							<a
-								href={href}
-								class="group flex items-center gap-4 rounded-2xl border border-[#d4c4a8]/80 bg-[#faf3e7]/70 px-4 py-3.5 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-[#c4b090] hover:bg-[#faf3e7] hover:shadow-md"
-								{...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+		<ul class="animate-rise-delay-2 space-y-2" aria-label="Canales de contacto">
+			{
+				channels.map(({ href, label, value, src, external }) => (
+					<li>
+						<a
+							href={href}
+							class="group flex items-center gap-4 border-b border-border px-1 py-4 transition-colors duration-200 hover:border-moss"
+							{...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+						>
+							<span class="flex h-10 w-10 shrink-0 items-center justify-center bg-linen-deep">
+								<img src={src} alt="" class="h-5 w-5" width="20" height="20" />
+							</span>
+							<span class="min-w-0 flex-1 text-left">
+								<span class="block text-xs font-semibold tracking-wide text-muted uppercase">
+									{label}
+								</span>
+								<span class="block truncate text-sm font-medium text-ink md:text-base">{value}</span>
+							</span>
+							<span
+								class="text-muted transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-moss"
+								aria-hidden="true"
 							>
-								<span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#ece3d0]/80 transition-colors duration-200 group-hover:bg-[#e2d9c8]">
-									<img src={src} alt="" class="h-5 w-5" width="20" height="20" />
-								</span>
-								<span class="min-w-0 flex-1 text-left">
-									<span class="block text-xs font-semibold tracking-wide text-[#8c7a60] uppercase">
-										{label}
-									</span>
-									<span class="block truncate text-sm font-medium text-[#3d2e1e] md:text-base">
-										{value}
-									</span>
-								</span>
-								<span
-									class="text-[#8c7a60] transition-transform duration-200 group-hover:translate-x-0.5"
-									aria-hidden="true"
-								>
-									→
-								</span>
-							</a>
-						</li>
-					))
-				}
-			</ul>
-		</div>
+								→
+							</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
 	</section>
 </Layout>

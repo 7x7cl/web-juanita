@@ -32,12 +32,21 @@ const endLabel = formatDate(cuadro.end);
 ---
 
 <Layout title={title} description={description} image={imageSources.ogImage} ogType="article">
-	<section class="flex flex-col items-center justify-center bg-gradient-to-b from-white to-gray-50 p-6">
-		<h1 class="animate-fade-in mb-6 text-4xl font-bold text-gray-800">{cuadro.titulo}</h1>
+	<section class="mx-auto max-w-3xl px-4 py-12 md:px-6 md:py-16">
+		<a
+			href="/cuadros"
+			class="mb-8 inline-block text-sm font-medium text-muted transition-colors hover:text-moss"
+		>
+			← Volver a cuadros
+		</a>
+
+		<h1 class="animate-rise mb-8 font-serif text-4xl font-semibold tracking-tight text-ink md:text-5xl">
+			{cuadro.titulo}
+		</h1>
 
 		{
 			imageSources.detailFallback && (
-				<picture class="animate-fade-in-delay-1 mb-6 block max-w-xs" style="max-width: 400px">
+				<picture class="animate-rise-delay-1 mb-10 block overflow-hidden bg-linen-deep">
 					{imageSources.detailWebp && (
 						<source srcset={imageSources.detailWebp} type="image/webp" />
 					)}
@@ -45,65 +54,55 @@ const endLabel = formatDate(cuadro.end);
 						src={imageSources.detailFallback}
 						alt={`${cuadro.titulo} — cuadro bordado crewel por Juanita`}
 						decoding="async"
-						class="w-full rounded-2xl border-2 border-white shadow-lg transition-transform duration-300 hover:scale-105"
+						class="mx-auto w-full max-w-md object-contain"
 					/>
 				</picture>
 			)
 		}
 
-		<div
-			class="animate-fade-in-delay-2 flex flex-col items-center rounded-2xl border border-gray-100 bg-white/90 px-6 py-4 shadow-sm"
-		>
-			<p class="mb-2 text-lg font-medium text-gray-700">
-				Medidas: {cuadro.measures.width}cm x {cuadro.measures.height}cm
+		<div class="animate-rise-delay-2 space-y-3 border-t border-border pt-8 text-ink-soft">
+			<p class="text-lg">
+				<span class="font-medium text-ink">Medidas:</span>
+				{cuadro.measures.width} cm × {cuadro.measures.height} cm
 			</p>
-			{
-				startLabel && (
-					<p class="mb-4 text-sm text-gray-500">Fecha de creación: {startLabel}</p>
-				)
-			}
-			{
-				endLabel && (
-					<p class="mb-4 text-sm text-gray-500">Fecha de finalización: {endLabel}</p>
-				)
-			}
-			<p
-				class:list={[
-					'mt-2 rounded-full px-4 py-2 text-base font-semibold',
-					cuadro.vendido ? 'bg-red-50 text-red-600' : 'bg-green-50 text-green-600',
-				]}
-			>
+			{startLabel && (
+				<p>
+					<span class="font-medium text-ink">Inicio:</span> {startLabel}
+				</p>
+			)}
+			{endLabel && (
+				<p>
+					<span class="font-medium text-ink">Finalización:</span> {endLabel}
+				</p>
+			)}
+			<p class:list={['pt-2 text-base font-semibold', cuadro.vendido ? 'text-moss' : 'text-thread']}>
 				{cuadro.vendido ? 'Vendido' : 'Disponible'}
 			</p>
 		</div>
 
-		<div class="mt-8 flex w-full max-w-md justify-between">
+		<div class="mt-12 flex items-center justify-between border-t border-border pt-8">
 			{
 				prevId ? (
 					<a
 						href={`/cuadros/${prevId}`}
-						class="rounded-full bg-gray-800 px-6 py-3 text-white shadow-sm transition-all duration-200 hover:bg-gray-900 hover:shadow-md"
+						class="text-sm font-semibold text-ink transition-colors hover:text-moss"
 					>
-						Anterior
+						← Anterior
 					</a>
 				) : (
-					<span class="pointer-events-none rounded-full bg-gray-300 px-6 py-3 text-white">
-						Anterior
-					</span>
+					<span class="text-sm text-border">← Anterior</span>
 				)
 			}
 			{
 				nextId ? (
 					<a
 						href={`/cuadros/${nextId}`}
-						class="rounded-full bg-gray-800 px-6 py-3 text-white shadow-sm transition-all duration-200 hover:bg-gray-900 hover:shadow-md"
+						class="text-sm font-semibold text-ink transition-colors hover:text-moss"
 					>
-						Siguiente
+						Siguiente →
 					</a>
 				) : (
-					<span class="pointer-events-none rounded-full bg-gray-300 px-6 py-3 text-white">
-						Siguiente
-					</span>
+					<span class="text-sm text-border">Siguiente →</span>
 				)
 			}
 		</div>

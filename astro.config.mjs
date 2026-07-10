@@ -14,9 +14,18 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.google(),
-      name: 'Montserrat',
-      cssVariable: '--font-montserrat',
-      weights: [400, 500, 600, 700, 800],
+      name: 'Cormorant Garamond',
+      cssVariable: '--font-display',
+      weights: [500, 600, 700],
+      styles: ['normal', 'italic'],
+      subsets: ['latin', 'latin-ext'],
+      fallbacks: ['serif'],
+    },
+    {
+      provider: fontProviders.google(),
+      name: 'Outfit',
+      cssVariable: '--font-sans',
+      weights: [400, 500, 600, 700],
       styles: ['normal'],
       subsets: ['latin', 'latin-ext'],
       fallbacks: ['sans-serif'],

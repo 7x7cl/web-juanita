@@ -11,23 +11,24 @@ const social = [
 ] as const;
 ---
 
-<footer class="border-t border-[#d4c4a8] bg-[#ece3d0]/60">
-	<div
-		class="mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 py-8 text-center text-sm text-gray-500"
-	>
-		<div class="mb-2 flex justify-center gap-6">
+<footer class="border-t border-border bg-forest text-linen">
+	<div class="mx-auto flex max-w-6xl flex-col items-center gap-5 px-4 py-10 text-center md:px-6">
+		<p class="font-serif text-2xl font-semibold tracking-tight">{SITE_NAME}</p>
+		<div class="flex justify-center gap-7">
 			{
 				social.map(({ href, label, src }) => (
-					<a href={href} target="_blank" rel="noopener" aria-label={label}>
-						<img
-							src={src}
-							alt={label}
-							class="h-5 w-5 opacity-70 transition-all duration-200 hover:scale-110 hover:opacity-100"
-						/>
+					<a
+						href={href}
+						target="_blank"
+						rel="noopener"
+						aria-label={label}
+						class="opacity-80 transition-opacity duration-200 hover:opacity-100"
+					>
+						<img src={src} alt="" class="h-5 w-5 brightness-0 invert" width="20" height="20" />
 					</a>
 				))
 			}
 		</div>
-		<p class="text-[#5c4a32]">© {year} {SITE_NAME}. Hecho con cariño en Chile.</p>
+		<p class="text-sm text-sage">© {year} · Hecho con cariño en Chile</p>
 	</div>
 </footer>

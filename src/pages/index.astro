@@ -1,8 +1,9 @@
 ---
-import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import { SITE_NAME } from '../consts';
+import { getCuadrosData } from '../lib/cuadros';
+import { getCuadroImageSources } from '../lib/cuadros/imagesCuadros';
 import perfil from '../lib/fotos/perfil.jpg';
-import cuadroPortada from '../lib/fotos/cuadroPortada.jpg';
 
 const personSchema = JSON.stringify({
 	'@context': 'https://schema.org',
@@ -20,92 +21,177 @@ const personSchema = JSON.stringify({
 		'Artesanía chilena',
 	],
 });
+
+const cuadros = await getCuadrosData();
+const destacados = cuadros.slice(0, 3);
 ---
 
 <Layout>
 	<script type="application/ld+json" set:html={personSchema} />
 
-	<section class="relative overflow-hidden bg-gradient-to-br from-[#e8ddd0] via-[#f0e6d3] to-[#dce5c5]">
-		<div class="mx-auto grid max-w-6xl gap-10 px-4 py-20 md:grid-cols-2 md:items-center">
-			<div class="animate-fade-in">
-				<h1 class="mb-4 text-4xl font-extrabold tracking-tight text-[#3d2e1e] md:text-6xl">
+	<section class="relative min-h-[min(88vh,52rem)] overflow-hidden bg-[#1e3329]">
+		<div class="absolute inset-0 md:left-[42%]">
+			<img
+				src={perfil.src}
+				alt=""
+				width={perfil.width}
+				height={perfil.height}
+				class="animate-hero-image h-full w-full object-cover object-[62%_22%]"
+				loading="eager"
+				decoding="async"
+				aria-hidden="true"
+			/>
+			<div
+				class="absolute inset-0 bg-gradient-to-r from-[#1a2820] to-transparent md:from-[#1a2820] md:via-[#1a2820]/40 md:to-transparent"
+				aria-hidden="true"
+			>
+			</div>
+		</div>
+		<div
+			class="absolute inset-0 bg-gradient-to-t from-[#1a2820] via-[#1a2820]/50 to-transparent md:hidden"
+			aria-hidden="true"
+		>
+		</div>
+
+		<div
+			class="relative mx-auto flex min-h-[min(88vh,52rem)] max-w-6xl flex-col justify-end px-4 pb-14 pt-24 md:justify-center md:px-6 md:pb-20 md:pt-28"
+		>
+			<div class="max-w-xl">
+				<p
+					class="animate-rise mb-4 font-serif text-4xl leading-[1.05] font-semibold tracking-tight text-[#f7f8f4] sm:text-5xl md:text-6xl lg:text-7xl"
+				>
+					{SITE_NAME}
+				</p>
+				<h1
+					class="animate-rise-delay-1 text-lg font-medium tracking-wide text-[#eef1ea] sm:text-xl md:text-2xl"
+				>
 					Bordados crewel hechos a mano
 				</h1>
-				<p class="mb-8 text-lg leading-relaxed text-[#5c4a32]">
-					Cuadros únicos bordados en lana con técnica crewel por Juanita. Colores, texturas y
-					tradición artesanal en cada puntada.
+				<span
+					class="animate-underline mt-5 mb-6 block h-px w-24 origin-left bg-[#c4a35a]"
+					aria-hidden="true"
+				>
+				</span>
+				<p
+					class="animate-rise-delay-2 mb-8 max-w-md text-base leading-relaxed text-[#dce3d6] md:text-lg"
+				>
+					Cuadros únicos bordados en lana, puntada a puntada, con la belleza de la naturaleza.
 				</p>
-				<div class="flex flex-wrap gap-3">
+				<div class="animate-rise-delay-3">
 					<a
 						href="/cuadros"
-						class="rounded-full bg-[#786C3B] px-6 py-3 text-[#F5F5DC] shadow-sm transition-all duration-200 hover:bg-[#8B9467] hover:shadow-md"
+						class="inline-flex items-center gap-2 border border-[#eef1ea]/50 bg-[#f7f8f4] px-7 py-3.5 text-sm font-semibold tracking-wide text-[#243d32] transition-all duration-300 hover:border-[#c4a35a] hover:bg-[#c4a35a] hover:text-[#1a2820]"
 					>
 						Ver cuadros crewel
+						<span aria-hidden="true">→</span>
 					</a>
 				</div>
 			</div>
-			<div class="animate-fade-in-delay-1 relative">
-				<Image
-					src={perfil}
-					alt="Juanita, artesana de bordado crewel en Chile"
-					widths={[400, 600, 800]}
-					sizes="(max-width: 768px) 100vw, 50vw"
-					class="aspect-square w-full rounded-3xl object-cover shadow-lg transition-shadow duration-300 hover:shadow-xl"
-					loading="eager"
-				/>
-			</div>
 		</div>
 	</section>
 
-	<section class="mx-auto max-w-6xl px-4 py-16">
-		<h2 class="animate-fade-in mb-6 text-2xl font-bold text-[#3d2e1e]">Cuadros crewel destacados</h2>
-		<div class="grid gap-6 md:grid-cols-3">
-			<a
-				href="/cuadros"
-				class="animate-fade-in-delay-1 group overflow-hidden rounded-2xl border border-[#d4c4a8] bg-[#faf3e7] shadow-sm transition-all duration-300 hover:shadow-md"
+	<section class="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-28">
+		<div class="mx-auto max-w-2xl text-center">
+			<h2 class="animate-rise mb-5 font-serif text-3xl font-semibold text-ink md:text-4xl">
+				Hecho con el corazón
+			</h2>
+			<p class="animate-rise-delay-1 text-lg leading-relaxed text-ink-soft md:text-xl">
+				Como artesana del bordado crewel, esta técnica es una terapia que me relaja y me permite
+				plasmar la belleza de la naturaleza, transformando cada pieza en una obra única bordada en
+				lana.
+			</p>
+			<blockquote
+				class="animate-rise-delay-2 mt-10 font-serif text-xl italic leading-relaxed text-moss md:text-2xl"
 			>
-				<div
-					class="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-[#e2d9c8] to-[#d8dfc6]"
+				“Busco transmitir en cada cuadro todos los buenos sentimientos y pensamientos positivos que
+				llevo dentro.”
+				<cite class="mt-4 block font-sans text-sm not-italic tracking-wide text-muted"
+					>— Juanita</cite
 				>
-					<Image
-						src={cuadroPortada}
-						alt="Cuadro bordado crewel destacado"
-						widths={[400, 600, 800]}
-						sizes="(max-width: 768px) 100vw, 33vw"
-						class="h-full w-full rounded-t-2xl object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-						loading="lazy"
-					/>
-				</div>
-				<div class="p-4">
-					<h3 class="font-semibold text-[#3d2e1e] group-hover:underline">Cuadros crewel</h3>
-					<p class="text-sm text-[#8c7a60]">Galería de obras bordadas en lana</p>
-				</div>
-			</a>
+			</blockquote>
 		</div>
 	</section>
 
-	<section class="bg-[#f0e6d3]">
-		<div class="mx-auto max-w-6xl px-4 py-16">
-			<div class="grid gap-8 md:grid-cols-2 md:items-center">
-				<div class="animate-fade-in">
-					<h2 class="mb-3 text-2xl font-bold text-[#3d2e1e]">
-						Bordado crewel hecho con el corazón
+	<section class="border-y border-border bg-paper/60">
+		<div class="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-24">
+			<div class="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+				<div>
+					<h2 class="animate-rise font-serif text-3xl font-semibold text-ink md:text-4xl">
+						Cuadros destacados
 					</h2>
-					<p class="text-[#5c4a32]">
-						Como artesana del bordado crewel, esta técnica es una terapia que me relaja y me permite
-						plasmar la belleza de la naturaleza, transformando cada pieza en una obra única bordada
-						en lana.
+					<p class="animate-rise-delay-1 mt-2 max-w-lg text-ink-soft">
+						Una selección de obras bordadas a mano en lana con técnica crewel.
 					</p>
 				</div>
-				<div
-					class="animate-fade-in-delay-1 rounded-2xl border border-[#d4c4a8] bg-[#faf3e7] p-6 shadow-sm"
+				<a
+					href="/cuadros"
+					class="animate-rise-delay-1 text-sm font-semibold tracking-wide text-moss transition-colors hover:text-forest"
 				>
-					<p class="text-[#5c4a32] italic">
-						"Busco transmitir en cada cuadro crewel todos los buenos sentimientos y pensamientos
-						positivos que llevo dentro" — Juanita
-					</p>
-				</div>
+					Ver galería completa →
+				</a>
+			</div>
+
+			<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+				{
+					destacados.map((cuadro, index) => {
+						const imageSources = getCuadroImageSources(cuadro.id, cuadro.portada);
+						const delayClass =
+							index === 0
+								? 'animate-rise'
+								: index === 1
+									? 'animate-rise-delay-1'
+									: 'animate-rise-delay-2';
+						return (
+							<a href={`/cuadros/${cuadro.id}`} class:list={['group block', delayClass]}>
+								<div class="aspect-[4/5] overflow-hidden bg-linen-deep">
+									{imageSources.galleryFallback && (
+										<picture>
+											{imageSources.galleryWebp && (
+												<source
+													srcset={imageSources.galleryWebp}
+													type="image/webp"
+													sizes="(min-width: 1024px) 22rem, (min-width: 640px) calc(50vw - 2rem), 100vw"
+												/>
+											)}
+											<img
+												src={imageSources.galleryFallback}
+												alt={`${cuadro.titulo} — cuadro bordado crewel`}
+												loading="lazy"
+												decoding="async"
+												class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+											/>
+										</picture>
+									)}
+								</div>
+								<div class="mt-4">
+									<h3 class="font-serif text-xl font-semibold text-ink transition-colors group-hover:text-moss">
+										{cuadro.titulo}
+									</h3>
+									<p class="mt-1 text-sm text-muted">
+										{cuadro.vendido ? 'Vendido' : 'Disponible'}
+									</p>
+								</div>
+							</a>
+						);
+					})
+				}
 			</div>
 		</div>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-4 py-20 text-center md:px-6 md:py-28">
+		<h2 class="animate-rise mb-4 font-serif text-3xl font-semibold text-ink md:text-4xl">
+			¿Te enamora alguna pieza?
+		</h2>
+		<p class="animate-rise-delay-1 mx-auto mb-8 max-w-md text-ink-soft">
+			Escríbeme para consultas, disponibilidad o encargos personalizados.
+		</p>
+		<a
+			href="/contacto"
+			class="animate-rise-delay-2 inline-flex items-center gap-2 bg-forest px-7 py-3.5 text-sm font-semibold tracking-wide text-linen transition-colors duration-300 hover:bg-moss"
+		>
+			Contactar
+			<span aria-hidden="true">→</span>
+		</a>
 	</section>
 </Layout>
