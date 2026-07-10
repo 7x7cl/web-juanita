@@ -1,0 +1,377 @@
+---
+interface Props {
+	src: string;
+	webpSrc?: string;
+	alt: string;
+	sizes?: string;
+}
+
+const { src, webpSrc, alt, sizes = '(min-width: 1024px) 42rem, 100vw' } = Astro.props;
+---
+
+<figure class="image-lightbox-trigger group relative m-0">
+	<button
+		type="button"
+		class="lightbox-open relative block w-full cursor-zoom-in overflow-hidden bg-linen-deep text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-moss"
+		aria-label={`Ampliar imagen: ${alt}`}
+		aria-haspopup="dialog"
+		aria-controls="image-lightbox"
+		data-lightbox-open
+	>
+		<picture>
+			{webpSrc && <source srcset={webpSrc} type="image/webp" sizes={sizes} />}
+			<img
+				src={src}
+				alt={alt}
+				decoding="async"
+				class="mx-auto max-h-[min(72vh,40rem)] w-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.015]"
+				data-lightbox-thumb
+			/>
+		</picture>
+		<span
+			class="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-center bg-gradient-to-t from-[rgb(26_40_32/0.55)] to-transparent px-4 pb-4 pt-16 opacity-100 transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100"
+			aria-hidden="true"
+		>
+			<span
+				class="inline-flex items-center gap-2 border border-[#eef1ea]/40 bg-[rgb(26_40_32/0.72)] px-3.5 py-2 text-xs font-semibold tracking-wide text-[#f7f8f4] backdrop-blur-sm"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.75"
+					class="size-4"
+					aria-hidden="true"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"></path>
+				</svg>
+				Ampliar imagen
+			</span>
+		</span>
+	</button>
+</figure>
+
+<dialog
+	id="image-lightbox"
+	class="lightbox-dialog border-0 bg-[rgb(26_40_32/0.96)] p-0 text-[#f7f8f4]"
+	aria-label="Imagen ampliada"
+>
+	<div
+		class="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-start justify-between gap-3 p-3 pt-[max(0.75rem,env(safe-area-inset-top))] pr-[max(0.75rem,env(safe-area-inset-right))] pl-[max(0.75rem,env(safe-area-inset-left))]"
+	>
+		<p class="pointer-events-none max-w-[70%] truncate text-sm text-[#dce3d6]/90" data-lightbox-caption>
+			{alt}
+		</p>
+		<button
+			type="button"
+			class="pointer-events-auto inline-flex size-12 shrink-0 items-center justify-center rounded-full border border-[#eef1ea]/25 bg-[rgb(26_40_32/0.85)] text-[#f7f8f4] backdrop-blur-sm transition-colors hover:border-[#c4a35a] hover:bg-[rgb(36_61_50/0.95)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c4a35a]"
+			aria-label="Cerrar imagen ampliada"
+			data-lightbox-close
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				class="size-6"
+				aria-hidden="true"
+			>
+				<path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6L6 18"></path>
+			</svg>
+		</button>
+	</div>
+
+	<div
+		class="lightbox-stage relative flex min-h-0 flex-1 items-center justify-center overflow-hidden px-2 pb-[max(1rem,env(safe-area-inset-bottom))] pt-16"
+		data-lightbox-stage
+	>
+		<img
+			src={src}
+			alt={alt}
+			decoding="async"
+			draggable="false"
+			class="lightbox-image max-h-full max-w-full select-none object-contain will-change-transform"
+			data-lightbox-image
+		/>
+	</div>
+
+	<p
+		class="pointer-events-none absolute inset-x-0 bottom-0 z-10 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] text-center text-xs text-[#dce3d6]/70 md:hidden"
+		aria-hidden="true"
+	>
+		Doble toque o pellizca para zoom · Desliza abajo para cerrar
+	</p>
+</dialog>
+
+<style>
+	.lightbox-dialog {
+		position: fixed;
+		inset: 0;
+		width: 100%;
+		max-width: none;
+		height: 100%;
+		height: 100dvh;
+		max-height: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.lightbox-dialog[open] {
+		display: flex;
+		flex-direction: column;
+		animation: lightbox-fade-in 0.22s ease-out both;
+	}
+
+	.lightbox-dialog::backdrop {
+		background: rgb(26 40 32 / 0.92);
+	}
+
+	.lightbox-stage {
+		touch-action: none;
+	}
+
+	.lightbox-image {
+		transition:
+			transform 0.15s ease-out,
+			opacity 0.15s ease-out;
+	}
+
+	@keyframes lightbox-fade-in {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.lightbox-dialog[open],
+		.lightbox-image {
+			animation: none;
+			transition: none;
+		}
+	}
+</style>
+
+<script>
+	function initLightbox() {
+		const dialog = document.getElementById('image-lightbox');
+		const openBtn = document.querySelector('[data-lightbox-open]');
+		const closeBtn = document.querySelector('[data-lightbox-close]');
+		const stage = document.querySelector('[data-lightbox-stage]');
+		const image = document.querySelector('[data-lightbox-image]');
+
+		if (
+			!(dialog instanceof HTMLDialogElement) ||
+			!(openBtn instanceof HTMLButtonElement) ||
+			!(closeBtn instanceof HTMLButtonElement) ||
+			!(stage instanceof HTMLElement) ||
+			!(image instanceof HTMLImageElement)
+		) {
+			return;
+		}
+
+		if (dialog.dataset.lightboxReady === 'true') return;
+		dialog.dataset.lightboxReady = 'true';
+
+		const HISTORY_STATE = { lightbox: true };
+		let historyPushed = false;
+		let scale = 1;
+		let translateX = 0;
+		let translateY = 0;
+		let startX = 0;
+		let startY = 0;
+		let startTranslateX = 0;
+		let startTranslateY = 0;
+		let pinchStartDistance = 0;
+		let pinchStartScale = 1;
+		let isPanning = false;
+		let isPinching = false;
+		let swipeDismissY = 0;
+		let lastTap = 0;
+
+		function applyTransform() {
+			image.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`;
+		}
+
+		function resetTransform() {
+			scale = 1;
+			translateX = 0;
+			translateY = 0;
+			swipeDismissY = 0;
+			image.style.opacity = '1';
+			applyTransform();
+		}
+
+		function clampPan() {
+			const maxX = (image.clientWidth * (scale - 1)) / 2;
+			const maxY = (image.clientHeight * (scale - 1)) / 2;
+			translateX = Math.max(-maxX, Math.min(maxX, translateX));
+			translateY = Math.max(-maxY, Math.min(maxY, translateY));
+		}
+
+		function openLightbox() {
+			resetTransform();
+			dialog.showModal();
+			document.documentElement.style.overflow = 'hidden';
+			if (!historyPushed) {
+				history.pushState(HISTORY_STATE, '');
+				historyPushed = true;
+			}
+			closeBtn.focus();
+		}
+
+		function closeLightbox(options = {}) {
+			const fromPopState = 'fromPopState' in options && options.fromPopState;
+			if (!dialog.open) return;
+			dialog.close();
+			document.documentElement.style.overflow = '';
+			resetTransform();
+			if (historyPushed && !fromPopState) {
+				history.back();
+			}
+			historyPushed = false;
+			openBtn.focus();
+		}
+
+		openBtn.addEventListener('click', openLightbox);
+		closeBtn.addEventListener('click', () => closeLightbox());
+
+		dialog.addEventListener('cancel', (event) => {
+			event.preventDefault();
+			closeLightbox();
+		});
+
+		dialog.addEventListener('click', (event) => {
+			if (event.target === dialog || event.target === stage) {
+				closeLightbox();
+			}
+		});
+
+		window.addEventListener('popstate', () => {
+			if (dialog.open) {
+				closeLightbox({ fromPopState: true });
+			}
+		});
+
+		function touchDistance(a, b) {
+			return Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+		}
+
+		stage.addEventListener(
+			'touchstart',
+			(event) => {
+				if (event.touches.length === 2) {
+					isPinching = true;
+					isPanning = false;
+					pinchStartDistance = touchDistance(event.touches[0], event.touches[1]);
+					pinchStartScale = scale;
+					return;
+				}
+
+				if (event.touches.length === 1) {
+					isPanning = true;
+					startX = event.touches[0].clientX;
+					startY = event.touches[0].clientY;
+					startTranslateX = translateX;
+					startTranslateY = translateY;
+					swipeDismissY = 0;
+				}
+			},
+			{ passive: true },
+		);
+
+		stage.addEventListener(
+			'touchmove',
+			(event) => {
+				if (isPinching && event.touches.length === 2) {
+					event.preventDefault();
+					const nextScale =
+						(touchDistance(event.touches[0], event.touches[1]) / pinchStartDistance) *
+						pinchStartScale;
+					scale = Math.max(1, Math.min(4, nextScale));
+					if (scale === 1) {
+						translateX = 0;
+						translateY = 0;
+					} else {
+						clampPan();
+					}
+					applyTransform();
+					return;
+				}
+
+				if (!isPanning || event.touches.length !== 1) return;
+
+				const dx = event.touches[0].clientX - startX;
+				const dy = event.touches[0].clientY - startY;
+
+				if (scale > 1) {
+					event.preventDefault();
+					translateX = startTranslateX + dx;
+					translateY = startTranslateY + dy;
+					clampPan();
+					applyTransform();
+					return;
+				}
+
+				if (dy > 12 && Math.abs(dy) > Math.abs(dx)) {
+					event.preventDefault();
+					swipeDismissY = dy;
+					translateY = dy;
+					image.style.opacity = String(Math.max(0.35, 1 - dy / 320));
+					applyTransform();
+				}
+			},
+			{ passive: false },
+		);
+
+		stage.addEventListener(
+			'touchend',
+			() => {
+				if (swipeDismissY > 110 && scale === 1) {
+					closeLightbox();
+					return;
+				}
+
+				if (scale === 1) {
+					translateX = 0;
+					translateY = 0;
+					image.style.opacity = '1';
+					applyTransform();
+				} else {
+					clampPan();
+					applyTransform();
+				}
+
+				isPanning = false;
+				isPinching = false;
+				swipeDismissY = 0;
+			},
+			{ passive: true },
+		);
+
+		image.addEventListener('click', (event) => {
+			const now = Date.now();
+			if (now - lastTap < 280) {
+				event.preventDefault();
+				event.stopPropagation();
+				if (scale > 1) {
+					resetTransform();
+				} else {
+					scale = 2.2;
+					applyTransform();
+				}
+			}
+			lastTap = now;
+		});
+	}
+
+	initLightbox();
+	document.addEventListener('astro:page-load', initLightbox);
+</script>

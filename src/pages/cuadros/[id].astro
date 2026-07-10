@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ImageLightbox from '../../components/ImageLightbox.astro';
 import { CUADROS, getCuadroById } from '../../lib/cuadros';
 import { getCuadroImageSources } from '../../lib/cuadros/imagesCuadros';
 
@@ -29,58 +30,89 @@ function formatDate(date?: { day?: number; month?: number; year: number }) {
 
 const startLabel = formatDate(cuadro.start);
 const endLabel = formatDate(cuadro.end);
+const imageAlt = `${cuadro.titulo} — cuadro bordado crewel por Juanita`;
 ---
 
 <Layout title={title} description={description} image={imageSources.ogImage} ogType="article">
-	<section class="mx-auto max-w-3xl px-4 py-12 md:px-6 md:py-16">
+	<section class="mx-auto max-w-6xl px-4 py-10 md:px-6 md:py-16">
 		<a
 			href="/cuadros"
-			class="mb-8 inline-block text-sm font-medium text-muted transition-colors hover:text-moss"
+			class="mb-8 inline-flex items-center gap-1 text-sm font-medium text-muted transition-colors hover:text-moss"
 		>
 			← Volver a cuadros
 		</a>
 
-		<h1 class="animate-rise mb-8 font-serif text-4xl font-semibold tracking-tight text-ink md:text-5xl">
-			{cuadro.titulo}
-		</h1>
+		<div class="grid items-start gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-14">
+			{
+				imageSources.detailFallback && (
+					<div class="animate-rise-delay-1 lg:sticky lg:top-28">
+						<ImageLightbox
+							src={imageSources.detailFallback}
+							webpSrc={imageSources.detailWebp}
+							alt={imageAlt}
+						/>
+					</div>
+				)
+			}
 
-		{
-			imageSources.detailFallback && (
-				<picture class="animate-rise-delay-1 mb-10 block overflow-hidden bg-linen-deep">
-					{imageSources.detailWebp && (
-						<source srcset={imageSources.detailWebp} type="image/webp" />
-					)}
-					<img
-						src={imageSources.detailFallback}
-						alt={`${cuadro.titulo} — cuadro bordado crewel por Juanita`}
-						decoding="async"
-						class="mx-auto w-full max-w-md object-contain"
-					/>
-				</picture>
-			)
-		}
+			<div class="animate-rise min-w-0">
+				<p class="mb-3 text-xs font-semibold tracking-[0.18em] text-moss uppercase">
+					Bordado crewel
+				</p>
+				<h1 class="font-serif text-3xl leading-tight font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl">
+					{cuadro.titulo}
+				</h1>
+				<span class="mt-5 mb-8 block h-px w-16 bg-thread" aria-hidden="true"></span>
 
-		<div class="animate-rise-delay-2 space-y-3 border-t border-border pt-8 text-ink-soft">
-			<p class="text-lg">
-				<span class="font-medium text-ink">Medidas:</span>
-				{cuadro.measures.width} cm × {cuadro.measures.height} cm
-			</p>
-			{startLabel && (
-				<p>
-					<span class="font-medium text-ink">Inicio:</span> {startLabel}
+				<p
+					class:list={[
+						'mb-8 inline-flex items-center border px-3 py-1.5 text-sm font-semibold tracking-wide',
+						cuadro.vendido
+							? 'border-border bg-linen-deep text-moss'
+							: 'border-thread/50 bg-[rgb(196_163_90/0.12)] text-ink',
+					]}
+				>
+					{cuadro.vendido ? 'Vendido' : 'Disponible'}
 				</p>
-			)}
-			{endLabel && (
-				<p>
-					<span class="font-medium text-ink">Finalización:</span> {endLabel}
+
+				<dl class="animate-rise-delay-2 grid gap-5 border-t border-border pt-8 sm:grid-cols-2">
+					<div>
+						<dt class="text-xs font-semibold tracking-[0.14em] text-muted uppercase">Medidas</dt>
+						<dd class="mt-1.5 text-lg text-ink">
+							{cuadro.measures.width} cm × {cuadro.measures.height} cm
+						</dd>
+					</div>
+					{
+						startLabel && (
+							<div>
+								<dt class="text-xs font-semibold tracking-[0.14em] text-muted uppercase">Inicio</dt>
+								<dd class="mt-1.5 text-lg text-ink">{startLabel}</dd>
+							</div>
+						)
+					}
+					{
+						endLabel && (
+							<div>
+								<dt class="text-xs font-semibold tracking-[0.14em] text-muted uppercase">
+									Finalización
+								</dt>
+								<dd class="mt-1.5 text-lg text-ink">{endLabel}</dd>
+							</div>
+						)
+					}
+				</dl>
+
+				<p class="animate-rise-delay-3 mt-8 max-w-md text-base leading-relaxed text-ink-soft">
+					Pieza única bordada a mano en lana con técnica crewel. Toca la imagen para verla a
+					pantalla completa.
 				</p>
-			)}
-			<p class:list={['pt-2 text-base font-semibold', cuadro.vendido ? 'text-moss' : 'text-thread']}>
-				{cuadro.vendido ? 'Vendido' : 'Disponible'}
-			</p>
+			</div>
 		</div>
 
-		<div class="mt-12 flex items-center justify-between border-t border-border pt-8">
+		<nav
+			class="mt-14 flex items-center justify-between border-t border-border pt-8"
+			aria-label="Navegación entre cuadros"
+		>
 			{
 				prevId ? (
 					<a
@@ -105,6 +137,6 @@ const endLabel = formatDate(cuadro.end);
 					<span class="text-sm text-border">Siguiente →</span>
 				)
 			}
-		</div>
+		</nav>
 	</section>
 </Layout>
