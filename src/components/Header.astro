@@ -89,13 +89,20 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 ></div>
 
 <script>
+	let menuCleanup: (() => void) | undefined;
+
 	function initMobileMenu() {
+		menuCleanup?.();
+
 		const toggle = document.getElementById('menu-toggle');
 		const menu = document.getElementById('mobile-menu');
 		const backdrop = document.getElementById('menu-backdrop');
 		const iconMenu = document.getElementById('icon-menu');
 		const iconClose = document.getElementById('icon-close');
 		if (!toggle || !menu || !backdrop || !iconMenu || !iconClose) return;
+
+		const controller = new AbortController();
+		const { signal } = controller;
 
 		const setOpen = (open: boolean) => {
 			toggle.setAttribute('aria-expanded', String(open));
@@ -108,19 +115,31 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 			iconClose.classList.toggle('hidden', !open);
 		};
 
-		toggle.addEventListener('click', () => {
-			setOpen(toggle.getAttribute('aria-expanded') !== 'true');
-		});
+		setOpen(false);
 
-		backdrop.addEventListener('click', () => setOpen(false));
+		toggle.addEventListener(
+			'click',
+			() => {
+				setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+			},
+			{ signal },
+		);
+
+		backdrop.addEventListener('click', () => setOpen(false), { signal });
 
 		menu.querySelectorAll('[data-mobile-link]').forEach((link) => {
-			link.addEventListener('click', () => setOpen(false));
+			link.addEventListener('click', () => setOpen(false), { signal });
 		});
 
-		document.addEventListener('keydown', (event) => {
-			if (event.key === 'Escape') setOpen(false);
-		});
+		document.addEventListener(
+			'keydown',
+			(event) => {
+				if (event.key === 'Escape') setOpen(false);
+			},
+			{ signal },
+		);
+
+		menuCleanup = () => controller.abort();
 	}
 
 	initMobileMenu();

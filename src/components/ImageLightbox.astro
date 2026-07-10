@@ -5,9 +5,10 @@ interface Props {
 	alt: string;
 	width?: number;
 	height?: number;
+	transitionName?: string;
 }
 
-const { src, fullSrc = src, alt, width, height } = Astro.props;
+const { src, fullSrc = src, alt, width, height, transitionName } = Astro.props;
 ---
 
 <figure class="image-lightbox-trigger group relative m-0">
@@ -25,6 +26,7 @@ const { src, fullSrc = src, alt, width, height } = Astro.props;
 			width={width}
 			height={height}
 			decoding="async"
+			transition:name={transitionName}
 			class="mx-auto max-h-[min(72vh,40rem)] w-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.015]"
 			data-lightbox-thumb
 		/>
@@ -162,7 +164,11 @@ const { src, fullSrc = src, alt, width, height } = Astro.props;
 </style>
 
 <script>
+	let lightboxCleanup: (() => void) | undefined;
+
 	function initLightbox() {
+		lightboxCleanup?.();
+
 		const dialog = document.getElementById('image-lightbox');
 		const openBtn = document.querySelector('[data-lightbox-open]');
 		const closeBtn = document.querySelector('[data-lightbox-close]');
@@ -179,9 +185,8 @@ const { src, fullSrc = src, alt, width, height } = Astro.props;
 			return;
 		}
 
-		if (dialog.dataset.lightboxReady === 'true') return;
-		dialog.dataset.lightboxReady = 'true';
-
+		const controller = new AbortController();
+		const { signal } = controller;
 		const HISTORY_STATE = { lightbox: true };
 		let historyPushed = false;
 		let scale = 1;
@@ -242,25 +247,37 @@ const { src, fullSrc = src, alt, width, height } = Astro.props;
 			openBtn.focus();
 		}
 
-		openBtn.addEventListener('click', openLightbox);
-		closeBtn.addEventListener('click', () => closeLightbox());
+		openBtn.addEventListener('click', openLightbox, { signal });
+		closeBtn.addEventListener('click', () => closeLightbox(), { signal });
 
-		dialog.addEventListener('cancel', (event) => {
-			event.preventDefault();
-			closeLightbox();
-		});
-
-		dialog.addEventListener('click', (event) => {
-			if (event.target === dialog || event.target === stage) {
+		dialog.addEventListener(
+			'cancel',
+			(event) => {
+				event.preventDefault();
 				closeLightbox();
-			}
-		});
+			},
+			{ signal },
+		);
 
-		window.addEventListener('popstate', () => {
-			if (dialog.open) {
-				closeLightbox({ fromPopState: true });
-			}
-		});
+		dialog.addEventListener(
+			'click',
+			(event) => {
+				if (event.target === dialog || event.target === stage) {
+					closeLightbox();
+				}
+			},
+			{ signal },
+		);
+
+		window.addEventListener(
+			'popstate',
+			() => {
+				if (dialog.open) {
+					closeLightbox({ fromPopState: true });
+				}
+			},
+			{ signal },
+		);
 
 		function touchDistance(a, b) {
 			return Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
@@ -286,7 +303,7 @@ const { src, fullSrc = src, alt, width, height } = Astro.props;
 					swipeDismissY = 0;
 				}
 			},
-			{ passive: true },
+			{ passive: true, signal },
 		);
 
 		stage.addEventListener(
@@ -330,7 +347,7 @@ const { src, fullSrc = src, alt, width, height } = Astro.props;
 					applyTransform();
 				}
 			},
-			{ passive: false },
+			{ passive: false, signal },
 		);
 
 		stage.addEventListener(
@@ -355,23 +372,35 @@ const { src, fullSrc = src, alt, width, height } = Astro.props;
 				isPinching = false;
 				swipeDismissY = 0;
 			},
-			{ passive: true },
+			{ passive: true, signal },
 		);
 
-		image.addEventListener('click', (event) => {
-			const now = Date.now();
-			if (now - lastTap < 280) {
-				event.preventDefault();
-				event.stopPropagation();
-				if (scale > 1) {
-					resetTransform();
-				} else {
-					scale = 2.2;
-					applyTransform();
+		image.addEventListener(
+			'click',
+			(event) => {
+				const now = Date.now();
+				if (now - lastTap < 280) {
+					event.preventDefault();
+					event.stopPropagation();
+					if (scale > 1) {
+						resetTransform();
+					} else {
+						scale = 2.2;
+						applyTransform();
+					}
 				}
+				lastTap = now;
+			},
+			{ signal },
+		);
+
+		lightboxCleanup = () => {
+			if (dialog.open) {
+				dialog.close();
+				document.documentElement.style.overflow = '';
 			}
-			lastTap = now;
-		});
+			controller.abort();
+		};
 	}
 
 	initLightbox();

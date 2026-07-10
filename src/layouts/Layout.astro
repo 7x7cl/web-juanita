@@ -1,5 +1,6 @@
 ---
 import type { ImageMetadata } from 'astro';
+import { ClientRouter, fade, slide } from 'astro:transitions';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
@@ -16,15 +17,16 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, image, ogType } = As
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" transition:animate="none">
 	<head>
 		<BaseHead title={title} description={description} image={image} ogType={ogType} />
+		<ClientRouter />
 	</head>
 	<body class="min-h-screen flex flex-col">
 		<Header />
-		<main class="flex-1">
+		<main class="flex-1" transition:animate={slide({ duration: '420ms' })}>
 			<slot />
 		</main>
-		<Footer />
+		<Footer transition:animate={fade({ duration: '280ms' })} />
 	</body>
 </html>
