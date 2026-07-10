@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import type { Cuadro } from '../lib/cuadros';
 
 interface Props {
@@ -20,11 +21,14 @@ const endLabel = formatDate(end);
 <a href={`/cuadros/${cuadro.id}`} class="animate-rise-delay-2 group block">
 	<article>
 		<div class="aspect-[5/4] overflow-hidden bg-linen-deep">
-			<img
-				src={portada.src}
+			<Image
+				src={portada}
 				alt={`${titulo} — cuadro bordado crewel`}
-				width={portada.width}
-				height={portada.height}
+				width={800}
+				widths={[400, 640, 800]}
+				sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+				format="webp"
+				quality={75}
 				loading="lazy"
 				decoding="async"
 				class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"

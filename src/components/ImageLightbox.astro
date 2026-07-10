@@ -1,12 +1,13 @@
 ---
 interface Props {
 	src: string;
-	webpSrc?: string;
+	fullSrc?: string;
 	alt: string;
-	sizes?: string;
+	width?: number;
+	height?: number;
 }
 
-const { src, webpSrc, alt, sizes = '(min-width: 1024px) 42rem, 100vw' } = Astro.props;
+const { src, fullSrc = src, alt, width, height } = Astro.props;
 ---
 
 <figure class="image-lightbox-trigger group relative m-0">
@@ -18,16 +19,15 @@ const { src, webpSrc, alt, sizes = '(min-width: 1024px) 42rem, 100vw' } = Astro.
 		aria-controls="image-lightbox"
 		data-lightbox-open
 	>
-		<picture>
-			{webpSrc && <source srcset={webpSrc} type="image/webp" sizes={sizes} />}
-			<img
-				src={src}
-				alt={alt}
-				decoding="async"
-				class="mx-auto max-h-[min(72vh,40rem)] w-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.015]"
-				data-lightbox-thumb
-			/>
-		</picture>
+		<img
+			src={src}
+			alt={alt}
+			width={width}
+			height={height}
+			decoding="async"
+			class="mx-auto max-h-[min(72vh,40rem)] w-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.015]"
+			data-lightbox-thumb
+		/>
 		<span
 			class="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-center bg-gradient-to-t from-[rgb(26_40_32/0.55)] to-transparent px-4 pb-4 pt-16 opacity-100 transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100"
 			aria-hidden="true"
@@ -91,8 +91,10 @@ const { src, webpSrc, alt, sizes = '(min-width: 1024px) 42rem, 100vw' } = Astro.
 		data-lightbox-stage
 	>
 		<img
-			src={src}
+			src={fullSrc}
 			alt={alt}
+			width={width}
+			height={height}
 			decoding="async"
 			draggable="false"
 			class="lightbox-image max-h-full max-w-full select-none object-contain will-change-transform"
