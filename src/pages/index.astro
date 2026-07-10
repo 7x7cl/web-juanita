@@ -1,8 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { SITE_NAME } from '../consts';
-import { getCuadrosData } from '../lib/cuadros';
-import { getCuadroImageSources } from '../lib/cuadros/imagesCuadros';
+import { getCuadros } from '../lib/cuadros';
 import perfil from '../lib/fotos/perfil.jpg';
 
 const personSchema = JSON.stringify({
@@ -22,7 +21,7 @@ const personSchema = JSON.stringify({
 	],
 });
 
-const cuadros = await getCuadrosData();
+const cuadros = await getCuadros();
 const destacados = cuadros.slice(0, 3);
 ---
 
@@ -129,7 +128,7 @@ const destacados = cuadros.slice(0, 3);
 			<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 				{
 					destacados.map((cuadro, index) => {
-						const imageSources = getCuadroImageSources(cuadro.id, cuadro.portada);
+						const { titulo, portada, vendido } = cuadro.data;
 						const delayClass =
 							index === 0
 								? 'animate-rise'
@@ -139,32 +138,21 @@ const destacados = cuadros.slice(0, 3);
 						return (
 							<a href={`/cuadros/${cuadro.id}`} class:list={['group block', delayClass]}>
 								<div class="aspect-[4/5] overflow-hidden bg-linen-deep">
-									{imageSources.galleryFallback && (
-										<picture>
-											{imageSources.galleryWebp && (
-												<source
-													srcset={imageSources.galleryWebp}
-													type="image/webp"
-													sizes="(min-width: 1024px) 22rem, (min-width: 640px) calc(50vw - 2rem), 100vw"
-												/>
-											)}
-											<img
-												src={imageSources.galleryFallback}
-												alt={`${cuadro.titulo} — cuadro bordado crewel`}
-												loading="lazy"
-												decoding="async"
-												class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-											/>
-										</picture>
-									)}
+									<img
+										src={portada.src}
+										alt={`${titulo} — cuadro bordado crewel`}
+										width={portada.width}
+										height={portada.height}
+										loading="lazy"
+										decoding="async"
+										class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+									/>
 								</div>
 								<div class="mt-4">
 									<h3 class="font-serif text-xl font-semibold text-ink transition-colors group-hover:text-moss">
-										{cuadro.titulo}
+										{titulo}
 									</h3>
-									<p class="mt-1 text-sm text-muted">
-										{cuadro.vendido ? 'Vendido' : 'Disponible'}
-									</p>
+									<p class="mt-1 text-sm text-muted">{vendido ? 'Vendido' : 'Disponible'}</p>
 								</div>
 							</a>
 						);

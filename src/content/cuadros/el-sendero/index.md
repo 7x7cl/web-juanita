@@ -1,0 +1,11 @@
+---
+titulo: "El sendero"
+portada: ./portada.jpg
+vendido: true
+order: 32
+end:
+  year: 2017
+measures:
+  width: 46
+  height: 60
+---

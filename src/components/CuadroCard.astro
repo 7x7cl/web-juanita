@@ -1,55 +1,43 @@
 ---
-import type { CuadroData } from '../lib/cuadros';
-import { getCuadroImageSources } from '../lib/cuadros/imagesCuadros';
+import type { Cuadro } from '../lib/cuadros';
 
 interface Props {
-	cuadro: CuadroData;
+	cuadro: Cuadro;
 }
 
 const { cuadro } = Astro.props;
-const imageSources = getCuadroImageSources(cuadro.id, cuadro.portada);
+const { titulo, portada, vendido, start, end } = cuadro.data;
 
 function formatDate(date?: { month?: number; year: number }) {
 	if (!date) return null;
 	return `${date.month ? `${date.month}/` : ''}${date.year}`;
 }
 
-const startLabel = formatDate(cuadro.start);
-const endLabel = formatDate(cuadro.end);
+const startLabel = formatDate(start);
+const endLabel = formatDate(end);
 ---
 
 <a href={`/cuadros/${cuadro.id}`} class="animate-rise-delay-2 group block">
 	<article>
 		<div class="aspect-[5/4] overflow-hidden bg-linen-deep">
-			{
-				imageSources.galleryFallback && (
-					<picture>
-						{imageSources.galleryWebp && (
-							<source
-								srcset={imageSources.galleryWebp}
-								type="image/webp"
-								sizes="(min-width: 768px) 22rem, (min-width: 640px) calc(50vw - 2rem), 100vw"
-							/>
-						)}
-						<img
-							src={imageSources.galleryFallback}
-							alt={`${cuadro.titulo} — cuadro bordado crewel`}
-							loading="lazy"
-							decoding="async"
-							class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-						/>
-					</picture>
-				)
-			}
+			<img
+				src={portada.src}
+				alt={`${titulo} — cuadro bordado crewel`}
+				width={portada.width}
+				height={portada.height}
+				loading="lazy"
+				decoding="async"
+				class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+			/>
 		</div>
 		<div class="pt-4">
 			<h3 class="font-serif text-xl font-semibold text-ink transition-colors group-hover:text-moss">
-				{cuadro.titulo}
+				{titulo}
 			</h3>
 			{startLabel && <p class="mt-1 text-sm text-muted">Empezado: {startLabel}</p>}
 			{endLabel && <p class="text-sm text-muted">Terminado: {endLabel}</p>}
-			<p class:list={['mt-2 text-sm font-medium', cuadro.vendido ? 'text-moss' : 'text-muted']}>
-				{cuadro.vendido ? 'Vendido' : 'Disponible'}
+			<p class:list={['mt-2 text-sm font-medium', vendido ? 'text-moss' : 'text-muted']}>
+				{vendido ? 'Vendido' : 'Disponible'}
 			</p>
 		</div>
 	</article>

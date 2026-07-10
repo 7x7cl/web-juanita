@@ -1,13 +1,13 @@
 ---
 import CuadroCard from '../../components/CuadroCard.astro';
 import Layout from '../../layouts/Layout.astro';
-import { getCuadrosData } from '../../lib/cuadros';
+import { getCuadros } from '../../lib/cuadros';
 
 const TITLE = 'Cuadros Bordados Crewel - Las Artesanías de Juanita';
 const DESCRIPTION =
 	'Galería de cuadros bordados en lana con técnica crewel. Piezas únicas de bordado crewel hechas a mano por Juanita en Chile.';
 
-const cuadros = await getCuadrosData();
+const cuadros = await getCuadros();
 ---
 
 <Layout title={TITLE} description={DESCRIPTION}>

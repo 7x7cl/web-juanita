@@ -1,39 +1,43 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ImageLightbox from '../../components/ImageLightbox.astro';
-import { CUADROS, getCuadroById } from '../../lib/cuadros';
-import { getCuadroImageSources } from '../../lib/cuadros/imagesCuadros';
+import { getCuadros, type Cuadro } from '../../lib/cuadros';
 
 export async function getStaticPaths() {
-	return CUADROS.map((id) => ({ params: { id } }));
+	const cuadros = await getCuadros();
+	return cuadros.map((cuadro, index) => ({
+		params: { id: cuadro.id },
+		props: {
+			cuadro,
+			prevId: index > 0 ? cuadros[index - 1].id : null,
+			nextId: index < cuadros.length - 1 ? cuadros[index + 1].id : null,
+		},
+	}));
 }
 
-const { id } = Astro.params;
-const cuadro = await getCuadroById(id!);
-
-if (!cuadro) {
-	return Astro.redirect('/cuadros');
+interface Props {
+	cuadro: Cuadro;
+	prevId: string | null;
+	nextId: string | null;
 }
 
-const imageSources = getCuadroImageSources(cuadro.id, cuadro.portada);
-const currentIndex = CUADROS.findIndex((cuadroId) => cuadroId === cuadro.id);
-const prevId = currentIndex > 0 ? CUADROS[currentIndex - 1] : null;
-const nextId = currentIndex < CUADROS.length - 1 ? CUADROS[currentIndex + 1] : null;
+const { cuadro, prevId, nextId } = Astro.props;
+const { titulo, portada, vendido, start, end, measures } = cuadro.data;
 
-const title = `${cuadro.titulo} — Cuadro bordado crewel - Las Artesanías de Juanita`;
-const description = `${cuadro.titulo} — cuadro bordado a mano en lana con técnica crewel por Juanita. ${cuadro.vendido ? 'Estado: Vendido.' : 'Estado: Disponible.'}`;
+const title = `${titulo} — Cuadro bordado crewel - Las Artesanías de Juanita`;
+const description = `${titulo} — cuadro bordado a mano en lana con técnica crewel por Juanita. ${vendido ? 'Estado: Vendido.' : 'Estado: Disponible.'}`;
 
 function formatDate(date?: { day?: number; month?: number; year: number }) {
 	if (!date?.year) return null;
 	return `${date.day ? `${date.day}/` : ''}${date.month ? `${date.month}/` : ''}${date.year}`;
 }
 
-const startLabel = formatDate(cuadro.start);
-const endLabel = formatDate(cuadro.end);
-const imageAlt = `${cuadro.titulo} — cuadro bordado crewel por Juanita`;
+const startLabel = formatDate(start);
+const endLabel = formatDate(end);
+const imageAlt = `${titulo} — cuadro bordado crewel por Juanita`;
 ---
 
-<Layout title={title} description={description} image={imageSources.ogImage} ogType="article">
+<Layout title={title} description={description} image={portada.src} ogType="article">
 	<section class="mx-auto max-w-6xl px-4 py-10 md:px-6 md:py-16">
 		<a
 			href="/cuadros"
@@ -43,43 +47,35 @@ const imageAlt = `${cuadro.titulo} — cuadro bordado crewel por Juanita`;
 		</a>
 
 		<div class="grid items-start gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-14">
-			{
-				imageSources.detailFallback && (
-					<div class="animate-rise-delay-1 lg:sticky lg:top-28">
-						<ImageLightbox
-							src={imageSources.detailFallback}
-							webpSrc={imageSources.detailWebp}
-							alt={imageAlt}
-						/>
-					</div>
-				)
-			}
+			<div class="animate-rise-delay-1 lg:sticky lg:top-28">
+				<ImageLightbox src={portada.src} alt={imageAlt} />
+			</div>
 
 			<div class="animate-rise min-w-0">
 				<p class="mb-3 text-xs font-semibold tracking-[0.18em] text-moss uppercase">
 					Bordado crewel
 				</p>
 				<h1 class="font-serif text-3xl leading-tight font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl">
-					{cuadro.titulo}
+					{titulo}
 				</h1>
 				<span class="mt-5 mb-8 block h-px w-16 bg-thread" aria-hidden="true"></span>
 
 				<p
 					class:list={[
 						'mb-8 inline-flex items-center border px-3 py-1.5 text-sm font-semibold tracking-wide',
-						cuadro.vendido
+						vendido
 							? 'border-border bg-linen-deep text-moss'
 							: 'border-thread/50 bg-[rgb(196_163_90/0.12)] text-ink',
 					]}
 				>
-					{cuadro.vendido ? 'Vendido' : 'Disponible'}
+					{vendido ? 'Vendido' : 'Disponible'}
 				</p>
 
 				<dl class="animate-rise-delay-2 grid gap-5 border-t border-border pt-8 sm:grid-cols-2">
 					<div>
 						<dt class="text-xs font-semibold tracking-[0.14em] text-muted uppercase">Medidas</dt>
 						<dd class="mt-1.5 text-lg text-ink">
-							{cuadro.measures.width} cm × {cuadro.measures.height} cm
+							{measures.width} cm × {measures.height} cm
 						</dd>
 					</div>
 					{
