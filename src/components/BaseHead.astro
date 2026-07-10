@@ -1,0 +1,78 @@
+---
+import '../styles/global.css';
+import type { ImageMetadata } from 'astro';
+import { Font } from 'astro:assets';
+import {
+	SITE_DESCRIPTION,
+	SITE_KEYWORDS,
+	SITE_NAME,
+	SITE_TITLE,
+	SOCIAL_LINKS,
+} from '../consts';
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: ImageMetadata | string;
+	ogType?: string;
+}
+
+const {
+	title = SITE_TITLE,
+	description = SITE_DESCRIPTION,
+	image = '/favicon.svg',
+	ogType = 'website',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage =
+	typeof image === 'string' ? new URL(image, Astro.site ?? Astro.url) : new URL(image.src, Astro.url);
+
+const organizationSchema = JSON.stringify({
+	'@context': 'https://schema.org',
+	'@type': 'Organization',
+	name: SITE_NAME,
+	description:
+		'Artesana especializada en bordado crewel. Cuadros únicos bordados a mano en lana con técnica crewel en Chile.',
+	...(Astro.site ? { url: Astro.site.href } : {}),
+	logo: new URL('/favicon.svg', Astro.site ?? Astro.url).href,
+	sameAs: [SOCIAL_LINKS.instagram, SOCIAL_LINKS.facebook, SOCIAL_LINKS.whatsapp],
+});
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" href="/favicon.ico" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link
+	rel="alternate"
+	type="application/rss+xml"
+	title={SITE_TITLE}
+	href={new URL('rss.xml', Astro.site)}
+/>
+<meta name="generator" content={Astro.generator} />
+
+<Font cssVariable="--font-montserrat" preload />
+
+<link rel="canonical" href={canonicalURL} />
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="keywords" content={SITE_KEYWORDS} />
+<meta name="robots" content="index,follow" />
+<meta name="author" content={SITE_NAME} />
+
+<meta property="og:type" content={ogType} />
+<meta property="og:site_name" content={SITE_NAME} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<script type="application/ld+json" set:html={organizationSchema} />

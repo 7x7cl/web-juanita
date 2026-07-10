@@ -1,0 +1,59 @@
+---
+import type { CuadroData } from '../lib/cuadros';
+import { getCuadroImageSources } from '../lib/cuadros/imagesCuadros';
+
+interface Props {
+	cuadro: CuadroData;
+}
+
+const { cuadro } = Astro.props;
+const imageSources = getCuadroImageSources(cuadro.id, cuadro.portada);
+
+function formatDate(date?: { month?: number; year: number }) {
+	if (!date) return null;
+	return `${date.month ? `${date.month}/` : ''}${date.year}`;
+}
+
+const startLabel = formatDate(cuadro.start);
+const endLabel = formatDate(cuadro.end);
+---
+
+<a
+	href={`/cuadros/${cuadro.id}`}
+	class="animate-fade-in-delay-2 block overflow-hidden rounded-2xl border border-[#d4c4a8] bg-[#faf3e7] shadow-sm transition-all duration-300 hover:shadow-md"
+>
+	<article>
+		<div class="aspect-[5/4] bg-gradient-to-br from-[#e2d9c8] to-[#d8dfc6]">
+			{
+				imageSources.galleryFallback && (
+					<picture>
+						{imageSources.galleryWebp && (
+							<source
+								srcset={imageSources.galleryWebp}
+								type="image/webp"
+								sizes="(min-width: 768px) 22rem, (min-width: 640px) calc(50vw - 2rem), 100vw"
+							/>
+						)}
+						<img
+							src={imageSources.galleryFallback}
+							alt={`${cuadro.titulo} — cuadro bordado crewel`}
+							loading="lazy"
+							decoding="async"
+							class="h-full w-full object-cover transition-transform duration-500 ease-out hover:scale-105"
+						/>
+					</picture>
+				)
+			}
+		</div>
+		<div class="p-4">
+			<h3 class="font-semibold text-[#3d2e1e]">{cuadro.titulo}</h3>
+			{startLabel && <p class="text-sm text-[#8c7a60]">Empezado: {startLabel}</p>}
+			{endLabel && <p class="text-sm text-[#8c7a60]">Terminado: {endLabel}</p>}
+			<div class="mt-3 flex items-center justify-between text-sm">
+				<span class={cuadro.vendido ? 'text-[#6b8e5e]' : 'text-[#b0a08a]'}>
+					{cuadro.vendido ? 'Vendido' : 'Disponible'}
+				</span>
+			</div>
+		</div>
+	</article>
+</a>

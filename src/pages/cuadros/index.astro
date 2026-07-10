@@ -1,0 +1,29 @@
+---
+import CuadroCard from '../../components/CuadroCard.astro';
+import Layout from '../../layouts/Layout.astro';
+import { getCuadrosData } from '../../lib/cuadros';
+
+const TITLE = 'Cuadros Bordados Crewel - Las Artesanías de Juanita';
+const DESCRIPTION =
+	'Galería de cuadros bordados en lana con técnica crewel. Piezas únicas de bordado crewel hechas a mano por Juanita en Chile.';
+
+const cuadros = await getCuadrosData();
+---
+
+<Layout title={TITLE} description={DESCRIPTION}>
+	<section
+		class="mx-auto my-12 max-w-6xl rounded-3xl bg-[#faf3e7]/80 px-4 py-12 shadow-lg backdrop-blur"
+	>
+		<h1 class="animate-fade-in mb-6 text-3xl font-bold text-[#3d2e1e]">
+			Cuadros de bordado crewel en lana
+		</h1>
+		<p class="animate-fade-in-delay-1 mb-8 max-w-2xl text-[#5c4a32]">
+			Explora una selección de cuadros únicos bordados a mano con técnica crewel. Si te interesa
+			alguna obra, contáctanos para disponibilidad y encargos.
+		</p>
+
+		<div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+			{cuadros.map((cuadro) => <CuadroCard cuadro={cuadro} />)}
+		</div>
+	</section>
+</Layout>

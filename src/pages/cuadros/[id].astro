@@ -1,0 +1,111 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { CUADROS, getCuadroById } from '../../lib/cuadros';
+import { getCuadroImageSources } from '../../lib/cuadros/imagesCuadros';
+
+export async function getStaticPaths() {
+	return CUADROS.map((id) => ({ params: { id } }));
+}
+
+const { id } = Astro.params;
+const cuadro = await getCuadroById(id!);
+
+if (!cuadro) {
+	return Astro.redirect('/cuadros');
+}
+
+const imageSources = getCuadroImageSources(cuadro.id, cuadro.portada);
+const currentIndex = CUADROS.findIndex((cuadroId) => cuadroId === cuadro.id);
+const prevId = currentIndex > 0 ? CUADROS[currentIndex - 1] : null;
+const nextId = currentIndex < CUADROS.length - 1 ? CUADROS[currentIndex + 1] : null;
+
+const title = `${cuadro.titulo} — Cuadro bordado crewel - Las Artesanías de Juanita`;
+const description = `${cuadro.titulo} — cuadro bordado a mano en lana con técnica crewel por Juanita. ${cuadro.vendido ? 'Estado: Vendido.' : 'Estado: Disponible.'}`;
+
+function formatDate(date?: { day?: number; month?: number; year: number }) {
+	if (!date?.year) return null;
+	return `${date.day ? `${date.day}/` : ''}${date.month ? `${date.month}/` : ''}${date.year}`;
+}
+
+const startLabel = formatDate(cuadro.start);
+const endLabel = formatDate(cuadro.end);
+---
+
+<Layout title={title} description={description} image={imageSources.ogImage} ogType="article">
+	<section class="flex flex-col items-center justify-center bg-gradient-to-b from-white to-gray-50 p-6">
+		<h1 class="animate-fade-in mb-6 text-4xl font-bold text-gray-800">{cuadro.titulo}</h1>
+
+		{
+			imageSources.detailFallback && (
+				<picture class="animate-fade-in-delay-1 mb-6 block max-w-xs" style="max-width: 400px">
+					{imageSources.detailWebp && (
+						<source srcset={imageSources.detailWebp} type="image/webp" />
+					)}
+					<img
+						src={imageSources.detailFallback}
+						alt={`${cuadro.titulo} — cuadro bordado crewel por Juanita`}
+						decoding="async"
+						class="w-full rounded-2xl border-2 border-white shadow-lg transition-transform duration-300 hover:scale-105"
+					/>
+				</picture>
+			)
+		}
+
+		<div
+			class="animate-fade-in-delay-2 flex flex-col items-center rounded-2xl border border-gray-100 bg-white/90 px-6 py-4 shadow-sm"
+		>
+			<p class="mb-2 text-lg font-medium text-gray-700">
+				Medidas: {cuadro.measures.width}cm x {cuadro.measures.height}cm
+			</p>
+			{
+				startLabel && (
+					<p class="mb-4 text-sm text-gray-500">Fecha de creación: {startLabel}</p>
+				)
+			}
+			{
+				endLabel && (
+					<p class="mb-4 text-sm text-gray-500">Fecha de finalización: {endLabel}</p>
+				)
+			}
+			<p
+				class:list={[
+					'mt-2 rounded-full px-4 py-2 text-base font-semibold',
+					cuadro.vendido ? 'bg-red-50 text-red-600' : 'bg-green-50 text-green-600',
+				]}
+			>
+				{cuadro.vendido ? 'Vendido' : 'Disponible'}
+			</p>
+		</div>
+
+		<div class="mt-8 flex w-full max-w-md justify-between">
+			{
+				prevId ? (
+					<a
+						href={`/cuadros/${prevId}`}
+						class="rounded-full bg-gray-800 px-6 py-3 text-white shadow-sm transition-all duration-200 hover:bg-gray-900 hover:shadow-md"
+					>
+						Anterior
+					</a>
+				) : (
+					<span class="pointer-events-none rounded-full bg-gray-300 px-6 py-3 text-white">
+						Anterior
+					</span>
+				)
+			}
+			{
+				nextId ? (
+					<a
+						href={`/cuadros/${nextId}`}
+						class="rounded-full bg-gray-800 px-6 py-3 text-white shadow-sm transition-all duration-200 hover:bg-gray-900 hover:shadow-md"
+					>
+						Siguiente
+					</a>
+				) : (
+					<span class="pointer-events-none rounded-full bg-gray-300 px-6 py-3 text-white">
+						Siguiente
+					</span>
+				)
+			}
+		</div>
+	</section>
+</Layout>

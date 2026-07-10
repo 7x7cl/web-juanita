@@ -1,0 +1,111 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import perfil from '../lib/fotos/perfil.jpg';
+import cuadroPortada from '../lib/fotos/cuadroPortada.jpg';
+
+const personSchema = JSON.stringify({
+	'@context': 'https://schema.org',
+	'@type': 'Person',
+	name: 'Juanita',
+	jobTitle: 'Artesana de bordado crewel',
+	description:
+		'Artesana chilena especializada en bordado crewel. Crea cuadros únicos bordados a mano en lana con la tradicional técnica crewel.',
+	...(Astro.site ? { url: Astro.site.href } : {}),
+	knowsAbout: [
+		'Bordado crewel',
+		'Crewel embroidery',
+		'Arte textil',
+		'Bordado en lana',
+		'Artesanía chilena',
+	],
+});
+---
+
+<Layout>
+	<script type="application/ld+json" set:html={personSchema} />
+
+	<section class="relative overflow-hidden bg-gradient-to-br from-[#e8ddd0] via-[#f0e6d3] to-[#dce5c5]">
+		<div class="mx-auto grid max-w-6xl gap-10 px-4 py-20 md:grid-cols-2 md:items-center">
+			<div class="animate-fade-in">
+				<h1 class="mb-4 text-4xl font-extrabold tracking-tight text-[#3d2e1e] md:text-6xl">
+					Bordados crewel hechos a mano
+				</h1>
+				<p class="mb-8 text-lg leading-relaxed text-[#5c4a32]">
+					Cuadros únicos bordados en lana con técnica crewel por Juanita. Colores, texturas y
+					tradición artesanal en cada puntada.
+				</p>
+				<div class="flex flex-wrap gap-3">
+					<a
+						href="/cuadros"
+						class="rounded-full bg-[#786C3B] px-6 py-3 text-[#F5F5DC] shadow-sm transition-all duration-200 hover:bg-[#8B9467] hover:shadow-md"
+					>
+						Ver cuadros crewel
+					</a>
+				</div>
+			</div>
+			<div class="animate-fade-in-delay-1 relative">
+				<Image
+					src={perfil}
+					alt="Juanita, artesana de bordado crewel en Chile"
+					widths={[400, 600, 800]}
+					sizes="(max-width: 768px) 100vw, 50vw"
+					class="aspect-square w-full rounded-3xl object-cover shadow-lg transition-shadow duration-300 hover:shadow-xl"
+					loading="eager"
+				/>
+			</div>
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-4 py-16">
+		<h2 class="animate-fade-in mb-6 text-2xl font-bold text-[#3d2e1e]">Cuadros crewel destacados</h2>
+		<div class="grid gap-6 md:grid-cols-3">
+			<a
+				href="/cuadros"
+				class="animate-fade-in-delay-1 group overflow-hidden rounded-2xl border border-[#d4c4a8] bg-[#faf3e7] shadow-sm transition-all duration-300 hover:shadow-md"
+			>
+				<div
+					class="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-[#e2d9c8] to-[#d8dfc6]"
+				>
+					<Image
+						src={cuadroPortada}
+						alt="Cuadro bordado crewel destacado"
+						widths={[400, 600, 800]}
+						sizes="(max-width: 768px) 100vw, 33vw"
+						class="h-full w-full rounded-t-2xl object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+						loading="lazy"
+					/>
+				</div>
+				<div class="p-4">
+					<h3 class="font-semibold text-[#3d2e1e] group-hover:underline">Cuadros crewel</h3>
+					<p class="text-sm text-[#8c7a60]">Galería de obras bordadas en lana</p>
+				</div>
+			</a>
+		</div>
+	</section>
+
+	<section class="bg-[#f0e6d3]">
+		<div class="mx-auto max-w-6xl px-4 py-16">
+			<div class="grid gap-8 md:grid-cols-2 md:items-center">
+				<div class="animate-fade-in">
+					<h2 class="mb-3 text-2xl font-bold text-[#3d2e1e]">
+						Bordado crewel hecho con el corazón
+					</h2>
+					<p class="text-[#5c4a32]">
+						Como artesana del bordado crewel, esta técnica es una terapia que me relaja y me permite
+						plasmar la belleza de la naturaleza, transformando cada pieza en una obra única bordada
+						en lana.
+					</p>
+				</div>
+				<div
+					class="animate-fade-in-delay-1 rounded-2xl border border-[#d4c4a8] bg-[#faf3e7] p-6 shadow-sm"
+				>
+					<p class="text-[#5c4a32] italic">
+						"Busco transmitir en cada cuadro crewel todos los buenos sentimientos y pensamientos
+						positivos que llevo dentro" — Juanita
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

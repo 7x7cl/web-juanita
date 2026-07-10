@@ -1,9 +1,0 @@
-{
-	"$schema": "https://unpkg.com/wrangler@latest/config-schema.json",
-	"name": "web",
-	"compatibility_date": "2025-06-07",
-	"assets": {
-		"directory": "./dist/client",
-		"not_found_handling": "none"
-	}
-}

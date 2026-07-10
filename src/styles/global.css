@@ -1,0 +1,63 @@
+@import 'tailwindcss';
+
+:root {
+	--color-cream: #faf3e7;
+	--color-cream-muted: #ece3d0;
+	--color-border: #d4c4a8;
+	--color-brown: #5c4a32;
+	--color-brown-dark: #3d2e1e;
+	--color-brown-brand-from: #6b4226;
+	--color-brown-brand-to: #8b5a2b;
+	--font-montserrat: 'Montserrat', sans-serif;
+}
+
+@theme inline {
+	--font-sans: var(--font-montserrat);
+}
+
+body {
+	font-family: var(--font-montserrat);
+	margin: 0;
+	padding: 0;
+	background-color: var(--color-cream);
+	color: var(--color-brown-dark);
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	line-height: 1.7;
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+		transform: translateY(-0.25rem);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-fade-in {
+	animation: fade-in 0.4s ease-out both;
+}
+
+.animate-fade-in-delay-1 {
+	animation: fade-in 0.4s ease-out 0.15s both;
+}
+
+.animate-fade-in-delay-2 {
+	animation: fade-in 0.4s ease-out 0.3s both;
+}
+
+.sr-only {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	white-space: nowrap;
+}

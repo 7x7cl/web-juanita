@@ -1,0 +1,33 @@
+---
+import { SITE_NAME, SOCIAL_LINKS } from '../consts';
+
+const year = new Date().getFullYear();
+
+const social = [
+	{ href: SOCIAL_LINKS.email, label: 'Gmail', src: '/logos/gmail.svg' },
+	{ href: SOCIAL_LINKS.whatsapp, label: 'WhatsApp', src: '/logos/whatsapp.svg' },
+	{ href: SOCIAL_LINKS.instagram, label: 'Instagram', src: '/logos/instagram.svg' },
+	{ href: SOCIAL_LINKS.facebook, label: 'Facebook', src: '/logos/facebook.svg' },
+] as const;
+---
+
+<footer class="border-t border-[#d4c4a8] bg-[#ece3d0]/60">
+	<div
+		class="mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 py-8 text-center text-sm text-gray-500"
+	>
+		<div class="mb-2 flex justify-center gap-6">
+			{
+				social.map(({ href, label, src }) => (
+					<a href={href} target="_blank" rel="noopener" aria-label={label}>
+						<img
+							src={src}
+							alt={label}
+							class="h-5 w-5 opacity-70 transition-all duration-200 hover:scale-110 hover:opacity-100"
+						/>
+					</a>
+				))
+			}
+		</div>
+		<p class="text-[#5c4a32]">© {year} {SITE_NAME}. Hecho con cariño en Chile.</p>
+	</div>
+</footer>

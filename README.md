@@ -1,35 +1,63 @@
-# Las Artesanías de Juanita
+# Astro Starter Kit: Blog
 
-Sitio web de artesanías bordadas en lana con técnica crewel, ahora en TanStack Start.
-
-## Desarrollo
-
-Instala dependencias y levanta el servidor local:
-
-```bash
-pnpm install
-pnpm run dev
+```sh
+pnpm create astro@latest -- --template blog
 ```
 
-Antes de arrancar el dev server y antes del build, el proyecto genera automáticamente una versión WebP y una miniatura WebP para cada portada en `src/lib/cuadros/data/*/`.
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-## Build de producción
+Features:
 
-```bash
-pnpm run build
-pnpm run preview
+- ✅ Minimal styling (make it your own!)
+- ✅ 100/100 Lighthouse performance
+- ✅ SEO-friendly with canonical URLs and Open Graph data
+- ✅ Sitemap support
+- ✅ RSS Feed support
+- ✅ Markdown & MDX support
+
+## 🚀 Project Structure
+
+Inside of your Astro project, you'll see the following folders and files:
+
+```text
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── content/
+│   ├── layouts/
+│   └── pages/
+├── astro.config.mjs
+├── README.md
+├── package.json
+└── tsconfig.json
 ```
 
-Si necesitas regenerar manualmente los assets optimizados:
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-```bash
-pnpm run generate:cuadros-assets
-```
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-## Estilos
+The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
 
-El proyecto usa Tailwind CSS. Los estilos globales están en `src/styles.css`.
+Any static assets, like images, can be placed in the `public/` directory.
 
-## Rutas
+## 🧞 Commands
 
-TanStack Router usa rutas basadas en archivos dentro de `src/routes`. Para agregar una nueva página, crea un archivo `.tsx` en ese directorio.
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `pnpm install`             | Installs dependencies                            |
+| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
+| `pnpm build`           | Build your production site to `./dist/`          |
+| `pnpm preview`         | Preview your build locally, before deploying     |
+| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## Credit
+
+This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
