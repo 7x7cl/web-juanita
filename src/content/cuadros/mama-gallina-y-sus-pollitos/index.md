@@ -2,7 +2,6 @@
 titulo: "Mamá gallina y sus pollitos"
 portada: ./portada.jpg
 vendido: true
-order: 11
 start:
   month: 1
   year: 2020

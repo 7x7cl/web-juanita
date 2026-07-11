@@ -2,7 +2,6 @@
 titulo: "El sendero"
 portada: ./portada.jpg
 vendido: true
-order: 1
 end:
   year: 2017
 measures:

@@ -2,7 +2,6 @@
 titulo: "Calas"
 portada: ./portada.jpg
 vendido: false
-order: 8
 end:
   year: 2019
 measures:

@@ -2,7 +2,6 @@
 titulo: "Descanso"
 portada: ./portada.jpg
 vendido: true
-order: 9
 end:
   year: 2019
 measures:

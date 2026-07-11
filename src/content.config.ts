@@ -19,7 +19,6 @@ const cuadros = defineCollection({
 			titulo: z.string(),
 			portada: image(),
 			vendido: z.boolean(),
-			order: z.number(),
 			start: cuadroDate.optional(),
 			end: cuadroDate.optional(),
 			measures: z.object({

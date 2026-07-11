@@ -2,7 +2,6 @@
 titulo: "Casas del Cerro Alegre"
 portada: ./portada.jpg
 vendido: true
-order: 16
 end:
   month: 7
   year: 2021

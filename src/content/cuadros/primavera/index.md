@@ -2,7 +2,6 @@
 titulo: "Primavera"
 portada: ./portada.jpg
 vendido: true
-order: 20
 start:
   month: 6
   year: 2022

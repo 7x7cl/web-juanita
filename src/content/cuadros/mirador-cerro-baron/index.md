@@ -2,7 +2,6 @@
 titulo: "Mirador Cerro Baron"
 portada: ./portada.jpg
 vendido: true
-order: 30
 start:
   day: 30
   month: 3

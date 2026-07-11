@@ -2,7 +2,6 @@
 titulo: "Capilla Niño Dios de las Palmas, Olmué 2026"
 portada: ./portada.jpg
 vendido: true
-order: 31
 start:
   month: 9
   year: 2025

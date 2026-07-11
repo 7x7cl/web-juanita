@@ -2,7 +2,6 @@
 titulo: "La cascada"
 portada: ./portada.jpg
 vendido: true
-order: 19
 end:
   day: 10
   month: 6

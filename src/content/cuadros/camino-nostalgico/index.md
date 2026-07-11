@@ -2,7 +2,6 @@
 titulo: "Camino nostalgico"
 portada: ./portada.jpg
 vendido: true
-order: 10
 end:
   year: 2019
 measures:

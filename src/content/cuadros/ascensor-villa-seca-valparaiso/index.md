@@ -2,7 +2,6 @@
 titulo: "Ascensor Villa Seca (Valparaíso)"
 portada: ./portada.jpg
 vendido: true
-order: 27
 start:
   day: 24
   month: 5
