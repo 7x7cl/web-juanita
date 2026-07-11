@@ -2,7 +2,7 @@
 titulo: "Valparaíso y su magia"
 portada: ./portada.jpg
 vendido: true
-order: 1
+order: 32
 start:
   day: 3
   month: 1

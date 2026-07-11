@@ -2,7 +2,7 @@
 titulo: "Granja"
 portada: ./portada.jpg
 vendido: true
-order: 11
+order: 22
 start:
   year: 2023
 measures:

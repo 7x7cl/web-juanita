@@ -2,7 +2,7 @@
 titulo: "Olmué"
 portada: ./portada.jpg
 vendido: false
-order: 7
+order: 26
 start:
   month: 1
   year: 2024

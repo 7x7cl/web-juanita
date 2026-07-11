@@ -2,7 +2,7 @@
 titulo: "Cerro Alegre (Vista al mar)"
 portada: ./portada.jpg
 vendido: true
-order: 20
+order: 13
 end:
   month: 8
   year: 2020

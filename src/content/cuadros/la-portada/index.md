@@ -2,7 +2,7 @@
 titulo: "La portada de Antofagasta"
 portada: ./portada.jpg
 vendido: true
-order: 29
+order: 4
 end:
   year: 2018
 measures:

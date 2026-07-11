@@ -2,7 +2,7 @@
 titulo: "La casona de tejas"
 portada: ./portada.jpg
 vendido: true
-order: 31
+order: 2
 end:
   day: 22
   month: 7

@@ -2,7 +2,7 @@
 titulo: "Capilla La Dormida"
 portada: ./portada.jpg
 vendido: true
-order: 15
+order: 18
 start:
   month: 6
   year: 2022
