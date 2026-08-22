@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import type { Cuadro } from '../lib/cuadros';
+import { formatCuadroDate, type Cuadro } from '../lib/cuadros';
 
 interface Props {
 	cuadro: Cuadro;
@@ -9,13 +9,8 @@ interface Props {
 const { cuadro } = Astro.props;
 const { titulo, portada, vendido, start, end } = cuadro.data;
 
-function formatDate(date?: { month?: number; year: number }) {
-	if (!date) return null;
-	return `${date.month ? `${date.month}/` : ''}${date.year}`;
-}
-
-const startLabel = formatDate(start);
-const endLabel = formatDate(end);
+const startLabel = formatCuadroDate(start);
+const endLabel = formatCuadroDate(end);
 ---
 
 <a href={`/cuadros/${cuadro.id}`} class="animate-rise-delay-2 group block">

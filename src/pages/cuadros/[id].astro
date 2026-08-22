@@ -2,7 +2,7 @@
 import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import ImageLightbox from '../../components/ImageLightbox.astro';
-import { getCuadros, type Cuadro } from '../../lib/cuadros';
+import { formatCuadroDate, getCuadros, type Cuadro } from '../../lib/cuadros';
 
 export async function getStaticPaths() {
 	const cuadros = await getCuadros();
@@ -28,13 +28,8 @@ const { titulo, portada, vendido, start, end, measures } = cuadro.data;
 const title = `${titulo} — Cuadro bordado crewel - Las Artesanías de Juanita`;
 const description = `${titulo} — cuadro bordado a mano en lana con técnica crewel por Juanita. ${vendido ? 'Estado: Vendido.' : 'Estado: Disponible.'}`;
 
-function formatDate(date?: { day?: number; month?: number; year: number }) {
-	if (!date?.year) return null;
-	return `${date.day ? `${date.day}/` : ''}${date.month ? `${date.month}/` : ''}${date.year}`;
-}
-
-const startLabel = formatDate(start);
-const endLabel = formatDate(end);
+const startLabel = formatCuadroDate(start);
+const endLabel = formatCuadroDate(end);
 const imageAlt = `${titulo} — cuadro bordado crewel por Juanita`;
 
 const preview = await getImage({
