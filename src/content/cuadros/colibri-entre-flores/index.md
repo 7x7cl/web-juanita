@@ -3,7 +3,7 @@ titulo: "Colibrí entre flores"
 portada: ./portada.jpg
 vendido: false
 start:
-  month: 6
+  month: 5
   year: 2026
 end:
   month: 7
