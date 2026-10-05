@@ -1,7 +1,7 @@
 ---
 titulo: "Cabaña de campo"
 portada: ./portada.jpg
-vendido: false
+vendido: true
 start:
   day: 1
   month: 7

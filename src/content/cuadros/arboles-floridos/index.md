@@ -1,7 +1,7 @@
 ---
 titulo: "Árboles floridos"
 portada: ./portada.jpg
-vendido: false
+vendido: true
 end:
   month: 1
   year: 2026

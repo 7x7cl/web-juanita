@@ -1,7 +1,7 @@
 ---
 titulo: "Naturaleza"
 portada: ./portada.jpg
-vendido: false
+vendido: true
 end:
   month: 4
   year: 2026
