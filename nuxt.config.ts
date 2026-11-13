@@ -38,6 +38,9 @@ export default defineNuxtConfig({
 	},
 
 	nitro: {
+		// Force fully static output — Cloudflare Workers CI would otherwise
+		// auto-detect cloudflare_module and generate a worker entry point.
+		preset: 'static',
 		prerender: {
 			routes: ['/rss.xml'],
 		},
