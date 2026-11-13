@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Download } from 'lucide-vue-next';
+import { ArrowRight, Download, Facebook, Instagram, Mail, MessageCircle } from 'lucide-vue-next';
 
 const TITLE = `Contacto — ${SITE_NAME}`;
 const DESCRIPTION =
@@ -19,90 +19,84 @@ const channels = [
 		href: SOCIAL_LINKS.email,
 		label: 'Correo',
 		value: CONTACT.email,
-		src: '/logos/gmail.svg',
+		icon: Mail,
 		external: false,
 	},
 	{
 		href: SOCIAL_LINKS.whatsapp,
 		label: 'WhatsApp',
 		value: CONTACT.phoneDisplay,
-		src: '/logos/whatsapp.svg',
+		icon: MessageCircle,
 		external: true,
 	},
 	{
 		href: SOCIAL_LINKS.instagram,
 		label: 'Instagram',
 		value: CONTACT.instagramHandle,
-		src: '/logos/instagram.svg',
+		icon: Instagram,
 		external: true,
 	},
 	{
 		href: SOCIAL_LINKS.facebook,
 		label: 'Facebook',
 		value: CONTACT.facebookHandle,
-		src: '/logos/facebook.svg',
+		icon: Facebook,
 		external: true,
 	},
 ] as const;
 </script>
 
 <template>
-	<section class="mx-auto max-w-xl px-4 py-16 md:px-6 md:py-24">
-		<header class="animate-rise mb-12 text-center">
-			<p class="mb-3 font-serif text-2xl font-semibold text-forest md:text-3xl">{{ SITE_NAME }}</p>
-			<h1 class="mb-4 font-serif text-4xl font-semibold tracking-tight text-ink md:text-5xl">
-				Contacto
-			</h1>
-			<p class="mx-auto max-w-md text-base leading-relaxed text-ink-soft md:text-lg">
-				Escríbeme por redes o correo para consultas sobre bordados crewel hechos a mano.
+	<section class="mx-auto max-w-[640px] px-4 py-16 md:px-6">
+		<header class="animate-rise mb-10 text-center">
+			<img
+				src="/logo/logo-jl-circulo.svg"
+				alt=""
+				width="112"
+				height="112"
+				class="mx-auto mb-6 size-28"
+			/>
+			<p class="sobretitulo mb-2">Hablemos</p>
+			<h1 class="titulo-1 mb-4">Contacto</h1>
+			<p class="mx-auto max-w-[50ch]">
+				Escríbeme por correo o redes. Respondo yo misma las consultas sobre mis bordados y los
+				encargos.
 			</p>
 		</header>
 
-		<div class="animate-rise-delay-1 mb-12 text-center">
-			<p class="mb-2 text-xs font-semibold tracking-[0.18em] text-muted uppercase">
-				Guardar contacto
-			</p>
-			<p class="mb-5 text-sm text-ink-soft">
-				Descarga la ficha de {{ CONTACT.name }} para guardarla en tu teléfono o agenda.
-			</p>
-			<a
-				:href="CONTACT.vcardPath"
-				download="juana-leiva.vcf"
-				class="group inline-flex items-center justify-center gap-2 bg-forest px-7 py-3.5 text-linen transition-colors duration-200 hover:bg-moss"
-			>
-				<Download
-					class="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5"
-					aria-hidden="true"
-				/>
-				<span class="font-medium">Guardar contacto de {{ CONTACT.name }}</span>
-			</a>
-		</div>
-
-		<ul class="animate-rise-delay-2 space-y-2" aria-label="Canales de contacto">
-			<li v-for="{ href, label, value, src, external } in channels" :key="label">
+		<ul class="animate-rise-delay-1 mb-10 space-y-3" aria-label="Canales de contacto">
+			<li v-for="{ href, label, value, icon, external } in channels" :key="label">
 				<a
 					:href="href"
-					class="group flex items-center gap-4 border-b border-border px-1 py-4 transition-colors duration-200 hover:border-moss"
+					class="tarjeta group flex items-center gap-4 p-4"
 					:target="external ? '_blank' : undefined"
 					:rel="external ? 'noopener noreferrer' : undefined"
 				>
-					<span class="flex h-10 w-10 shrink-0 items-center justify-center bg-linen-deep">
-						<img :src="src" alt="" class="h-5 w-5" width="20" height="20" />
+					<span
+						class="flex size-11 shrink-0 items-center justify-center rounded-circulo bg-crema-tela text-azul-lana"
+					>
+						<component :is="icon" class="icono" stroke-width="2" aria-hidden="true" />
 					</span>
 					<span class="min-w-0 flex-1 text-left">
-						<span class="block text-xs font-semibold tracking-wide text-muted uppercase">
-							{{ label }}
+						<span class="pequeno block text-acero-oscuro">{{ label }}</span>
+						<span class="block truncate font-semibold text-azul-profundo group-hover:text-azul-hilo">
+							{{ value }}
 						</span>
-						<span class="block truncate text-sm font-medium text-ink md:text-base">{{ value }}</span>
 					</span>
-					<span
-						class="text-muted transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-moss"
-						aria-hidden="true"
-					>
-						→
-					</span>
+					<ArrowRight class="icono text-acero" stroke-width="2" aria-hidden="true" />
 				</a>
 			</li>
 		</ul>
+
+		<div class="animate-rise-delay-2 puntada pt-10 text-center">
+			<h2 class="titulo-3 mb-2">Guarda mi contacto</h2>
+			<p class="mx-auto mb-6 max-w-[50ch] text-acero-oscuro">
+				Descarga la ficha de {{ CONTACT.name }} para tenerla en tu teléfono o agenda.
+			</p>
+			<a :href="CONTACT.vcardPath" download="juana-leiva.vcf" class="boton boton-secundario">
+				<Download class="icono" stroke-width="2" aria-hidden="true" />
+				Guardar contacto
+			</a>
+		</div>
 	</section>
 </template>

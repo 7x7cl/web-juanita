@@ -1,111 +1,242 @@
 @import 'tailwindcss';
 
+/* Artesanías de Juanita — tela, lana y aguja.
+   Fuente: manual de identidad visual (tokens.json). No agregar otros colores. */
 :root {
-	/* Cool linen + forest — wool atelier, not warm cream */
-	--color-linen: #eef1ea;
-	--color-linen-deep: #e2e7dc;
-	--color-paper: #f7f8f4;
-	--color-ink: #1a2820;
-	--color-ink-soft: #3d4f45;
-	--color-muted: #5c6e63;
-	--color-forest: #243d32;
-	--color-moss: #3f6b55;
-	--color-sage: #8fa894;
-	--color-thread: #c4a35a;
-	--color-border: #c8d0c4;
-	--font-display: 'Cormorant Garamond', Georgia, serif;
-	--font-body: 'Outfit', system-ui, sans-serif;
+	--crema-tela: #faf5ea;
+	--blanco-hilo: #ffffff;
+	--crema-borde: #e8dfcb;
+	--azul-noche: #0f2c63;
+	--azul-profundo: #143a85;
+	--azul-hilo: #1f52b5;
+	--azul-lana: #2a61c6;
+	--azul-claro: #a9c8f7;
+	--acero-oscuro: #4a535d;
+	--acero: #7c8794;
+	--acero-claro: #d5dae0;
+
+	--fuente-serif: Georgia, 'Times New Roman', serif;
+	--fuente-cursiva: 'Pinyon Script', 'Snell Roundhand', 'Brush Script MT', 'Lucida Handwriting', 'Segoe Script', cursive;
+	--fuente-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+	--espacio-1: 4px;
+	--espacio-2: 8px;
+	--espacio-3: 16px;
+	--espacio-4: 24px;
+	--espacio-5: 40px;
+	--espacio-6: 64px;
+
+	--radio-sm: 8px;
+	--radio-md: 16px;
+	--radio-circulo: 999px;
+
+	--sombra-tarjeta: 0 2px 6px rgb(15 44 99 / 0.12);
 }
 
 @theme inline {
-	--font-sans: var(--font-body);
-	--font-serif: var(--font-display);
-	--color-linen: var(--color-linen);
-	--color-linen-deep: var(--color-linen-deep);
-	--color-paper: var(--color-paper);
-	--color-ink: var(--color-ink);
-	--color-ink-soft: var(--color-ink-soft);
-	--color-muted: var(--color-muted);
-	--color-forest: var(--color-forest);
-	--color-moss: var(--color-moss);
-	--color-sage: var(--color-sage);
-	--color-thread: var(--color-thread);
-	--color-border: var(--color-border);
+	--font-sans: var(--fuente-sans);
+	--font-serif: var(--fuente-serif);
+	--font-cursiva: var(--fuente-cursiva);
+
+	--color-crema-tela: var(--crema-tela);
+	--color-blanco-hilo: var(--blanco-hilo);
+	--color-crema-borde: var(--crema-borde);
+	--color-azul-noche: var(--azul-noche);
+	--color-azul-profundo: var(--azul-profundo);
+	--color-azul-hilo: var(--azul-hilo);
+	--color-azul-lana: var(--azul-lana);
+	--color-azul-claro: var(--azul-claro);
+	--color-acero-oscuro: var(--acero-oscuro);
+	--color-acero: var(--acero);
+	--color-acero-claro: var(--acero-claro);
+
+	--radius-sm: var(--radio-sm);
+	--radius-md: var(--radio-md);
+	--radius-circulo: var(--radio-circulo);
+
+	--shadow-tarjeta: var(--sombra-tarjeta);
 }
 
 body {
-	font-family: var(--font-body);
+	font-family: var(--fuente-sans);
+	font-size: 16px;
+	line-height: 26px;
 	margin: 0;
 	padding: 0;
-	background-color: var(--color-linen);
-	background-image:
-		radial-gradient(ellipse 80% 50% at 10% -10%, rgb(143 168 148 / 0.22), transparent 55%),
-		radial-gradient(ellipse 60% 40% at 100% 0%, rgb(196 163 90 / 0.12), transparent 50%),
-		linear-gradient(180deg, var(--color-paper) 0%, var(--color-linen) 40%, var(--color-linen-deep) 100%);
-	background-attachment: fixed;
-	color: var(--color-ink);
-	word-wrap: break-word;
+	background-color: var(--crema-tela);
+	color: var(--azul-noche);
 	overflow-wrap: break-word;
-	line-height: 1.7;
 }
 
 ::selection {
-	background: rgb(63 107 85 / 0.25);
-	color: var(--color-ink);
+	background: var(--azul-claro);
+	color: var(--azul-noche);
 }
 
-@keyframes rise {
+:focus-visible {
+	outline: 3px solid var(--azul-lana);
+	outline-offset: 2px;
+}
+
+@layer components {
+	/* Tipografía */
+	.titulo-1 {
+		font-family: var(--fuente-serif);
+		font-size: 32px;
+		line-height: 40px;
+		font-weight: 700;
+		color: var(--azul-profundo);
+	}
+	.titulo-2 {
+		font-family: var(--fuente-serif);
+		font-size: 24px;
+		line-height: 32px;
+		font-weight: 700;
+		color: var(--azul-profundo);
+	}
+	.titulo-3 {
+		font-family: var(--fuente-serif);
+		font-size: 20px;
+		line-height: 28px;
+		font-weight: 700;
+		color: var(--azul-profundo);
+	}
+	@media (min-width: 768px) {
+		.titulo-1 {
+			font-size: 40px;
+			line-height: 48px;
+		}
+		.titulo-2 {
+			font-size: 28px;
+			line-height: 36px;
+		}
+	}
+	.sobretitulo {
+		font-family: var(--fuente-serif);
+		font-size: 13px;
+		line-height: 20px;
+		letter-spacing: 0.3em;
+		text-transform: uppercase;
+		color: var(--acero-oscuro);
+	}
+	.firma {
+		font-family: 'Pinyon Script', 'Snell Roundhand', 'Brush Script MT', cursive;
+		font-weight: 400;
+		color: var(--azul-hilo);
+	}
+	.pequeno {
+		font-size: 14px;
+		line-height: 22px;
+	}
+
+	/* Botones */
+	.boton {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: var(--espacio-2);
+		padding: 12px var(--espacio-4);
+		border-radius: var(--radio-circulo);
+		font-size: 16px;
+		line-height: 24px;
+		font-weight: 600;
+		transition:
+			background-color 0.2s ease,
+			color 0.2s ease;
+	}
+	.boton-principal {
+		background: var(--azul-profundo);
+		color: var(--crema-tela);
+	}
+	.boton-principal:hover {
+		background: var(--azul-hilo);
+	}
+	.boton-secundario {
+		background: transparent;
+		border: 2px dashed var(--azul-lana);
+		color: var(--azul-profundo);
+	}
+	.boton-secundario:hover {
+		background: var(--azul-claro);
+	}
+
+	/* Enlaces */
+	.enlace {
+		color: var(--azul-hilo);
+		text-decoration: underline;
+		text-underline-offset: 4px;
+		transition: color 0.2s ease;
+	}
+	.enlace:hover {
+		color: var(--azul-profundo);
+	}
+
+	/* Puntada corrida: una sola por bloque */
+	.puntada {
+		border-top: 2px dashed var(--azul-lana);
+	}
+	.puntada-abajo {
+		border-bottom: 2px dashed var(--azul-lana);
+	}
+	.puntada-corta {
+		display: block;
+		width: 72px;
+		border-top: 2px dashed var(--azul-lana);
+	}
+
+	/* Etiquetas */
+	.etiqueta {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--espacio-1);
+		padding: var(--espacio-1) var(--espacio-2);
+		border-radius: var(--radio-sm);
+		background: var(--azul-claro);
+		color: var(--azul-noche);
+		font-size: 14px;
+		line-height: 22px;
+	}
+	.etiqueta-vendido {
+		background: var(--acero-claro);
+		color: var(--acero-oscuro);
+	}
+
+	/* Tarjetas */
+	.tarjeta {
+		background: var(--blanco-hilo);
+		border: 1px solid var(--crema-borde);
+		border-radius: var(--radio-md);
+		padding: var(--espacio-4);
+		transition: box-shadow 0.2s ease;
+	}
+	.tarjeta:hover {
+		box-shadow: var(--sombra-tarjeta);
+	}
+
+	/* Íconos de línea: trazo 2 px, puntas redondeadas */
+	.icono {
+		width: 20px;
+		height: 20px;
+		stroke-width: 2;
+		flex-shrink: 0;
+	}
+}
+
+/* Entrada suave: sin animaciones llamativas */
+@keyframes aparecer {
 	from {
 		opacity: 0;
-		transform: translateY(1.25rem);
 	}
 	to {
 		opacity: 1;
-		transform: translateY(0);
 	}
 }
 
-@keyframes soft-zoom {
-	from {
-		transform: scale(1.06);
-	}
-	to {
-		transform: scale(1);
-	}
-}
-
-@keyframes draw-line {
-	from {
-		transform: scaleX(0);
-	}
-	to {
-		transform: scaleX(1);
-	}
-}
-
-.animate-rise {
-	animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.animate-rise-delay-1 {
-	animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
-}
-
-.animate-rise-delay-2 {
-	animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
-}
-
+.animate-rise,
+.animate-rise-delay-1,
+.animate-rise-delay-2,
 .animate-rise-delay-3 {
-	animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both;
-}
-
-.animate-hero-image {
-	animation: soft-zoom 1.6s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.animate-underline {
-	transform-origin: left;
-	animation: draw-line 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+	animation: aparecer 0.5s ease-out both;
 }
 
 .sr-only {
@@ -125,9 +256,7 @@ body {
 	.animate-rise,
 	.animate-rise-delay-1,
 	.animate-rise-delay-2,
-	.animate-rise-delay-3,
-	.animate-hero-image,
-	.animate-underline {
+	.animate-rise-delay-3 {
 		animation: none;
 	}
 }

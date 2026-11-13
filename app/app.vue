@@ -10,7 +10,7 @@ const organizationSchema = JSON.stringify({
 	description:
 		'Artesana especializada en bordado crewel. Cuadros únicos bordados a mano en lana con técnica crewel en Chile.',
 	url: SITE_URL,
-	logo: `${SITE_URL}/favicon.svg`,
+	logo: `${SITE_URL}/logo/logo-jl-circulo.svg`,
 	sameAs: [SOCIAL_LINKS.instagram, SOCIAL_LINKS.facebook, SOCIAL_LINKS.whatsapp],
 });
 
@@ -18,7 +18,7 @@ useHead(() => ({
 	htmlAttrs: { lang: 'es' },
 	link: [
 		{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-		{ rel: 'icon', href: '/favicon.ico' },
+		{ rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
 		{ rel: 'sitemap', href: '/sitemap.xml' },
 		{
 			rel: 'alternate',
@@ -28,7 +28,10 @@ useHead(() => ({
 		},
 		{ rel: 'canonical', href: canonicalUrl.value },
 	],
-	meta: [{ property: 'og:url', content: canonicalUrl.value }],
+	meta: [
+		{ property: 'og:url', content: canonicalUrl.value },
+		{ name: 'theme-color', content: '#FAF5EA' },
+	],
 	script: [{ type: 'application/ld+json', innerHTML: organizationSchema }],
 }));
 

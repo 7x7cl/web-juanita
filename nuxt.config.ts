@@ -12,21 +12,8 @@ export default defineNuxtConfig({
 	},
 
 	fonts: {
-		families: [
-			{
-				name: 'Cormorant Garamond',
-				provider: 'google',
-				weights: [500, 600, 700],
-				styles: ['normal', 'italic'],
-				subsets: ['latin', 'latin-ext'],
-			},
-			{
-				name: 'Outfit',
-				provider: 'google',
-				weights: [400, 500, 600, 700],
-				subsets: ['latin', 'latin-ext'],
-			},
-		],
+		// Cursiva de la marca para «Juanita» (antes dependía de fuentes del sistema).
+		families: [{ name: 'Pinyon Script', provider: 'google', weights: [400], subsets: ['latin'] }],
 	},
 
 	experimental: {

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Maximize2, X } from 'lucide-vue-next';
+
 const props = withDefaults(
 	defineProps<{
 		src: string;
@@ -252,7 +254,7 @@ onMounted(() => {
 		<button
 			ref="openBtn"
 			type="button"
-			class="lightbox-open relative block w-full cursor-zoom-in overflow-hidden bg-linen-deep text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-moss"
+			class="lightbox-open relative block w-full rounded-md cursor-zoom-in overflow-hidden bg-crema-tela text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-azul-lana"
 			:aria-label="`Ampliar imagen: ${alt}`"
 			aria-haspopup="dialog"
 			aria-controls="image-lightbox"
@@ -267,27 +269,13 @@ onMounted(() => {
 				class="mx-auto max-h-[min(72vh,40rem)] w-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.015]"
 			/>
 			<span
-				class="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-center bg-gradient-to-t from-[rgb(26_40_32/0.55)] to-transparent px-4 pb-4 pt-16 opacity-100 transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100"
+				class="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-center bg-gradient-to-t from-[rgb(15_44_99/0.55)] to-transparent px-4 pb-4 pt-16 opacity-100 transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100"
 				aria-hidden="true"
 			>
 				<span
-					class="inline-flex items-center gap-2 border border-[#eef1ea]/40 bg-[rgb(26_40_32/0.72)] px-3.5 py-2 text-xs font-semibold tracking-wide text-[#f7f8f4] backdrop-blur-sm"
+					class="inline-flex items-center gap-2 rounded-circulo border border-crema-tela/40 bg-[rgb(15_44_99/0.72)] px-3.5 py-2 text-xs font-semibold tracking-wide text-crema-tela backdrop-blur-sm"
 				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="1.75"
-						class="size-4"
-						aria-hidden="true"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"
-						/>
-					</svg>
+					<Maximize2 class="size-4" stroke-width="2" aria-hidden="true" />
 					Ampliar imagen
 				</span>
 			</span>
@@ -297,32 +285,22 @@ onMounted(() => {
 	<dialog
 		id="image-lightbox"
 		ref="dialog"
-		class="lightbox-dialog border-0 bg-[rgb(26_40_32/0.96)] p-0 text-[#f7f8f4]"
+		class="lightbox-dialog border-0 bg-[rgb(15_44_99/0.96)] p-0 text-crema-tela"
 		aria-label="Imagen ampliada"
 	>
 		<div
 			class="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-start justify-between gap-3 p-3 pt-[max(0.75rem,env(safe-area-inset-top))] pr-[max(0.75rem,env(safe-area-inset-right))] pl-[max(0.75rem,env(safe-area-inset-left))]"
 		>
-			<p class="pointer-events-none max-w-[70%] truncate text-sm text-[#dce3d6]/90">
+			<p class="pointer-events-none max-w-[70%] truncate text-sm text-crema-tela/90">
 				{{ alt }}
 			</p>
 			<button
 				ref="closeBtn"
 				type="button"
-				class="pointer-events-auto inline-flex size-12 shrink-0 items-center justify-center rounded-full border border-[#eef1ea]/25 bg-[rgb(26_40_32/0.85)] text-[#f7f8f4] backdrop-blur-sm transition-colors hover:border-[#c4a35a] hover:bg-[rgb(36_61_50/0.95)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c4a35a]"
+				class="pointer-events-auto inline-flex size-12 shrink-0 items-center justify-center rounded-full border border-crema-tela/25 bg-[rgb(15_44_99/0.85)] text-crema-tela backdrop-blur-sm transition-colors hover:border-azul-lana hover:bg-[rgb(20_58_133/0.95)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azul-lana"
 				aria-label="Cerrar imagen ampliada"
 			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					class="size-6"
-					aria-hidden="true"
-				>
-					<path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6L6 18" />
-				</svg>
+				<X class="size-6" stroke-width="2" aria-hidden="true" />
 			</button>
 		</div>
 
@@ -343,7 +321,7 @@ onMounted(() => {
 		</div>
 
 		<p
-			class="pointer-events-none absolute inset-x-0 bottom-0 z-10 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] text-center text-xs text-[#dce3d6]/70 md:hidden"
+			class="pointer-events-none absolute inset-x-0 bottom-0 z-10 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] text-center text-xs text-crema-tela/70 md:hidden"
 			aria-hidden="true"
 		>
 			Doble toque o pellizca para zoom · Desliza abajo para cerrar
@@ -371,7 +349,7 @@ onMounted(() => {
 }
 
 .lightbox-dialog::backdrop {
-	background: rgb(26 40 32 / 0.92);
+	background: rgb(15 44 99 / 0.92);
 }
 
 .lightbox-stage {
