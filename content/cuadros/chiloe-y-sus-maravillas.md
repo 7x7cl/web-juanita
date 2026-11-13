@@ -1,0 +1,9 @@
+---
+titulo: "Chiloé y sus maravillas"
+vendido: true
+end:
+  year: 2018
+measures:
+  width: 46
+  height: 60
+---

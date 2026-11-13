@@ -1,0 +1,11 @@
+---
+titulo: "Pileta"
+vendido: true
+start:
+  day: 18
+  month: 3
+  year: 2023
+measures:
+  width: 46
+  height: 60
+---

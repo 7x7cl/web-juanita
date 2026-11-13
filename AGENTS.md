@@ -1,22 +1,31 @@
 ## Development
 
-When starting the dev server, use background mode:
+Start the dev server in background mode:
 
-```
-astro dev --background
+```sh
+pnpm dev
 ```
 
-Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+Production build (fully static, prerendered to `.output/public`):
+
+```sh
+pnpm build
+```
+
+Preview the built site with `pnpm preview`. Deploy to Cloudflare with `wrangler deploy` (assets are served from `.output/public`).
+
+## Content
+
+Cuadros live in `content/cuadros/<slug>.md` (frontmatter only: `titulo`, `vendido`, `start`/`end`, `measures`) with the cover image at `public/img/cuadros/<slug>.jpg`. Display order is controlled by `CUADROS_ORDER` in `shared/utils/cuadros-order.ts`.
 
 ## Documentation
 
-Full documentation: https://docs.astro.build
+Full documentation: https://nuxt.com/docs
 
 Consult these guides before working on related tasks:
 
-- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)
-- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)
-- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)
-- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
-- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
-- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+- [Pages and routing](https://nuxt.com/docs/getting-started/routing)
+- [Nuxt Content collections](https://content.nuxt.com/docs/collections/define)
+- [SEO and meta tags](https://nuxt.com/docs/getting-started/seo-meta)
+- [Nuxt Image](https://image.nuxt.com/get-started/usage)
+- [Styling and Tailwind](https://nuxt.com/docs/getting-started/styling)

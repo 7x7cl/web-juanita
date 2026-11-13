@@ -1,0 +1,13 @@
+---
+titulo: "Alturas de Valparaíso"
+vendido: true
+start:
+  month: 1
+  year: 2025
+end:
+  month: 3
+  year: 2025
+measures:
+  width: 46
+  height: 60
+---

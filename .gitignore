@@ -1,7 +1,10 @@
 # build output
+.output/
+# generated types and cache
+.nuxt/
+.data/
+.wrangler/
 dist/
-# generated types
-.astro/
 
 # dependencies
 node_modules/
