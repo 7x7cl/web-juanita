@@ -6,6 +6,12 @@
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["dev"],
       "port": 3000
+    },
+    {
+      "name": "impresion",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4321", "--bind", "127.0.0.1", "--directory", "impresion"],
+      "port": 4321
     }
   ]
 }

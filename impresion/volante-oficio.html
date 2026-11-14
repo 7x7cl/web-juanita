@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Volante Oficio — Las Artesanías de Juanita</title>
+<style>
+	/* Volante para imprimir en Oficio chileno (216 × 330 mm). Paleta y tipografía del manual de marca. */
+	@page { size: 216mm 330mm; margin: 0; }
+
+	:root {
+		--crema-tela: #faf5ea;
+		--blanco-hilo: #ffffff;
+		--crema-borde: #e8dfcb;
+		--azul-noche: #0f2c63;
+		--azul-profundo: #143a85;
+		--azul-hilo: #1f52b5;
+		--azul-lana: #2a61c6;
+		--azul-claro: #a9c8f7;
+		--acero-oscuro: #4a535d;
+		--fuente-serif: Georgia, 'Times New Roman', serif;
+		--fuente-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+		--puntada: 2px dashed var(--azul-lana);
+	}
+
+	* { box-sizing: border-box; }
+
+	html, body {
+		margin: 0;
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+
+	body {
+		background: #d5dae0;
+		font-family: var(--fuente-sans);
+		color: var(--azul-noche);
+		font-size: 10pt;
+		line-height: 1.4;
+	}
+
+	.hoja {
+		width: 216mm;
+		height: 330mm;
+		margin: 10mm auto;
+		background: var(--crema-tela);
+		box-shadow: 0 2px 6px rgb(15 44 99 / 0.12);
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+	}
+
+	@media print {
+		/* Una sola hoja: se ajusta al área imprimible real y nada salta a una segunda página. */
+		html, body { width: 100%; height: 100%; overflow: hidden; background: none; }
+		.hoja { margin: 0; box-shadow: none; width: 100vw; height: 100vh; break-inside: avoid; }
+		.hoja * { break-inside: avoid; break-before: avoid; break-after: avoid; }
+	}
+
+	.contenido {
+		flex: 1;
+		padding: 6mm 12mm 5mm;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 3.5mm;
+	}
+
+	h1, h2, h3, p, figure, blockquote, ul { margin: 0; }
+
+	.sobretitulo {
+		font-family: var(--fuente-serif);
+		font-size: 9.5pt;
+		letter-spacing: 0.3em;
+		text-transform: uppercase;
+		color: var(--acero-oscuro);
+	}
+	.titulo-1 {
+		font-family: var(--fuente-serif);
+		font-weight: 700;
+		font-size: 22pt;
+		line-height: 1.15;
+		color: var(--azul-profundo);
+	}
+	.titulo-2 {
+		font-family: var(--fuente-serif);
+		font-weight: 700;
+		font-size: 15pt;
+		line-height: 1.2;
+		color: var(--azul-profundo);
+	}
+	.puntada-corta { display: block; width: 18mm; border-top: var(--puntada); margin: 2mm 0 2.5mm; }
+	.icono {
+		width: 4.5mm; height: 4.5mm; flex-shrink: 0;
+		fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+	}
+
+	/* Cabecera */
+	.cabecera { text-align: center; }
+	.cabecera img { display: block; width: 76mm; height: auto; margin: 0 auto 1mm; }
+
+	/* Presentación */
+	.presentacion {
+		display: grid;
+		grid-template-columns: 1fr 40mm;
+		gap: 8mm;
+		align-items: center;
+	}
+	.presentacion p { font-size: 11pt; }
+	.retrato {
+		width: 40mm; height: 40mm;
+		border: var(--puntada);
+		border-radius: 999px;
+		padding: 2mm;
+	}
+	.retrato img {
+		width: 100%; height: 100%;
+		border-radius: 999px;
+		object-fit: cover;
+		object-position: 62% 22%;
+		display: block;
+	}
+
+	/* Olmué */
+	.olmue {
+		background: var(--blanco-hilo);
+		border: 1px solid var(--crema-borde);
+		border-radius: 16px;
+		padding: 4mm 5mm;
+		display: grid;
+		grid-template-columns: 1fr 44mm 33mm;
+		gap: 5mm;
+		align-items: end;
+	}
+	.olmue .texto p { margin-bottom: 1.5mm; }
+	.etiqueta-lugar { display: inline-flex; align-items: center; gap: 1.5mm; }
+	.etiqueta-lugar .icono { width: 3.5mm; height: 3.5mm; color: var(--azul-lana); }
+	.sello-fila { display: flex; align-items: center; gap: 4mm; margin-top: 2mm; }
+	.sello {
+		width: 21mm; height: 21mm;
+		border: var(--puntada);
+		border-radius: 999px;
+		background: var(--crema-tela);
+		display: flex; flex-direction: column; align-items: center; justify-content: center;
+		text-align: center;
+	}
+	.sello strong { font-family: var(--fuente-serif); font-size: 18pt; line-height: 1; color: var(--azul-profundo); }
+	.sello span { font-size: 7.5pt; line-height: 1.2; padding: 0 2mm; margin-top: 0.8mm; }
+	.lista-iconos { list-style: none; padding: 0; display: grid; gap: 1.5mm; font-size: 10pt; }
+	.lista-iconos li { display: flex; align-items: center; gap: 2mm; }
+	.lista-iconos .icono { color: var(--azul-lana); }
+	.foto img { display: block; width: 100%; object-fit: cover; border-radius: 12px; }
+	.foto-cerro .marco { border: var(--puntada); border-radius: 14px; padding: 1.5mm; }
+	.foto-cerro img { aspect-ratio: 5 / 4; }
+	.foto-caballos img { aspect-ratio: 5 / 4; box-shadow: 0 2px 6px rgb(15 44 99 / 0.12); }
+	.credito { margin-top: 1.2mm; font-size: 6.5pt; line-height: 1.3; color: var(--acero-oscuro); }
+
+	/* Corazón */
+	.corazon { text-align: center; padding: 0 10mm; }
+	.corazon .icono { width: 5mm; height: 5mm; color: var(--azul-lana); margin: 0 auto 1mm; display: block; }
+	.corazon p { max-width: 150mm; margin: 1.5mm auto 0; }
+	.corazon blockquote {
+		margin-top: 2.5mm; padding-top: 2.5mm; border-top: var(--puntada);
+		font-family: var(--fuente-serif); font-style: italic; font-size: 11pt; color: var(--azul-profundo);
+	}
+	.corazon cite { display: block; margin-top: 1mm; font-style: normal; font-family: var(--fuente-sans); font-size: 9pt; color: var(--acero-oscuro); }
+
+	/* Cuadros */
+	.cuadros-cabecera { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 2mm; }
+	.cuadros { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; }
+	.cuadro {
+		background: var(--blanco-hilo);
+		border: 1px solid var(--crema-borde);
+		border-radius: 12px;
+		padding: 2mm;
+	}
+	.cuadro img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 8px; }
+	.cuadro figcaption {
+		margin-top: 1.5mm;
+		font-family: var(--fuente-serif); font-weight: 700; font-size: 9.5pt; line-height: 1.2;
+		color: var(--azul-profundo);
+	}
+
+	/* Pie: cómo ver mis trabajos */
+	.pie {
+		background: var(--azul-profundo);
+		color: var(--crema-tela);
+		padding: 4mm 12mm;
+		display: grid;
+		grid-template-columns: 1fr 37mm;
+		gap: 8mm;
+		align-items: center;
+	}
+	.pie h2 { color: var(--crema-tela); margin-bottom: 2mm; }
+	.pasos { list-style: none; padding: 0; display: grid; gap: 1.5mm; font-size: 10pt; }
+	.pasos li { display: flex; gap: 2.5mm; align-items: flex-start; }
+	.pasos .icono { margin-top: 0.4mm; }
+	.pasos strong { font-weight: 700; }
+	.redes {
+		margin-top: 2.5mm; padding-top: 2.5mm;
+		border-top: 2px dashed rgb(250 245 234 / 0.5);
+		display: grid; grid-template-columns: 1fr 1fr; gap: 1.8mm 5mm; font-size: 9.5pt;
+		list-style: none; padding-left: 0;
+	}
+	.redes li { display: flex; align-items: center; gap: 2mm; }
+	.qr {
+		background: var(--blanco-hilo);
+		border-radius: 16px;
+		padding: 3.5mm 3.5mm 2.5mm;
+		text-align: center;
+		color: var(--azul-noche);
+	}
+	.qr svg { display: block; width: 100%; height: auto; }
+	.qr strong {
+		display: block; margin-top: 2mm;
+		font-family: var(--fuente-serif); font-size: 12pt; color: var(--azul-profundo);
+	}
+	.qr span { display: block; font-size: 6.2pt; letter-spacing: -0.01em; white-space: nowrap; color: var(--acero-oscuro); }
+</style>
+</head>
+<body>
+<article class="hoja">
+	<div class="contenido">
+		<header class="cabecera">
+			<img src="img/artesanias-juanita.svg" alt="Las Artesanías de Juanita">
+			<p class="sobretitulo">Bordado crewel · Olmué, Chile</p>
+		</header>
+
+		<section class="presentacion">
+			<div>
+				<h1 class="titulo-1">Bordados crewel hechos a mano</h1>
+				<span class="puntada-corta"></span>
+				<p>Cada cuadro bordado en lana, puntada a puntada. Cada pieza es única y nace de la belleza de la naturaleza.</p>
+			</div>
+			<div class="retrato"><img src="img/perfil.jpg" alt="Juanita bordando"></div>
+		</section>
+
+		<section class="olmue">
+			<div class="texto">
+				<p class="sobretitulo etiqueta-lugar">
+					<svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+					Mis raíces
+				</p>
+				<h2 class="titulo-2">Orgullosa de ser olmueína</h2>
+				<span class="puntada-corta"></span>
+				<p>Vengo de Olmué, y toda mi familia viene de Olmué. Somos más de siete generaciones viviendo siempre en nuestra comuna.</p>
+				<p>Estoy orgullosa de ser olmueína, con mi cerro La Campana y su bella naturaleza.</p>
+				<div class="sello-fila">
+					<div class="sello"><strong>+7</strong><span>generaciones en Olmué</span></div>
+					<ul class="lista-iconos">
+						<li><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>Cerro La Campana</li>
+						<li><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>Su bella naturaleza</li>
+					</ul>
+				</div>
+			</div>
+			<figure class="foto foto-cerro">
+				<div class="marco"><img src="img/cerro-la-campana.jpg" alt="El cerro La Campana visto desde Olmué"></div>
+				<figcaption class="credito">Foto: Carlos Figueroa Rojas · CC BY-SA 4.0 · Wikimedia Commons</figcaption>
+			</figure>
+			<figure class="foto foto-caballos">
+				<img src="img/caballos-olmue.jpg" alt="Caballos en Olmué">
+				<figcaption class="credito">Foto: Carlos Figueroa Rojas · CC BY-SA 4.0 · Wikimedia Commons</figcaption>
+			</figure>
+		</section>
+
+		<section class="corazon">
+			<h2 class="titulo-2">Hecho con el corazón</h2>
+			<p>Para mí el bordado crewel es una terapia. Me relaja y me deja plasmar la belleza de la naturaleza, y así cada pieza se vuelve una obra única bordada en lana.</p>
+			<blockquote>
+				“Busco transmitir en cada cuadro todos los buenos sentimientos y pensamientos positivos que llevo dentro.”
+				<cite>— Juanita</cite>
+			</blockquote>
+		</section>
+
+		<section>
+			<div class="cuadros-cabecera">
+				<h2 class="titulo-2">Algunos de mis cuadros</h2>
+				<p class="sobretitulo">Galería</p>
+			</div>
+			<div class="cuadros">
+				<figure class="cuadro"><img src="img/colibri-entre-flores.jpg" alt=""><figcaption>Colibrí entre flores</figcaption></figure>
+				<figure class="cuadro"><img src="img/colibri-en-colores.jpg" alt=""><figcaption>Colibrí en colores</figcaption></figure>
+				<figure class="cuadro"><img src="img/naturaleza.jpg" alt=""><figcaption>Naturaleza</figcaption></figure>
+				<figure class="cuadro"><img src="img/valparaiso-y-su-magia.jpg" alt=""><figcaption>Valparaíso y su magia</figcaption></figure>
+			</div>
+		</section>
+	</div>
+
+	<footer class="pie">
+		<div>
+			<h2 class="titulo-2">Cómo ver mis trabajos</h2>
+			<ol class="pasos">
+				<li>
+					<svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 12v4a1 1 0 0 1-1 1h-4"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M17 8V7"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M7 17h.01"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><rect x="7" y="7" width="5" height="5" rx="1"/></svg>
+					<span><strong>Escanea el código</strong> con la cámara de tu celular y toca el enlace que aparece.</span>
+				</li>
+				<li>
+					<svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+					<span>O escribe en tu navegador <strong>www.lasartesaniasdejuanita.cl</strong></span>
+				</li>
+				<li>
+					<svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg>
+					<span>Si te gusta un cuadro, <strong>escríbeme</strong>.</span>
+				</li>
+			</ol>
+			<ul class="redes">
+				<li><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg>+56 9 9938 4690</li>
+				<li><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>@lasartesaniasdejuanita</li>
+				<li><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>lasartesaniasdejuanita@gmail.com</li>
+				<li><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>lasartesaniasdejuanita</li>
+			</ul>
+		</div>
+		<div class="qr">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" shape-rendering="crispEdges" role="img" aria-label="QR: www.lasartesaniasdejuanita.cl"><path fill="#0F2C63" d="M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM9 0h1v1h-1zM10 0h1v1h-1zM11 0h1v1h-1zM13 0h1v1h-1zM16 0h1v1h-1zM17 0h1v1h-1zM18 0h1v1h-1zM19 0h1v1h-1zM20 0h1v1h-1zM22 0h1v1h-1zM23 0h1v1h-1zM24 0h1v1h-1zM25 0h1v1h-1zM26 0h1v1h-1zM27 0h1v1h-1zM28 0h1v1h-1zM0 1h1v1h-1zM6 1h1v1h-1zM9 1h1v1h-1zM11 1h1v1h-1zM14 1h1v1h-1zM15 1h1v1h-1zM16 1h1v1h-1zM18 1h1v1h-1zM22 1h1v1h-1zM28 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM6 2h1v1h-1zM8 2h1v1h-1zM9 2h1v1h-1zM10 2h1v1h-1zM12 2h1v1h-1zM19 2h1v1h-1zM20 2h1v1h-1zM22 2h1v1h-1zM24 2h1v1h-1zM25 2h1v1h-1zM26 2h1v1h-1zM28 2h1v1h-1zM0 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM6 3h1v1h-1zM8 3h1v1h-1zM10 3h1v1h-1zM11 3h1v1h-1zM12 3h1v1h-1zM13 3h1v1h-1zM15 3h1v1h-1zM17 3h1v1h-1zM19 3h1v1h-1zM22 3h1v1h-1zM24 3h1v1h-1zM25 3h1v1h-1zM26 3h1v1h-1zM28 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM6 4h1v1h-1zM8 4h1v1h-1zM12 4h1v1h-1zM13 4h1v1h-1zM16 4h1v1h-1zM18 4h1v1h-1zM19 4h1v1h-1zM20 4h1v1h-1zM22 4h1v1h-1zM24 4h1v1h-1zM25 4h1v1h-1zM26 4h1v1h-1zM28 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM10 5h1v1h-1zM11 5h1v1h-1zM12 5h1v1h-1zM13 5h1v1h-1zM14 5h1v1h-1zM15 5h1v1h-1zM18 5h1v1h-1zM20 5h1v1h-1zM22 5h1v1h-1zM28 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM23 6h1v1h-1zM24 6h1v1h-1zM25 6h1v1h-1zM26 6h1v1h-1zM27 6h1v1h-1zM28 6h1v1h-1zM8 7h1v1h-1zM9 7h1v1h-1zM10 7h1v1h-1zM14 7h1v1h-1zM16 7h1v1h-1zM0 8h1v1h-1zM2 8h1v1h-1zM3 8h1v1h-1zM4 8h1v1h-1zM5 8h1v1h-1zM6 8h1v1h-1zM10 8h1v1h-1zM11 8h1v1h-1zM12 8h1v1h-1zM17 8h1v1h-1zM22 8h1v1h-1zM23 8h1v1h-1zM24 8h1v1h-1zM25 8h1v1h-1zM26 8h1v1h-1zM0 9h1v1h-1zM1 9h1v1h-1zM3 9h1v1h-1zM4 9h1v1h-1zM7 9h1v1h-1zM9 9h1v1h-1zM10 9h1v1h-1zM12 9h1v1h-1zM13 9h1v1h-1zM19 9h1v1h-1zM20 9h1v1h-1zM21 9h1v1h-1zM22 9h1v1h-1zM23 9h1v1h-1zM24 9h1v1h-1zM28 9h1v1h-1zM1 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM9 10h1v1h-1zM10 10h1v1h-1zM11 10h1v1h-1zM13 10h1v1h-1zM14 10h1v1h-1zM15 10h1v1h-1zM16 10h1v1h-1zM17 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM22 10h1v1h-1zM3 11h1v1h-1zM4 11h1v1h-1zM5 11h1v1h-1zM8 11h1v1h-1zM9 11h1v1h-1zM10 11h1v1h-1zM11 11h1v1h-1zM12 11h1v1h-1zM13 11h1v1h-1zM15 11h1v1h-1zM19 11h1v1h-1zM21 11h1v1h-1zM23 11h1v1h-1zM25 11h1v1h-1zM27 11h1v1h-1zM0 12h1v1h-1zM3 12h1v1h-1zM4 12h1v1h-1zM6 12h1v1h-1zM10 12h1v1h-1zM14 12h1v1h-1zM15 12h1v1h-1zM17 12h1v1h-1zM20 12h1v1h-1zM25 12h1v1h-1zM26 12h1v1h-1zM0 13h1v1h-1zM2 13h1v1h-1zM3 13h1v1h-1zM4 13h1v1h-1zM7 13h1v1h-1zM9 13h1v1h-1zM16 13h1v1h-1zM18 13h1v1h-1zM19 13h1v1h-1zM20 13h1v1h-1zM21 13h1v1h-1zM22 13h1v1h-1zM24 13h1v1h-1zM28 13h1v1h-1zM2 14h1v1h-1zM4 14h1v1h-1zM5 14h1v1h-1zM6 14h1v1h-1zM7 14h1v1h-1zM11 14h1v1h-1zM12 14h1v1h-1zM15 14h1v1h-1zM20 14h1v1h-1zM21 14h1v1h-1zM23 14h1v1h-1zM25 14h1v1h-1zM26 14h1v1h-1zM3 15h1v1h-1zM7 15h1v1h-1zM10 15h1v1h-1zM11 15h1v1h-1zM12 15h1v1h-1zM14 15h1v1h-1zM15 15h1v1h-1zM16 15h1v1h-1zM18 15h1v1h-1zM20 15h1v1h-1zM23 15h1v1h-1zM24 15h1v1h-1zM27 15h1v1h-1zM0 16h1v1h-1zM1 16h1v1h-1zM2 16h1v1h-1zM3 16h1v1h-1zM6 16h1v1h-1zM7 16h1v1h-1zM8 16h1v1h-1zM10 16h1v1h-1zM15 16h1v1h-1zM16 16h1v1h-1zM17 16h1v1h-1zM23 16h1v1h-1zM25 16h1v1h-1zM26 16h1v1h-1zM0 17h1v1h-1zM3 17h1v1h-1zM7 17h1v1h-1zM11 17h1v1h-1zM13 17h1v1h-1zM14 17h1v1h-1zM16 17h1v1h-1zM18 17h1v1h-1zM19 17h1v1h-1zM20 17h1v1h-1zM22 17h1v1h-1zM23 17h1v1h-1zM24 17h1v1h-1zM26 17h1v1h-1zM28 17h1v1h-1zM0 18h1v1h-1zM3 18h1v1h-1zM5 18h1v1h-1zM6 18h1v1h-1zM7 18h1v1h-1zM8 18h1v1h-1zM10 18h1v1h-1zM13 18h1v1h-1zM14 18h1v1h-1zM15 18h1v1h-1zM16 18h1v1h-1zM21 18h1v1h-1zM23 18h1v1h-1zM26 18h1v1h-1zM0 19h1v1h-1zM2 19h1v1h-1zM7 19h1v1h-1zM8 19h1v1h-1zM11 19h1v1h-1zM13 19h1v1h-1zM15 19h1v1h-1zM20 19h1v1h-1zM22 19h1v1h-1zM23 19h1v1h-1zM24 19h1v1h-1zM27 19h1v1h-1zM0 20h1v1h-1zM3 20h1v1h-1zM4 20h1v1h-1zM5 20h1v1h-1zM6 20h1v1h-1zM7 20h1v1h-1zM10 20h1v1h-1zM12 20h1v1h-1zM14 20h1v1h-1zM17 20h1v1h-1zM20 20h1v1h-1zM21 20h1v1h-1zM22 20h1v1h-1zM23 20h1v1h-1zM24 20h1v1h-1zM26 20h1v1h-1zM27 20h1v1h-1zM28 20h1v1h-1zM8 21h1v1h-1zM12 21h1v1h-1zM16 21h1v1h-1zM17 21h1v1h-1zM18 21h1v1h-1zM19 21h1v1h-1zM20 21h1v1h-1zM24 21h1v1h-1zM25 21h1v1h-1zM26 21h1v1h-1zM27 21h1v1h-1zM28 21h1v1h-1zM0 22h1v1h-1zM1 22h1v1h-1zM2 22h1v1h-1zM3 22h1v1h-1zM4 22h1v1h-1zM5 22h1v1h-1zM6 22h1v1h-1zM9 22h1v1h-1zM11 22h1v1h-1zM12 22h1v1h-1zM15 22h1v1h-1zM17 22h1v1h-1zM18 22h1v1h-1zM19 22h1v1h-1zM20 22h1v1h-1zM22 22h1v1h-1zM24 22h1v1h-1zM25 22h1v1h-1zM26 22h1v1h-1zM0 23h1v1h-1zM6 23h1v1h-1zM8 23h1v1h-1zM10 23h1v1h-1zM11 23h1v1h-1zM14 23h1v1h-1zM16 23h1v1h-1zM18 23h1v1h-1zM19 23h1v1h-1zM20 23h1v1h-1zM24 23h1v1h-1zM27 23h1v1h-1zM28 23h1v1h-1zM0 24h1v1h-1zM2 24h1v1h-1zM3 24h1v1h-1zM4 24h1v1h-1zM6 24h1v1h-1zM8 24h1v1h-1zM17 24h1v1h-1zM20 24h1v1h-1zM21 24h1v1h-1zM22 24h1v1h-1zM23 24h1v1h-1zM24 24h1v1h-1zM26 24h1v1h-1zM0 25h1v1h-1zM2 25h1v1h-1zM3 25h1v1h-1zM4 25h1v1h-1zM6 25h1v1h-1zM8 25h1v1h-1zM10 25h1v1h-1zM11 25h1v1h-1zM14 25h1v1h-1zM16 25h1v1h-1zM20 25h1v1h-1zM23 25h1v1h-1zM25 25h1v1h-1zM26 25h1v1h-1zM27 25h1v1h-1zM28 25h1v1h-1zM0 26h1v1h-1zM2 26h1v1h-1zM3 26h1v1h-1zM4 26h1v1h-1zM6 26h1v1h-1zM8 26h1v1h-1zM10 26h1v1h-1zM12 26h1v1h-1zM13 26h1v1h-1zM14 26h1v1h-1zM15 26h1v1h-1zM16 26h1v1h-1zM21 26h1v1h-1zM22 26h1v1h-1zM23 26h1v1h-1zM24 26h1v1h-1zM25 26h1v1h-1zM26 26h1v1h-1zM27 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM9 27h1v1h-1zM15 27h1v1h-1zM19 27h1v1h-1zM20 27h1v1h-1zM21 27h1v1h-1zM23 27h1v1h-1zM25 27h1v1h-1zM27 27h1v1h-1zM0 28h1v1h-1zM1 28h1v1h-1zM2 28h1v1h-1zM3 28h1v1h-1zM4 28h1v1h-1zM5 28h1v1h-1zM6 28h1v1h-1zM8 28h1v1h-1zM9 28h1v1h-1zM10 28h1v1h-1zM11 28h1v1h-1zM15 28h1v1h-1zM17 28h1v1h-1zM19 28h1v1h-1zM23 28h1v1h-1zM24 28h1v1h-1zM25 28h1v1h-1zM26 28h1v1h-1z"/></svg>
+			<strong>Ver mis trabajos</strong>
+			<span>www.lasartesaniasdejuanita.cl</span>
+		</div>
+	</footer>
+</article>
+</body>
+</html>
