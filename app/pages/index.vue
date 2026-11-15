@@ -234,7 +234,7 @@ const destacados = computed(() => (cuadros.value ?? []).slice(0, 3));
 		<div class="puntada mx-auto max-w-[720px] pt-16 text-center">
 			<h2 class="titulo-2 mb-4">¿Te gusta alguna pieza?</h2>
 			<p class="mx-auto mb-8 max-w-[50ch]">
-				Escríbeme para consultar disponibilidad o pedir un encargo a tu medida.
+				Escríbeme para consultar disponibilidad o coméntame qué te pareció.
 			</p>
 			<NuxtLink to="/contacto" class="boton boton-principal">
 				Contactar

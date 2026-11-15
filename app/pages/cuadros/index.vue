@@ -27,7 +27,7 @@ const { data: cuadros } = await useAsyncData('cuadros', async () => {
 			<p class="animate-rise-delay-1 text-lg leading-[28px]">
 				Estos son mis cuadros, bordados a mano con técnica crewel. Si alguno te gusta,
 				<NuxtLink to="/contacto" class="enlace">escríbeme</NuxtLink> para saber si está disponible
-				o para pedir un encargo.
+				o para contarme qué te pareció.
 			</p>
 		</header>
 

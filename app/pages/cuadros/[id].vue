@@ -123,7 +123,7 @@ useSeoMeta({
 
 				<NuxtLink to="/contacto" class="boton boton-principal mt-6">
 					<MessageCircle class="icono" stroke-width="2" aria-hidden="true" />
-					{{ cuadro.vendido ? 'Pedir uno parecido' : 'Consultar por este cuadro' }}
+					{{ cuadro.vendido ? 'Coméntame qué te pareció' : 'Consultar por este cuadro' }}
 				</NuxtLink>
 			</div>
 		</div>

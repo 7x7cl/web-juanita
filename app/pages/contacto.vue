@@ -59,8 +59,8 @@ const channels = [
 			<p class="sobretitulo mb-2">Hablemos</p>
 			<h1 class="titulo-1 mb-4">Contacto</h1>
 			<p class="mx-auto max-w-[50ch]">
-				Escríbeme por correo o redes. Respondo yo misma las consultas sobre mis bordados y los
-				encargos.
+				Escríbeme por correo o redes. Respondo yo misma las consultas y comentarios sobre mis
+				bordados.
 			</p>
 		</header>
 
