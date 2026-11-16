@@ -7,8 +7,11 @@ export default defineNuxtConfig({
 	css: ['~/assets/css/main.css'],
 
 	site: {
-		url: 'https://example.com',
+		url: 'https://www.lasartesaniasdejuanita.cl',
 		name: 'Las Artesanías de Juanita',
+		description:
+			'Bordados crewel hechos a mano en Chile por Juanita. Cuadros únicos bordados en lana con técnica crewel.',
+		defaultLocale: 'es',
 	},
 
 	fonts: {

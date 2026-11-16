@@ -1,6 +1,6 @@
 // Global site data, importable from both the app and Nitro (server) contexts.
 
-export const SITE_URL = 'https://example.com';
+export const SITE_URL = 'https://www.lasartesaniasdejuanita.cl';
 export const SITE_TITLE = 'Las Artesanías de Juanita — Bordados Crewel Hechos a Mano';
 export const SITE_DESCRIPTION =
 	'Bordados crewel hechos a mano en Chile por Juanita. Cuadros únicos bordados en lana con técnica crewel: colores, texturas y tradición artesanal en cada puntada.';
