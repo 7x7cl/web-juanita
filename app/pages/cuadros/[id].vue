@@ -57,10 +57,65 @@ useSeoMeta({
 	ogTitle: title.value,
 	ogDescription: description.value,
 	ogImage: ogImage.value,
+	ogImageAlt: imageAlt.value,
 	twitterTitle: title.value,
 	twitterDescription: description.value,
 	twitterImage: ogImage.value,
+	twitterImageAlt: imageAlt.value,
 });
+
+const artworkSchema = computed(() =>
+	JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'VisualArtwork',
+		name: cuadro.value.titulo,
+		url: `${SITE_URL}${cuadro.value.path}`,
+		image: `${SITE_URL}${cuadro.value.portada}`,
+		artform: 'Bordado crewel',
+		artMedium: 'Lana bordada sobre tela',
+		creator: {
+			'@type': 'Person',
+			name: CONTACT.name,
+			alternateName: 'Juanita',
+		},
+		width: {
+			'@type': 'DistanceValue',
+			value: cuadro.value.measures.width,
+			unitCode: 'CMT',
+		},
+		height: {
+			'@type': 'DistanceValue',
+			value: cuadro.value.measures.height,
+			unitCode: 'CMT',
+		},
+		...(cuadro.value.end?.year && { dateCreated: String(cuadro.value.end.year) }),
+		inLanguage: 'es',
+	}),
+);
+
+const breadcrumbSchema = computed(() =>
+	JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{ '@type': 'ListItem', position: 1, name: 'Inicio', item: `${SITE_URL}/` },
+			{ '@type': 'ListItem', position: 2, name: 'Cuadros', item: `${SITE_URL}/cuadros` },
+			{
+				'@type': 'ListItem',
+				position: 3,
+				name: cuadro.value.titulo,
+				item: `${SITE_URL}${cuadro.value.path}`,
+			},
+		],
+	}),
+);
+
+useHead(() => ({
+	script: [
+		{ type: 'application/ld+json', innerHTML: artworkSchema.value },
+		{ type: 'application/ld+json', innerHTML: breadcrumbSchema.value },
+	],
+}));
 </script>
 
 <template>

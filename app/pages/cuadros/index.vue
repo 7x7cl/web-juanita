@@ -16,6 +16,25 @@ const { data: cuadros } = await useAsyncData('cuadros', async () => {
 	const docs = await queryCollection('cuadros').all();
 	return sortCuadros(docs.map(toCuadro));
 });
+
+const itemListSchema = computed(() =>
+	JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'ItemList',
+		name: 'Cuadros de bordado crewel',
+		inLanguage: 'es',
+		itemListElement: (cuadros.value ?? []).map((cuadro, index) => ({
+			'@type': 'ListItem',
+			position: index + 1,
+			name: cuadro.titulo,
+			url: `${SITE_URL}${cuadro.path}`,
+		})),
+	}),
+);
+
+useHead(() => ({
+	script: [{ type: 'application/ld+json', innerHTML: itemListSchema.value }],
+}));
 </script>
 
 <template>

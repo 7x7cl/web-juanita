@@ -43,8 +43,14 @@ useSeoMeta({
 	author: SITE_NAME,
 	ogSiteName: SITE_NAME,
 	ogType: 'website',
-	ogImage: `${SITE_URL}/favicon.svg`,
+	ogLocale: 'es_CL',
+	ogImage: `${SITE_URL}/og-image.jpg`,
+	ogImageWidth: 1200,
+	ogImageHeight: 630,
+	ogImageAlt: 'Las Artesanías de Juanita — bordados crewel hechos a mano en Chile',
 	twitterCard: 'summary_large_image',
+	twitterImage: `${SITE_URL}/og-image.jpg`,
+	twitterImageAlt: 'Las Artesanías de Juanita — bordados crewel hechos a mano en Chile',
 });
 </script>
 

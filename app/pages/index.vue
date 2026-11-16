@@ -18,8 +18,20 @@ const personSchema = JSON.stringify({
 	],
 });
 
+const websiteSchema = JSON.stringify({
+	'@context': 'https://schema.org',
+	'@type': 'WebSite',
+	name: SITE_NAME,
+	url: SITE_URL,
+	description: SITE_DESCRIPTION,
+	inLanguage: 'es',
+});
+
 useHead({
-	script: [{ type: 'application/ld+json', innerHTML: personSchema }],
+	script: [
+		{ type: 'application/ld+json', innerHTML: personSchema },
+		{ type: 'application/ld+json', innerHTML: websiteSchema },
+	],
 });
 
 const { data: cuadros } = await useAsyncData('cuadros', async () => {
